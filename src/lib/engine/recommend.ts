@@ -153,7 +153,7 @@ export function recommend(ctx: AnalysisContext, avail: AvailabilityResult | null
       strategic.set(x, acc / avail.sims - field.baselineObj);
     }
   } else {
-    if (!myTurn) notes.push("You are not on the clock: rankings show value for your next pick with survival odds to that pick.");
+    if (!myTurn) notes.push("You are not on the clock: rankings show the expected value of targeting each player at your next pick (survival × improvement).");
     if (!hasNext && myTurn) notes.push("This is your final pick — no lookahead needed.");
   }
 
@@ -183,7 +183,7 @@ export function recommend(ctx: AnalysisContext, avail: AvailabilityResult | null
     const downs = ctx.cats.filter((c) => catImpact[c] < -0.005).sort((a, b) => catImpact[a] - catImpact[b]).slice(0, 2);
     if (ups.length) reasons.push(`Boosts ${ups.map((c) => `${CAT_BY_KEY[c].short} (+${(catImpact[c] * 100).toFixed(1)} pts win%)`).join(", ")}`);
     if (downs.length) reasons.push(`Costs ${downs.map((c) => `${CAT_BY_KEY[c].short} (${(catImpact[c] * 100).toFixed(1)})`).join(", ")}`);
-    if (avail && myTurn && hasNext) reasons.push(`${fmtPct(survival)} chance he survives to your next pick`);
+    if (avail && hasNext) reasons.push(`${fmtPct(survival)} chance he ${myTurn ? "survives to your next pick" : "is still there at your pick"}`);
     if (p.availability && p.availability.status !== "HEALTHY") reasons.push(`Availability: ${p.availability.status.replace("_", " ").toLowerCase()} (${p.availability.injury ?? ""})`);
     if (p.proj && p.proj.confidence < 0.5) reasons.push(`Low projection confidence (${fmtPct(p.proj.confidence)})`);
     return {
@@ -198,7 +198,10 @@ export function recommend(ctx: AnalysisContext, avail: AvailabilityResult | null
       downside,
       upside,
       catImpact,
-      score: strat - λ * downside,
+      // On the clock: risk-adjusted two-pick score. Not on the clock: expected value of
+      // targeting X at my next pick = P(survives) × improvement (if he is gone I get the
+      // expected player at my slot, whose improvement is 0 by construction).
+      score: myTurn || !avail ? strat - λ * downside : survival * (gain - λ * downside),
       reasons,
     };
   });

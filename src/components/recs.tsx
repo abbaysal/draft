@@ -94,13 +94,15 @@ export function TopPickCard() {
     document.addEventListener("wr:draft-top", h);
     return () => document.removeEventListener("wr:draft-top", h);
   }, [pr, ctx, draft]);
-  if (!pr || !ctx) return <Panel title="Best strategic pick now"><Spinner label="Computing recommendations…" /></Panel>;
+  const myTurn = ctx ? ctx.onClock === ctx.myIndex : true;
+  const title = myTurn ? "Best strategic pick now" : `Best target for your next pick (#${ctx?.myNextPicks[0] ?? "—"})`;
+  if (!pr || !ctx) return <Panel title={title}><Spinner label="Computing recommendations…" /></Panel>;
   const top = pr.ranked[0];
-  if (!top) return <Panel title="Best strategic pick now"><Empty>No available players.</Empty></Panel>;
+  if (!top) return <Panel title={title}><Empty>No available players.</Empty></Panel>;
   const p = ctx.byId.get(top.id)!;
   const fmt = pr.rec.objectiveName;
   return (
-    <Panel title="Best strategic pick now" right={pr.stale ? <Spinner label="updating" /> : <Badge tone="good">LIVE</Badge>} className="border-accent/40">
+    <Panel title={title} right={pr.stale ? <Spinner label="updating" /> : <Badge tone="good">LIVE</Badge>} className="border-accent/40">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="text-xl font-bold">
@@ -114,8 +116,8 @@ export function TopPickCard() {
             ))}
           </div>
         </div>
-        <Button variant="primary" onClick={() => void draft(top.id)} data-testid="draft-top">
-          Draft
+        <Button variant={myTurn ? "primary" : "default"} onClick={() => void draft(top.id)} data-testid="draft-top" title={myTurn ? "Draft for your team" : "Record this player for the team on the clock"}>
+          {myTurn ? "Draft" : "Record pick"}
         </Button>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -181,7 +183,7 @@ export function CandidateTable({ limit = 8, title = "Top alternatives" }: { limi
   const draft = useDraftPlayer();
   if (!pr || !ctx) return <Panel title={title}><Spinner /></Panel>;
   return (
-    <Panel title={title} right={<span className="text-dim">{pr.label}</span>} bodyClass="p-0">
+    <Panel title={title} right={<span className="text-dim">{pr.label}</span>} bodyClass="p-0 overflow-x-auto">
       <table className="w-full text-xs" data-testid="candidate-table">
         <thead className="text-[10px] text-dim uppercase">
           <tr className="border-b border-line">
