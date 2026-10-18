@@ -3,20 +3,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import {
-  Activity, BarChart3, ListChecks, BookOpen, Brain, CalendarDays, Database, FlaskConical, GitCompare, History, LayoutDashboard, Settings, Shuffle, Swords, Target, Users,
+  Activity, ArrowLeftRight, BarChart3, ListChecks, BookOpen, Brain, CalendarDays, Database, FlaskConical, GitCompare, History, LayoutDashboard, Settings, Shuffle, Swords, Target, Trophy, Users,
 } from "lucide-react";
 import { useStore, useActiveSession } from "@/client/store";
 import { AnalysisRunner, useEngineContext } from "@/client/analysis";
 import { Badge, Button, cn, Spinner } from "./ui";
 import { Copilot } from "./copilot";
 
-const NAV = [
+type NavItem = { href: string; label: string; icon: typeof Activity; group?: string };
+
+const DRAFT_NAV: NavItem[] = [
   { href: "/", label: "War Room", icon: LayoutDashboard },
   { href: "/decision", label: "Decision Center", icon: Target },
   { href: "/players", label: "Players", icon: Users },
   { href: "/punt-lab", label: "Punt Lab", icon: FlaskConical },
   { href: "/team", label: "My Team", icon: BarChart3 },
   { href: "/lineup", label: "Matchups & Lineup", icon: ListChecks },
+  { href: "/trade", label: "Trade Analyzer", icon: ArrowLeftRight },
   { href: "/opponents", label: "Opponents", icon: Swords },
   { href: "/compare", label: "Compare", icon: GitCompare },
   { href: "/mock", label: "Mock Simulator", icon: Shuffle },
@@ -25,6 +28,26 @@ const NAV = [
   { href: "/data", label: "Data", icon: Database },
   { href: "/library", label: "Strategy Library", icon: BookOpen },
   { href: "/settings", label: "League & Drafts", icon: Settings },
+];
+
+/** After the draft: season management first, draft tools archived below. */
+const SEASON_NAV: NavItem[] = [
+  { href: "/", label: "Season HQ", icon: Trophy },
+  { href: "/lineup", label: "Matchups & Lineup", icon: ListChecks },
+  { href: "/trade", label: "Trade Analyzer", icon: ArrowLeftRight },
+  { href: "/team", label: "My Team", icon: BarChart3 },
+  { href: "/players", label: "Players & Waivers", icon: Users },
+  { href: "/opponents", label: "Opponents", icon: Swords },
+  { href: "/playoffs", label: "Playoffs", icon: CalendarDays },
+  { href: "/compare", label: "Compare", icon: GitCompare },
+  { href: "/draft", label: "Draft Board", icon: LayoutDashboard, group: "Draft archive" },
+  { href: "/decision", label: "Decision Center", icon: Target, group: "Draft archive" },
+  { href: "/punt-lab", label: "Punt Lab", icon: FlaskConical, group: "Draft archive" },
+  { href: "/mock", label: "Mock Simulator", icon: Shuffle, group: "Draft archive" },
+  { href: "/library", label: "Strategy Library", icon: BookOpen, group: "Draft archive" },
+  { href: "/history", label: "History & Audit", icon: History, group: "Draft archive" },
+  { href: "/data", label: "Data", icon: Database, group: "Settings" },
+  { href: "/settings", label: "League & Drafts", icon: Settings, group: "Settings" },
 ];
 
 function DraftStatus() {
@@ -124,7 +147,7 @@ function Shortcuts({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
-function useGlobalKeys(setHelp: (f: (x: boolean) => boolean) => void) {
+function useGlobalKeys(setHelp: (f: (x: boolean) => boolean) => void, allowUndo: boolean) {
   const dispatch = useStore((s) => s.dispatch);
   useEffect(() => {
     let gPressed = 0;
@@ -132,8 +155,8 @@ function useGlobalKeys(setHelp: (f: (x: boolean) => boolean) => void) {
       const t = e.target as HTMLElement;
       if (["INPUT", "TEXTAREA", "SELECT"].includes(t.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
       if (e.key === "?") setHelp((x) => !x);
-      else if (e.key === "z") void dispatch({ type: "undo" });
-      else if (e.key === "y") void dispatch({ type: "redo" });
+      else if (e.key === "z" && allowUndo) void dispatch({ type: "undo" });
+      else if (e.key === "y" && allowUndo) void dispatch({ type: "redo" });
       else if (e.key === "D" && e.shiftKey) {
         const top = useStore.getState().fast.result?.rec.candidates[0];
         if (top) document.dispatchEvent(new CustomEvent("wr:draft-top", { detail: top.id }));
@@ -145,7 +168,7 @@ function useGlobalKeys(setHelp: (f: (x: boolean) => boolean) => void) {
     };
     window.addEventListener("keydown", h);
     return () => window.removeEventListener("keydown", h);
-  }, [dispatch, setHelp]);
+  }, [dispatch, setHelp, allowUndo]);
 }
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -162,7 +185,12 @@ export function AppShell({ children }: { children: ReactNode }) {
   const ai = useStore((s) => s.health?.ai);
   const authConfigured = useStore((s) => s.auth.authConfigured);
   const [help, setHelp] = useState(false);
-  useGlobalKeys(setHelp);
+  const ctx = useEngineContext();
+  const complete = !!ctx && ctx.overall > ctx.totalPicks;
+  // After the draft, undo/redo would remove real picks: only offered on the draft board.
+  const allowUndo = !complete || pathname === "/draft";
+  const NAV = complete ? SEASON_NAV : DRAFT_NAV;
+  useGlobalKeys(setHelp, allowUndo);
   useEffect(() => {
     void init();
   }, [init]);
@@ -194,17 +222,20 @@ export function AppShell({ children }: { children: ReactNode }) {
           <Activity className="h-5 w-5 text-accent" />
           <div>
             <div className="text-sm font-bold tracking-tight">9-CAT WAR ROOM</div>
-            <div className="text-[10px] text-dim">2026-27 · draft intelligence</div>
+            <div className="text-[10px] text-dim">2026-27 · {complete ? "season HQ" : "draft intelligence"}</div>
           </div>
         </div>
         <nav className="flex-1 overflow-y-auto py-2">
-          {NAV.map((n) => {
+          {NAV.map((n, i) => {
             const activeNav = n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
             return (
-              <Link key={n.href} href={n.href} className={cn("flex items-center gap-2.5 px-3 py-1.5 text-sm", activeNav ? "border-r-2 border-accent bg-panel2 text-ink" : "text-mute hover:text-ink")}>
-                <n.icon className="h-4 w-4" />
-                {n.label}
-              </Link>
+              <div key={n.href}>
+                {n.group && n.group !== NAV[i - 1]?.group && <div className="mt-3 px-3 pb-1 text-[10px] tracking-wider text-dim uppercase">{n.group}</div>}
+                <Link href={n.href} className={cn("flex items-center gap-2.5 px-3 py-1.5 text-sm", activeNav ? "border-r-2 border-accent bg-panel2 text-ink" : "text-mute hover:text-ink")}>
+                  <n.icon className="h-4 w-4" />
+                  {n.label}
+                </Link>
+              </div>
             );
           })}
         </nav>
@@ -242,12 +273,16 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="ml-auto flex items-center gap-2">
             {fastLoading && <Spinner label="updating" />}
             {champ?.running && <Spinner label={`title sims ${champ.done}/${champ.sims}`} />}
-            <Button size="sm" variant="ghost" onClick={() => void dispatch({ type: "undo" })} title="Undo (Z)" data-testid="undo">
-              ↶ Undo
-            </Button>
-            <Button size="sm" variant="ghost" onClick={() => void dispatch({ type: "redo" })} title="Redo (Y)" data-testid="redo">
-              ↷ Redo
-            </Button>
+            {allowUndo && (
+              <>
+                <Button size="sm" variant="ghost" onClick={() => void dispatch({ type: "undo" })} title="Undo (Z)" data-testid="undo">
+                  ↶ Undo
+                </Button>
+                <Button size="sm" variant="ghost" onClick={() => void dispatch({ type: "redo" })} title="Redo (Y)" data-testid="redo">
+                  ↷ Redo
+                </Button>
+              </>
+            )}
             <SyncBadge />
           </div>
         </header>

@@ -1,15 +1,14 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { CAT_BY_KEY } from "@/lib/categories";
-import { BILLUR_SCHEDULE } from "@/lib/league";
 import { weekRange } from "@/lib/engine/schedule";
-import { matchupPeriods, parseSchedule, periodOf, planWeek, resolveTeam } from "@/lib/engine/lineup";
+import { matchupPeriods, parseSchedule, planWeek, type LineupOverrides } from "@/lib/engine/lineup";
+import { currentPeriod, useMatchupSchedule } from "@/client/matchups";
 import { useEngineContext } from "@/client/analysis";
 import { useActiveSession } from "@/client/store";
 import { Badge, Button, cn, Panel, ProbBar, Spinner } from "@/components/ui";
 import { PlayerLink } from "@/components/player";
 
-const key = (id: string) => `wr.v1.matchups.${id}`;
 const PERIODS = matchupPeriods();
 const md = (d: string) => `${Number(d.slice(5, 7))}/${Number(d.slice(8, 10))}`;
 const periodLabel = (i: number) => {
@@ -21,32 +20,38 @@ const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export default function LineupPage() {
   const ctx = useEngineContext();
   const session = useActiveSession();
-  const [schedule, setSchedule] = useState<string[]>([]);
+  const { schedule, opponents, save } = useMatchupSchedule(ctx);
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState("");
-  const [week, setWeek] = useState(() => Math.max(1, Math.min(21, periodOf(new Date().toISOString().slice(0, 10)))));
+  const [week, setWeek] = useState(() => currentPeriod(21));
 
-  useEffect(() => {
-    if (!session) return;
-    let saved: string[] | null = null;
-    try {
-      saved = JSON.parse(localStorage.getItem(key(session.id)) ?? "null");
-    } catch {
-      saved = null;
-    }
-    const isBillur = session.settings.teamNames.some((n) => n.startsWith("Barış"));
-    setSchedule(saved ?? (isBillur ? BILLUR_SCHEDULE : []));
-  }, [session]);
-
-  const opponents = useMemo(() => (ctx ? schedule.map((n) => resolveTeam(n, ctx.settings.teamNames)) : []), [ctx, schedule]);
-  const plan = useMemo(() => {
+  const [overrides, setOverrides] = useState<Record<number, LineupOverrides>>({});
+  const ov = overrides[week];
+  const optimal = useMemo(() => {
     const opp = opponents[week - 1];
     if (!ctx || opp == null || opp < 0) return null;
     return planWeek(ctx, week, opp);
   }, [ctx, opponents, week]);
+  const plan = useMemo(() => {
+    const opp = opponents[week - 1];
+    if (!ctx || !optimal || !ov || !Object.keys(ov).length) return optimal;
+    return planWeek(ctx, week, opp, { overrides: ov });
+  }, [ctx, opponents, week, optimal, ov]);
+  /** Lineup analyzer: clicking a game day flips start ↔ sit for that player. */
+  const toggleCell = (date: string, id: string, started: boolean) => {
+    const day = { ...(ov?.[date] ?? {}) };
+    const want = started ? "sit" : "start";
+    const recommended = optimal?.daily.find((d) => d.date === date)?.starters.some((x) => x.id === id) ? "start" : "sit";
+    if (want === recommended) delete day[id];
+    else day[id] = want;
+    const next = { ...(ov ?? {}), [date]: day };
+    if (!Object.keys(day).length) delete next[date];
+    setOverrides({ ...overrides, [week]: next });
+  };
+  const nOverrides = ov ? Object.values(ov).reduce((a, d) => a + Object.keys(d).length, 0) : 0;
   const season = useMemo(() => {
     if (!ctx) return [];
-    return opponents.map((opp, i) => (opp >= 0 ? { week: i + 1, opp, plan: planWeek(ctx, i + 1, opp) } : null)).filter(Boolean) as { week: number; opp: number; plan: ReturnType<typeof planWeek> }[];
+    return opponents.map((opp, i) => (opp >= 0 ? { week: i + 1, opp, plan: planWeek(ctx, i + 1, opp, { pickups: false }) } : null)).filter(Boolean) as { week: number; opp: number; plan: ReturnType<typeof planWeek> }[];
   }, [ctx, opponents]);
 
   if (!ctx || !session) return <Spinner />;
@@ -54,12 +59,7 @@ export default function LineupPage() {
   const saveSchedule = () => {
     const parsed = parseSchedule(text);
     if (!parsed.length) return;
-    setSchedule(parsed);
-    try {
-      localStorage.setItem(key(session.id), JSON.stringify(parsed));
-    } catch {
-      /* storage unavailable */
-    }
+    save(parsed);
     setEditing(false);
   };
 
@@ -166,7 +166,24 @@ export default function LineupPage() {
         </div>
       )}
       {plan && plan.daily.length > 0 && (
-        <Panel title="Day-by-day lineup (set this in Yahoo each day)" bodyClass="p-0 overflow-x-auto">
+        <Panel
+          title="Day-by-day lineup & lineup analyzer"
+          right={nOverrides > 0 && <Button size="sm" variant="ghost" onClick={() => setOverrides({ ...overrides, [week]: {} })}>Reset to recommended</Button>}
+          bodyClass="p-0 overflow-x-auto"
+        >
+          {nOverrides > 0 && optimal && (
+            <div className="flex flex-wrap items-center gap-4 border-b border-line bg-panel2 px-2 py-2 text-xs" data-testid="lineup-analyzer">
+              <span>Your lineup ({nOverrides} change{nOverrides > 1 ? "s" : ""}):</span>
+              <span>win <b className="num">{(plan.winProb * 100).toFixed(0)}%</b> vs recommended <b className="num">{(optimal.winProb * 100).toFixed(0)}%</b></span>
+              <span>categories <b className="num">{plan.expectedCats.toFixed(2)}</b> vs <b className="num">{optimal.expectedCats.toFixed(2)}</b></span>
+              <span className={cn("font-semibold", plan.expectedCats - optimal.expectedCats < -0.005 ? "text-bad" : plan.expectedCats - optimal.expectedCats > 0.005 ? "text-good" : "text-dim")}>
+                {plan.expectedCats - optimal.expectedCats < -0.005 ? `costs ${(optimal.expectedCats - plan.expectedCats).toFixed(2)} expected categories` : plan.expectedCats - optimal.expectedCats > 0.005 ? "better than recommended" : "no meaningful difference"}
+              </span>
+              <span className="text-dim">
+                {plan.categories.filter((c, i) => Math.abs(c.pWin - optimal.categories[i].pWin) > 0.01).map((c) => `${CAT_BY_KEY[c.cat].short} ${((c.pWin - optimal.categories.find((o) => o.cat === c.cat)!.pWin) * 100).toFixed(0)}pp`).slice(0, 9).join(" · ") || ""}
+              </span>
+            </div>
+          )}
           <table className="w-full text-xs" data-testid="daily-table">
             <thead className="text-[10px] text-dim uppercase">
               <tr>
@@ -185,8 +202,14 @@ export default function LineupPage() {
                   {plan.daily.map((d) => {
                     const st = d.starters.find((x) => x.id === r.id);
                     const sit = d.sit.includes(r.id);
+                    const forced = ov?.[d.date]?.[r.id];
                     return (
-                      <td key={d.date} className={cn("px-1 text-center font-semibold", st ? "text-accent" : sit ? "bg-red-500/10 text-bad" : "text-dim/40")}>
+                      <td
+                        key={d.date}
+                        onClick={st || sit ? () => toggleCell(d.date, r.id, !!st) : undefined}
+                        title={st || sit ? (st ? "Click to sit him this day" : "Click to start him this day") : undefined}
+                        className={cn("px-1 text-center font-semibold", (st || sit) && "cursor-pointer hover:bg-panel2", st ? "text-accent" : sit ? "bg-red-500/10 text-bad" : "text-dim/40", forced && "ring-1 ring-inset ring-sky-400")}
+                      >
                         {st ? st.slot : sit ? "BN" : "·"}
                       </td>
                     );
@@ -201,7 +224,7 @@ export default function LineupPage() {
               </tr>
             </tbody>
           </table>
-          <div className="px-2 py-1.5 text-[10px] text-dim">Slot = where to put him that day · BN (red) = has a game but no slot fits (sit him; pick the lower-impact player) · “·” = no NBA game. Uses the official 2026-27 NBA schedule; re-check injuries before lock.</div>
+          <div className="px-2 py-1.5 text-[10px] text-dim">Slot = where to put him that day · BN (red) = has a game but sits · “·” = no NBA game. Lineup analyzer: click any game day to start/sit a player your way — the matchup is re-projected and compared with the recommended lineup (blue outline = your change). Uses the official 2026-27 NBA schedule; re-check injuries before lock.</div>
         </Panel>
       )}
       <Panel title="Season outlook (regular season)" bodyClass="p-0">

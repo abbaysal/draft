@@ -44,9 +44,12 @@ export interface CategoryLine {
 export interface DayPlan {
   date: string;
   starters: { id: string; slot: LineupSlot }[];
-  /** Players with a game who do not fit in a starting slot that day. */
+  /** Players with a game who do not fit in a starting slot that day (or were benched by override). */
   sit: string[];
 }
+
+/** Manual start/sit decisions: date → player id → decision (the lineup analyzer). */
+export type LineupOverrides = Record<string, Record<string, "start" | "sit">>;
 
 export interface WeekPlan {
   period: number;
@@ -138,7 +141,7 @@ function fillSlots(ctx: AnalysisContext, slots: LineupSlot[], ordered: string[])
 }
 
 /** Day-by-day start/sit for one roster; returns the plan and started games per player. */
-function dailyPlan(ctx: AnalysisContext, ids: string[], weeks: number[], perGame: Map<string, number>, slots: LineupSlot[]) {
+function dailyPlan(ctx: AnalysisContext, ids: string[], weeks: number[], perGame: Map<string, number>, slots: LineupSlot[], overrides: LineupOverrides = {}) {
   const dates = new Map<string, string[]>();
   for (const id of ids) {
     const team = ctx.byId.get(id)!.team;
@@ -147,8 +150,10 @@ function dailyPlan(ctx: AnalysisContext, ids: string[], weeks: number[], perGame
   const starts = new Map<string, number>();
   const days: DayPlan[] = [];
   for (const date of [...dates.keys()].sort()) {
-    const playing = dates.get(date)!.sort((a, b) => (perGame.get(b) ?? 0) - (perGame.get(a) ?? 0));
-    const starters = fillSlots(ctx, slots, playing);
+    const o = overrides[date] ?? {};
+    const rank = (id: string) => (o[id] === "start" ? 1e6 : 0) + (perGame.get(id) ?? 0);
+    const playing = dates.get(date)!.sort((a, b) => rank(b) - rank(a));
+    const starters = fillSlots(ctx, slots, playing.filter((id) => o[id] !== "sit"));
     const on = new Set(starters.map((s) => s.id));
     for (const s of starters) starts.set(s.id, (starts.get(s.id) ?? 0) + 1);
     days.push({ date, starters, sit: playing.filter((id) => !on.has(id)) });
@@ -156,7 +161,7 @@ function dailyPlan(ctx: AnalysisContext, ids: string[], weeks: number[], perGame
   return { days, starts };
 }
 
-export function planWeek(ctx: AnalysisContext, period: number | number[], opponent: number): WeekPlan {
+export function planWeek(ctx: AnalysisContext, period: number | number[], opponent: number, opts: { pickups?: boolean; overrides?: LineupOverrides } = {}): WeekPlan {
   const periods = matchupPeriods();
   const weeks = Array.isArray(period) ? period : (periods[period - 1] ?? [period]);
   const periodNo = Array.isArray(period) ? periods.findIndex((p) => p[0] === period[0]) + 1 : period;
@@ -197,7 +202,7 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
   let days: DayPlan[] = [];
   let starts = new Map<string, number>();
   if (daily) {
-    const mp = dailyPlan(ctx, active, weeks, new Map(scored.map((s) => [s.id, s.perGame])), slots);
+    const mp = dailyPlan(ctx, active, weeks, new Map(scored.map((s) => [s.id, s.perGame])), slots, opts.overrides);
     days = mp.days;
     starts = mp.starts;
     // Opponent starts whoever hurts us most each day (their best players for this matchup).
@@ -226,7 +231,7 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
     ...injured.map((id) => row(id, "IL")),
   ];
   if (base.length < slots.length) notes.push(`Only ${base.length}/${slots.length} starting slots can be filled with eligible healthy players.`);
-  const lost = days.reduce((a, d) => a + d.sit.length, 0);
+  const lost = days.reduce((a, d) => a + d.sit.filter((id) => opts.overrides?.[d.date]?.[id] !== "sit").length, 0);
   if (lost > 0) notes.push(`${lost} player-game(s) this period don't fit in a starting slot (crowded days) — consider streaming a player whose games fall on light days.`);
 
   const ps = catProbs(me, opp, ctx.cats);
@@ -234,7 +239,7 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
 
   // Pickups: undrafted players who help this matchup more than the weakest active player.
   const worst = scored.length ? scored[scored.length - 1] : null;
-  const pickups = ctx.available
+  const pickups = (opts.pickups === false ? [] : ctx.available)
     .filter((id) => !OUT.has(ctx.byId.get(id)?.availability?.status ?? ""))
     .slice(0, 250)
     .map((id) => ({ id, score: matchupScore(ctx, id, games(id, ctx.byId.get(id)!.team), me, grad) }))

@@ -56,11 +56,11 @@ export function Badge({ children, tone = "neutral", className, title }: { childr
   );
 }
 
-export function Stat({ label, value, sub, tone }: { label: string; value: ReactNode; sub?: ReactNode; tone?: "good" | "bad" | "accent" }) {
+export function Stat({ label, value, sub, tone }: { label: string; value: ReactNode; sub?: ReactNode; tone?: "good" | "bad" | "warn" | "accent" }) {
   return (
     <div className="min-w-0">
       <div className="text-[10px] tracking-wider text-dim uppercase">{label}</div>
-      <div className={cn("num text-lg leading-tight font-semibold", tone === "good" && "text-good", tone === "bad" && "text-bad", tone === "accent" && "text-accent")}>{value}</div>
+      <div className={cn("num text-lg leading-tight font-semibold", tone === "good" && "text-good", tone === "bad" && "text-bad", tone === "warn" && "text-warn", tone === "accent" && "text-accent")}>{value}</div>
       {sub && <div className="truncate text-[11px] text-mute">{sub}</div>}
     </div>
   );

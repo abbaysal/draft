@@ -150,7 +150,14 @@ export function AnalysisRunner() {
   const fastResult = useStore((s) => s.fast.result);
   useEffect(() => {
     if (!ds || !session || !fastResult || fastKey !== key) return;
-    if (session.state.picks.length >= session.settings.teams * session.settings.rounds) return;
+    if (session.state.picks.length >= session.settings.teams * session.settings.rounds) {
+      // Draft complete: no pick to simulate — stop any run left over from the last pick.
+      if (useStore.getState().champ?.running) {
+        cancelDeep();
+        useStore.getState().setChamp(null);
+      }
+      return;
+    }
     const cands = fastResult.rec.candidates.slice(0, 5).map((c) => c.id);
     if (!cands.length) return;
     const st = useStore.getState();

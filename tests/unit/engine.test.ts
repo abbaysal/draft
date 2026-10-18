@@ -231,3 +231,63 @@ describe("official schedule and daily start/sit", () => {
     for (const r of plan.lineup) expect(r.starts).toBeLessThanOrEqual(r.scheduled);
   });
 });
+
+describe("trade analysis", () => {
+  const full = buildContext({ players: pool, settings, draft: draftTo(48) });
+  const me = full.myIndex;
+  const partner = (me + 1) % settings.teams;
+
+  it("an empty trade changes nothing", async () => {
+    const { evaluateTrade } = await import("@/lib/engine/trade");
+    const ev = evaluateTrade(full, { partner, give: [], get: [] });
+    expect(ev.me.delta).toBeCloseTo(0, 9);
+    expect(ev.them.delta).toBeCloseTo(0, 9);
+  });
+
+  it("giving my best player for their worst hurts me and helps them", async () => {
+    const { evaluateTrade } = await import("@/lib/engine/trade");
+    const v = (id: string) => full.values.get(id)!.total;
+    const best = [...full.rosters[me]].sort((a, b) => v(b) - v(a))[0];
+    const worst = [...full.rosters[partner]].sort((a, b) => v(a) - v(b))[0];
+    const ev = evaluateTrade(full, { partner, give: [best], get: [worst] });
+    expect(ev.me.delta).toBeLessThan(0);
+    expect(ev.them.delta).toBeGreaterThan(0);
+    expect(ev.verdict.tone).toBe("bad");
+    expect(ev.valueBalance).toBeLessThan(0);
+  });
+
+  it("2-for-1 keeps rosters legal (they drop one, I add a free agent)", async () => {
+    const { evaluateTrade } = await import("@/lib/engine/trade");
+    const [a, b] = full.rosters[me];
+    const ev = evaluateTrade(full, { partner, give: [a, b], get: [full.rosters[partner][0]] });
+    expect(ev.me.adds).toHaveLength(1);
+    expect(ev.them.drops).toHaveLength(1);
+  });
+
+  it("trade finder returns only trades that improve my team, and waiver moves are improvements", async () => {
+    const { findTrades, waiverMoves, powerRankings } = await import("@/lib/engine/trade");
+    const ideas = findTrades(full, { limit: 10, partner });
+    for (const x of ideas) expect(x.myDelta).toBeGreaterThan(0.01);
+    for (const m of waiverMoves(full)) expect(m.delta).toBeGreaterThan(0);
+    const pr = powerRankings(full);
+    expect(new Set(pr.map((r) => r.rank)).size).toBe(settings.teams);
+  });
+
+  it("lineup analyzer: benching a starter never beats the recommended lineup by much and is reflected in starts", async () => {
+    const games = (await import("@/data/schedule.generated.json")).default as { date: string; home: string; away: string }[];
+    const { buildScheduleModel } = await import("@/lib/engine/schedule");
+    const { planWeek } = await import("@/lib/engine/lineup");
+    const teams = buildScheduleModel(games).teams();
+    const nbaPool = pool.map((p, i) => ({ ...p, team: teams[i % teams.length] }));
+    const ctx = buildContext({ players: nbaPool, settings, draft: draftTo(48, nbaPool), schedule: buildScheduleModel(games) });
+    const opp = (ctx.myIndex + 1) % settings.teams;
+    const best = planWeek(ctx, 3, opp);
+    const day = best.daily.find((d) => d.starters.length > 0)!;
+    const star = day.starters[0].id;
+    const mine = planWeek(ctx, 3, opp, { overrides: { [day.date]: { [star]: "sit" } } });
+    const dayAfter = mine.daily.find((d) => d.date === day.date)!;
+    expect(dayAfter.starters.some((s) => s.id === star)).toBe(false);
+    expect(dayAfter.sit).toContain(star);
+    expect(mine.expectedCats).toBeLessThanOrEqual(best.expectedCats + 0.05);
+  });
+});
