@@ -1,0 +1,45 @@
+{
+  "builtAt": "2026-10-18T16:06:58.327Z",
+  "counts": {
+    "players": 596,
+    "projected": 533
+  },
+  "log": [
+    {
+      "level": "info",
+      "msg": "2025-26: 582 players loaded"
+    },
+    {
+      "level": "info",
+      "msg": "Added Damian Lillard from 2024-25 history (absent from 2025-26, listed in availability research)"
+    },
+    {
+      "level": "info",
+      "msg": "Added Kyrie Irving from 2024-25 history (absent from 2025-26, listed in availability research)"
+    },
+    {
+      "level": "info",
+      "msg": "Added Tyrese Haliburton from 2024-25 history (absent from 2025-26, listed in availability research)"
+    },
+    {
+      "level": "info",
+      "msg": "Added Fred VanVleet from 2024-25 history (absent from 2025-26, listed in availability research)"
+    },
+    {
+      "level": "info",
+      "msg": "2024-25: matched 468, unmatched 101 (unmatched = not in 2025-26 player pool and not researched as returning)"
+    },
+    {
+      "level": "info",
+      "msg": "2023-24: matched 388, unmatched 184 (unmatched = not in 2025-26 player pool and not researched as returning)"
+    },
+    {
+      "level": "info",
+      "msg": "offseason_moves: NOT applied (conflicting sources) Dean Wade CLE→PHI"
+    },
+    {
+      "level": "info",
+      "msg": "Projected 533 players with warroom-model-v1.0"
+    }
+  ]
+}

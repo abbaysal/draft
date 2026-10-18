@@ -1,0 +1,176 @@
+import { describe, expect, it } from "vitest";
+import { DEFAULT_SETTINGS, defaultTeamNames } from "@/lib/league";
+import { buildContext } from "@/lib/engine/context";
+import { EMPTY_DRAFT, applyDraftAction, type DraftState } from "@/lib/engine/draft";
+import { simulateAvailability } from "@/lib/engine/availability";
+import { recommend } from "@/lib/engine/recommend";
+import { POLICY, mergeChunks, simulateChampionship, summarise, roundRobin } from "@/lib/engine/championship";
+import { evaluateStrategies, strategyCatalog } from "@/lib/engine/strategy";
+import { categoryScarcity } from "@/lib/engine/scarcity";
+import { teamProfiles } from "@/lib/engine/opponents";
+import { applyAvailabilityOverride } from "@/lib/import/apply";
+import { matchLineup, deriveEligibility } from "@/lib/positions";
+import { syntheticPool } from "./helpers";
+
+const settings = { ...DEFAULT_SETTINGS, teams: 6, rounds: 8, myPosition: 3, teamNames: defaultTeamNames(6, 3), regularSeasonWeeks: 10, playoffTeams: 4, playoffWeeks: [23, 24] };
+const shape = { teams: 6, rounds: 8, draftType: "snake" as const };
+const pool = syntheticPool(160);
+
+function draftTo(n: number, players = pool): DraftState {
+  let s = EMPTY_DRAFT;
+  for (let i = 0; i < n; i++) {
+    const ctx = buildContext({ players, settings, draft: s });
+    const r = applyDraftAction(s, { type: "pick", playerId: ctx.available[0] }, shape);
+    if (!r.ok) throw new Error(r.error);
+    s = r.state;
+  }
+  return s;
+}
+
+describe("availability simulation", () => {
+  const ctx = buildContext({ players: pool, settings, draft: draftTo(2) });
+  const a = simulateAvailability(ctx, { sims: 200, seed: 42 });
+
+  it("is reproducible for the same seed", () => {
+    const b = simulateAvailability(ctx, { sims: 200, seed: 42 });
+    expect([...b.survival.entries()]).toEqual([...a.survival.entries()]);
+  });
+
+  it("survival probabilities lie in [0, 1] and the horizon matches the snake gap", () => {
+    for (const p of a.survival.values()) {
+      expect(p).toBeGreaterThanOrEqual(0);
+      expect(p).toBeLessThanOrEqual(1);
+    }
+    // I pick 3rd; next pick is 10th overall => 6 opponent picks in between.
+    expect(a.horizon).toBe(6);
+    // Exactly `horizon` players disappear per simulation.
+    const expectedTaken = [...a.survival.values()].reduce((s, p) => s + (1 - p), 0);
+    expect(expectedTaken).toBeCloseTo(6, 6);
+  });
+
+  it("deep-pool players survive with high probability", () => {
+    const last = ctx.available[ctx.available.length - 1];
+    expect(a.survival.get(last)).toBe(1);
+  });
+});
+
+describe("recommendations", () => {
+  const ctx = buildContext({ players: pool, settings, draft: draftTo(2) });
+  const avail = simulateAvailability(ctx, { sims: 150, seed: 1 });
+  const rec = recommend(ctx, avail);
+
+  it("ranks by the strategic score and labels the metric", () => {
+    expect(rec.metricLevel).toBe(2);
+    for (let i = 1; i < rec.candidates.length; i++) expect(rec.candidates[i - 1].score).toBeGreaterThanOrEqual(rec.candidates[i].score);
+    expect(rec.picks.bestStrategic?.id).toBe(rec.candidates[0].id);
+  });
+
+  it("distinguishes best overall, best fit and best strategic picks", () => {
+    expect(rec.picks.bestOverall).toBeDefined();
+    expect(rec.picks.bestFit).toBeDefined();
+    expect(rec.picks.bestStrategic).toBeDefined();
+  });
+
+  it("an injured star loses value immediately (sudden unavailability)", () => {
+    const star = rec.candidates[0].id;
+    const hurt = applyAvailabilityOverride(pool, star, 82, "test injury");
+    const ctx2 = buildContext({ players: hurt, settings, draft: ctx.draft });
+    const rec2 = recommend(ctx2, simulateAvailability(ctx2, { sims: 100, seed: 1 }));
+    const c = rec2.candidates.find((x) => x.id === star);
+    expect(c ? c.gain : -Infinity).toBeLessThan(rec.candidates[0].gain);
+    expect(rec2.candidates[0].id).not.toBe(star);
+  });
+
+  it("works when the draft is nearly complete", () => {
+    const late = buildContext({ players: pool, settings, draft: draftTo(46) });
+    const r = recommend(late, simulateAvailability(late, { sims: 50, seed: 2 }));
+    expect(r.candidates.length).toBeGreaterThan(0);
+  });
+});
+
+describe("championship simulation", () => {
+  const ctx = buildContext({ players: pool, settings, draft: draftTo(2) });
+  const cands = [POLICY, ctx.available[0], ctx.available[5]];
+
+  it("is reproducible and chunkable (chunks merge to the full run)", () => {
+    const full = simulateChampionship(ctx, { candidates: cands, sims: 40, seed: 9 });
+    const a = simulateChampionship(ctx, { candidates: cands, sims: 40, seed: 9, from: 0, to: 20 });
+    const b = simulateChampionship(ctx, { candidates: cands, sims: 40, seed: 9, from: 20, to: 40 });
+    const merged = mergeChunks([b, a]);
+    expect(merged.map((t) => t.champ)).toEqual(full.tallies.map((t) => t.champ));
+    expect(merged.map((t) => t.champBits)).toEqual(full.tallies.map((t) => t.champBits));
+  });
+
+  it("produces probabilities and a labelled fallback level", () => {
+    const res = simulateChampionship(ctx, { candidates: cands, sims: 60, seed: 3 });
+    const v = summarise(res.tallies, 50);
+    for (const s of v.summaries) {
+      expect(s.pChamp).toBeGreaterThanOrEqual(0);
+      expect(s.pChamp).toBeLessThanOrEqual(1);
+      expect(s.pPlayoffs).toBeGreaterThanOrEqual(s.pChamp);
+    }
+    expect([0, 1, 2]).toContain(v.level);
+    expect(v.label).toMatch(/Level/);
+  });
+
+  it("falls back when there are too few simulations", () => {
+    const res = simulateChampionship(ctx, { candidates: cands, sims: 10, seed: 3 });
+    expect(summarise(res.tallies, 200).level).toBe(2);
+  });
+
+  it("round-robin schedules every team once per week", () => {
+    const rr = roundRobin(6, 5);
+    for (const week of rr) {
+      const teams = week.flat();
+      expect(new Set(teams).size).toBe(6);
+    }
+    expect(roundRobin(5, 1)[0].length).toBe(2); // odd team count => one bye
+  });
+});
+
+describe("strategies, scarcity and opponents", () => {
+  const ctx = buildContext({ players: pool, settings, draft: draftTo(12) });
+
+  it("catalog includes balanced, all single and double punts, and soft punts", () => {
+    const cat = strategyCatalog(ctx.cats);
+    expect(cat.filter((s) => s.kind === "single")).toHaveLength(9);
+    expect(cat.filter((s) => s.kind === "double")).toHaveLength(36);
+    expect(cat.some((s) => s.kind === "soft")).toBe(true);
+  });
+
+  it("evaluates strategies with paired differences vs balanced", () => {
+    const res = evaluateStrategies(ctx, { runs: 4, strategies: strategyCatalog(ctx.cats).slice(0, 5) });
+    const bal = res.find((r) => r.kind === "balanced")!;
+    expect(bal.deltaVsBalanced).toBe(0);
+    for (const r of res) expect(Number.isFinite(r.meanObj)).toBe(true);
+  });
+
+  it("scarcity shares are in [0, 1]", () => {
+    for (const s of categoryScarcity(ctx)) {
+      expect(s.supplyShare).toBeGreaterThanOrEqual(0);
+      expect(s.supplyShare).toBeLessThanOrEqual(1.0001);
+    }
+  });
+
+  it("opponent profiles rank every category for every team", () => {
+    const prof = teamProfiles(ctx);
+    expect(prof).toHaveLength(6);
+    for (const p of prof) for (const c of ctx.cats) expect(p.catRank[c]).toBeGreaterThanOrEqual(1);
+  });
+
+  it("opponents repeatedly drafting one position still produce valid simulations", () => {
+    const centers = pool.map((p) => ({ ...p, elig: deriveEligibility("C"), nbaPos: "C" }));
+    const c2 = buildContext({ players: centers, settings, draft: draftTo(6, centers) });
+    const a = simulateAvailability(c2, { sims: 30, seed: 5 });
+    expect(a.horizon).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe("position eligibility", () => {
+  it("derives dual eligibility and matches lineups", () => {
+    expect(deriveEligibility("G-F")).toEqual(["SG", "SF"]);
+    expect(deriveEligibility("F-C")).toEqual(["PF", "C"]);
+    const { filled } = matchLineup(["PG", "C", "UTIL"], [["C"], ["PG", "SG"], ["C", "PF"]]);
+    expect(filled).toBe(3);
+  });
+});

@@ -1,0 +1,40 @@
+player_name,from_team,to_team,transaction_type,reported_date,confidence,apply,source_name,source_url,notes
+Giannis Antetokounmpo,MIL,MIA,trade,2026-06-23,high,true,ESPN,https://www.espn.com/nba/story/_/id/49149967,Executed July 6 per ESPN; corroborated by AP (WTOP) and Olympics.com tracker
+Bobby Portis Jr.,MIL,MIA,trade,2026-06-23,high,true,ESPN,https://www.espn.com/nba/story/_/id/49149967,Included in Giannis trade
+Tyler Herro,MIA,MIL,trade,2026-06-23,high,true,ESPN,https://www.espn.com/nba/story/_/id/49149967,Included in Giannis trade
+Kel'el Ware,MIA,MIL,trade,2026-06-23,high,true,ESPN,https://www.espn.com/nba/story/_/id/49149967,Included in Giannis trade
+Jaime Jaquez Jr.,MIA,MIL,trade,2026-06-23,high,true,ESPN,https://www.espn.com/nba/story/_/id/49149967,Included in Giannis trade
+Kasparas Jakucionis,MIA,MIL,trade,2026-06-23,high,true,ESPN,https://www.espn.com/nba/story/_/id/49149967,Included in Giannis trade
+Jaylen Brown,BOS,PHI,trade,2026-07-06,high,true,ESPN,https://www.espn.com/nba/story/_/id/49241843/sources-celtics-sending-brown-76ers-george-picks,Official July 6 per Yahoo Sports / Celtics release
+Paul George,PHI,BOS,trade,2026-07-06,high,true,ESPN,https://www.espn.com/nba/story/_/id/49241843/sources-celtics-sending-brown-76ers-george-picks,Return in Jaylen Brown trade
+LeBron James,LAL,PHI,free_agent_signing,2026-07,high,true,NBA.com,https://www.nba.com/news/lebron-james-free-agency-sixers-2026,2 years / ~$8M reported (Yahoo Sports)
+Kawhi Leonard,LAC,TOR,trade,2026-09-14,high,true,ESPN,https://www.espn.com/nba/story/_/id/49941983/clippers-raptors-complete-kawhi-leonard-trade-sources-say,Agreed June 30; completed Sept 14 after league investigation (CBC; NBC Sports)
+Brandon Ingram,TOR,LAC,trade,2026-09-14,high,true,ESPN,https://www.espn.com/nba/story/_/id/49941983/clippers-raptors-complete-kawhi-leonard-trade-sources-say,Return in Kawhi trade
+Gradey Dick,TOR,LAC,trade,2026-09-14,high,true,ESPN,https://www.espn.com/nba/story/_/id/49941983/clippers-raptors-complete-kawhi-leonard-trade-sources-say,Return in Kawhi trade
+Ja Morant,MEM,POR,trade,2026-06-29,high,true,Olympics.com trade tracker,https://www.olympics.com/en/news/nba-trade-tracker-2026-live-free-agency,Corroborated by ESPN trade tracker and Hoops Rumors summaries
+Jerami Grant,POR,MEM,trade,2026-06-29,high,true,Olympics.com trade tracker,https://www.olympics.com/en/news/nba-trade-tracker-2026-live-free-agency,Return in Morant trade
+Kris Murray,POR,MEM,trade,2026-06-29,high,true,Olympics.com trade tracker,https://www.olympics.com/en/news/nba-trade-tracker-2026-live-free-agency,Return in Morant trade
+Walker Kessler,UTA,LAL,sign_and_trade,2026-07-01,high,true,CBS Sports,https://www.cbssports.com/nba/news/nba-free-agency-2026-live-updates-trade-rumors-news-june-30/live/,4yr/$130M; LAL sent two firsts and swaps
+Quentin Grimes,PHI,LAL,free_agent_signing,2026-07-01,medium,true,ESPN free agency grades,https://www.espn.com/nba/story/_/id/48957095/2026-nba-free-agency-grades-offseason-signings-deals-contracts-extensions-depth-charts,Contract terms differ between ESPN and ClutchPoints
+Collin Sexton,CHI,LAL,free_agent_signing,2026-07-01,medium,true,Bleacher Report FA tracker,https://bleacherreport.com/articles/25447444-nba-free-agent-tracker-2026-and-updates-all-latest-contract-signings-trades,2yr/$19M reported
+Sandro Mamukelashvili,TOR,LAL,free_agent_signing,2026-07-01,medium,true,ESPN free agency grades,https://www.espn.com/nba/story/_/id/48957095/2026-nba-free-agency-grades-offseason-signings-deals-contracts-extensions-depth-charts,Single search summary; verify
+Mitchell Robinson,NYK,BOS,free_agent_signing,2026-07-01,high,true,ClutchPoints FA live updates,https://clutchpoints.com/nba/nba-stories/2026-nba-free-agency-live-updates-news-rumors-signings-trades-july-1st,3yr/$47.4M; also CBS Sports
+Norman Powell,MIA,CHI,free_agent_signing,2026-07-01,medium,true,ClutchPoints FA live updates,https://clutchpoints.com/nba/nba-stories/2026-nba-free-agency-live-updates-news-rumors-signings-trades-july-1st,ESPN lists 2yr/$45M
+John Collins,LAC,DET,free_agent_signing,2026-07-01,medium,true,ClutchPoints FA live updates,https://clutchpoints.com/nba/nba-stories/2026-nba-free-agency-live-updates-news-rumors-signings-trades-july-1st,3yr/$51M reported
+Tobias Harris,DET,SAS,free_agent_signing,2026-07-01,high,true,CBS Sports,https://www.cbssports.com/nba/news/nba-free-agency-2026-live-updates-trade-rumors-news-june-30/live/,2yr/$31M MLE; Spurs injury reports in Oct corroborate team
+Kelly Oubre Jr.,PHI,IND,free_agent_signing,2026-07-01,medium,true,ClutchPoints FA live updates,https://clutchpoints.com/nba/nba-stories/2026-nba-free-agency-live-updates-news-rumors-signings-trades-july-1st,2yr/$17M reported
+Anfernee Simons,CHI,PHI,free_agent_signing,2026-07-02,medium,true,ClutchPoints FA live updates,https://clutchpoints.com/nba/nba-stories/2026-nba-free-agency-live-updates-news-rumors-signings-trades-july-1st,Single search summary; verify
+Kyle Anderson,MIN,TOR,free_agent_signing,2026-07-02,medium,true,ClutchPoints FA live updates,https://clutchpoints.com/nba/nba-stories/2026-nba-free-agency-live-updates-news-rumors-signings-trades-july-1st,1yr deal reported
+Andre Drummond,PHI,NYK,free_agent_signing,2026-07-03,medium,true,ClutchPoints FA live updates,https://clutchpoints.com/nba/nba-stories/2026-nba-free-agency-live-updates-news-rumors-signings-trades-july-1st,1yr deal reported
+Rui Hachimura,LAL,LAC,free_agent_signing,2026-07-05,medium,true,CBS Sports,https://www.cbssports.com/nba/news/nba-free-agency-2026-live-updates-trade-rumors-news-june-30/live/,2yr/$28M reported
+Khris Middleton,DAL,WAS,sign_and_trade,2026-07,medium,true,ClutchPoints FA tracker,https://clutchpoints.com/nba/nba-stories/nba-free-agency-2026-tracker,Part of multi-team transaction
+Larry Nance Jr.,CLE,IND,free_agent_signing,2026-07,medium,true,ClutchPoints FA tracker,https://clutchpoints.com/nba/nba-stories/nba-free-agency-2026-tracker,1yr/$4M reported
+Julius Randle,MIN,BKN,trade,2026-06,medium,true,ESPN trade tracker,https://www.espn.com/nba/story/_/id/48957844/nba-trade-tracker-details-every-deal-2026-offseason-draft-free-agency,Three-team deal with CHI
+Nic Claxton,BKN,CHI,trade,2026-06,medium,true,ESPN trade tracker,https://www.espn.com/nba/story/_/id/48957844/nba-trade-tracker-details-every-deal-2026-offseason-draft-free-agency,Three-team deal; Oct injury reports list him with CHI
+Luguentz Dort,OKC,ATL,trade,2026-06,medium,true,ESPN trade tracker,https://www.espn.com/nba/story/_/id/48957844/nba-trade-tracker-details-every-deal-2026-offseason-draft-free-agency,Three-team deal
+Ryan Nembhard,DAL,ATL,trade,2026-06,medium,true,ESPN trade tracker,https://www.espn.com/nba/story/_/id/48957844/nba-trade-tracker-details-every-deal-2026-offseason-draft-free-agency,Three-team deal
+Johni Broome,PHI,LAC,trade,2026-07-28,low,true,NBA-Schedule.net tracker,https://www.nba-schedule.net/blog/2026-nba-offseason-trade-tracker,Single third-party source
+Max Strus,CLE,LAC,inferred_from_injury_report,2026-10,medium,true,Fantasy Alarm injury report,https://www.fantasyalarm.com/articles/nba/fantasy-basketball-injury-report/nba-injury-report-heading-into-2026-27-season/197178,Team inferred from October injury coverage listing him with the Clippers
+Isaiah Stewart,DET,MEM,inferred_from_injury_report,2026-10,medium,true,Fantasy Alarm injury report,https://www.fantasyalarm.com/articles/nba/fantasy-basketball-injury-report/nba-injury-report-heading-into-2026-27-season/197178,Team inferred from October injury coverage listing him with the Grizzlies
+Ariel Hukporti,NYK,PHI,inferred_from_injury_report,2026-10,medium,true,NBC Sports / ClutchPoints,https://clutchpoints.com/nba/philadelphia-76ers/sources-ariel-hukporti-76ers-torn-achilles-miss-2026-27-season,Listed as 76ers player in October 2026 reports
+Dean Wade,CLE,PHI,free_agent_signing,2026-07,low,false,ESPN (via search summary),https://www.espn.com/nba/story/_/id/48957095/2026-nba-free-agency-grades-offseason-signings-deals-contracts-extensions-depth-charts,CONFLICTING: an October injury summary still lists him with CLE. Not applied until verified.
