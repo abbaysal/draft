@@ -1,3 +1,4 @@
+import type { LivePlayerStats } from "./live/parse";
 /**
  * Core domain types shared by the dataset pipeline, the analytics engine,
  * the API layer and the UI. Everything here is plain serialisable data.
@@ -136,6 +137,8 @@ export interface Player {
   /** Imported ADP, if any (null = not imported). */
   adp?: number | null;
   adpSource?: string | null;
+  /** 2026-27 season-to-date actuals from the live feed (NBA.com box scores), when loaded. */
+  live?: LivePlayerStats;
 }
 
 export interface DatasetMeta {

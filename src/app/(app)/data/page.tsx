@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { importAdp, importMetadata, importProjections, importSchedule, type ImportIssue, type ImportKind } from "@/lib/import/csv";
 import { useEngineContext } from "@/client/analysis";
 import { useDataset, useStore } from "@/client/store";
+import { LivePanel } from "@/components/live-panel";
 import { Badge, Button, Field, inputCls, Panel, Spinner } from "@/components/ui";
 import { PlayerSearch } from "@/components/player";
 
@@ -117,6 +118,7 @@ export default function DataPage() {
   return (
     <div className="space-y-3">
       <h1 className="text-lg font-bold tracking-tight">Data Management</h1>
+      <LivePanel />
       <div className="grid gap-3 xl:grid-cols-3">
         <Panel title="Import CSV" className="xl:col-span-2" right={<Badge tone={mode === "server" ? "good" : "neutral"}>{mode === "server" ? "Saved to database as a new immutable version" : "Local mode — stored in this browser"}</Badge>}>
           <div className="flex flex-wrap gap-2">

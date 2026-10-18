@@ -308,7 +308,7 @@ export default function PlayerDetail({ params }: { params: Promise<{ id: string 
       )}
 
       <div className="grid gap-3 xl:grid-cols-3">
-        <Panel title="Historical performance (actual, per game)" className="xl:col-span-2" bodyClass="p-0">
+        <Panel title="Performance (actual, per game)" className="xl:col-span-2" bodyClass="p-0">
           <table className="w-full text-xs">
             <thead className="text-[10px] text-dim uppercase">
               <tr className="border-b border-line">
@@ -318,6 +318,25 @@ export default function PlayerDetail({ params }: { params: Promise<{ id: string 
               </tr>
             </thead>
             <tbody className="num">
+              {p.live &&
+                [
+                  { label: "2026-27", src: "live", gp: p.live.gp, t: p.live.tot },
+                  { label: "Last 14d", src: `since ${p.live.recent.from.slice(5)}`, gp: p.live.recent.gp, t: p.live.recent.tot },
+                ]
+                  .filter((r) => r.gp > 0)
+                  .map((r) => (
+                    <tr key={r.label} className="border-b border-line/50 bg-accent/5" data-testid="live-row">
+                      <td className="px-1.5 py-1 font-semibold">{r.label}</td>
+                      <td className="px-1.5 py-1 text-right text-accent">{r.src}</td>
+                      <td className="px-1.5 py-1 text-right">{r.gp}</td>
+                      {[r.t.min, r.t.pts, r.t.fg3m, r.t.reb, r.t.ast, r.t.stl, r.t.blk].map((x, i) => <td key={i} className="px-1.5 py-1 text-right">{(x / r.gp).toFixed(1)}</td>)}
+                      <td className="px-1.5 py-1 text-right">{pct(r.t.fgm, r.t.fga)}</td>
+                      <td className="px-1.5 py-1 text-right">{(r.t.fga / r.gp).toFixed(1)}</td>
+                      <td className="px-1.5 py-1 text-right">{pct(r.t.ftm, r.t.fta)}</td>
+                      <td className="px-1.5 py-1 text-right">{(r.t.fta / r.gp).toFixed(1)}</td>
+                      <td className="px-1.5 py-1 text-right">{(r.t.tov / r.gp).toFixed(1)}</td>
+                    </tr>
+                  ))}
               {p.hist.map((h) => (
                 <tr key={h.season + h.source} className="border-b border-line/50">
                   <td className="px-1.5 py-1">{h.season}</td>
@@ -338,7 +357,7 @@ export default function PlayerDetail({ params }: { params: Promise<{ id: string 
               )}
             </tbody>
           </table>
-          <div className="px-2 py-1 text-[10px] text-dim">Italic attempts = estimated (source had percentages only). 2025-26 = official NBA Stats totals; earlier seasons from per-game aggregates.</div>
+          <div className="px-2 py-1 text-[10px] text-dim">Italic attempts = estimated (source had percentages only). 2026-27 rows = live NBA.com box scores (refreshed every 15 min). 2025-26 = official NBA Stats totals; earlier seasons from per-game aggregates.</div>
         </Panel>
         <div className="space-y-3">
           {po && (

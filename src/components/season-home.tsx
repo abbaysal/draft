@@ -4,9 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { CAT_BY_KEY } from "@/lib/categories";
 import { planWeek } from "@/lib/engine/lineup";
 import { findTrades, powerRankings, waiverMoves, type TradeIdea } from "@/lib/engine/trade";
+import { recentForm } from "@/lib/live/form";
 import { useEngineContext } from "@/client/analysis";
 import { currentPeriod, useMatchupSchedule } from "@/client/matchups";
-import { useStore } from "@/client/store";
+import { useDataset, useStore } from "@/client/store";
 import { Badge, Button, cn, Panel, ProbBar, Spinner, Stat } from "@/components/ui";
 import { PlayerLink } from "@/components/player";
 
@@ -31,6 +32,19 @@ export function SeasonHome() {
   );
   const power = useMemo(() => (ctx ? powerRankings(ctx) : []), [ctx]);
   const moves = useMemo(() => (ctx ? waiverMoves(ctx, 6) : []), [ctx]);
+  const ds = useDataset();
+  const hot = useMemo(() => (ctx ? recentForm(ctx, ctx.available).slice(0, 8) : []), [ctx]);
+  const injured = useMemo(() => {
+    if (!ctx) return [];
+    const opp = opponents[period - 1];
+    const teams = [ctx.myIndex, ...(opp != null && opp >= 0 ? [opp] : [])];
+    return teams.flatMap((t) =>
+      ctx.rosters[t]
+        .map((id) => ctx.byId.get(id)!)
+        .filter((p) => p.availability && !["HEALTHY", "UNKNOWN", "RETURNING"].includes(p.availability.status))
+        .map((p) => ({ p, team: t })),
+    );
+  }, [ctx, opponents, period]);
   useEffect(() => {
     if (!ctx) return;
     setTrades(null);
@@ -111,6 +125,42 @@ export function SeasonHome() {
             </tbody>
           </table>
           {upcoming.length === 0 && <div className="p-3 text-xs text-mute">No schedule set.</div>}
+        </Panel>
+      </div>
+      <div className="grid gap-3 xl:grid-cols-2">
+        <Panel title="Injury report — your team & this week's opponent" right={<span className="text-[10px] text-dim">{ds?.live?.opts.injuries ? "live ESPN report" : "preseason research"}</span>} bodyClass="p-0">
+          <table className="w-full text-xs" data-testid="injury-report">
+            <tbody>
+              {injured.map(({ p, team }) => (
+                <tr key={p.id} className="border-t border-line/50">
+                  <td className="px-2 py-1"><PlayerLink p={p} /></td>
+                  <td className={cn("text-[11px]", team === ctx.myIndex ? "text-accent" : "text-mute")}>{team === ctx.myIndex ? "You" : names[team]}</td>
+                  <td><Badge tone={p.availability!.status.startsWith("OUT") ? "bad" : "warn"}>{p.availability!.status.replace(/_/g, " ")}</Badge></td>
+                  <td className="max-w-64 truncate px-2 text-mute" title={p.availability!.injury}>{p.availability!.injury ?? ""}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {injured.length === 0 && <div className="p-3 text-xs text-mute">No injuries reported for either roster.</div>}
+          <div className="px-2 py-1.5 text-[10px] text-dim">Players listed as out go to IL automatically in the lineup plan.</div>
+        </Panel>
+        <Panel title="Hot free agents (last 14 days)" bodyClass="p-0">
+          <table className="w-full text-xs" data-testid="hot-free-agents">
+            <thead className="text-[10px] text-dim uppercase">
+              <tr><th className="px-2 py-1 text-left">Player</th><th className="text-right">G</th><th className="text-right" title="Value of his last-14-days per-game line">Recent</th><th className="px-2 text-right" title="Recent value − projected value">vs proj</th></tr>
+            </thead>
+            <tbody>
+              {hot.map((h) => (
+                <tr key={h.id} className="border-t border-line/50">
+                  <td className="px-2 py-1"><PlayerLink p={ctx.byId.get(h.id)!} /></td>
+                  <td className="num text-right">{h.games}</td>
+                  <td className="num text-right">{h.recentValue.toFixed(2)}</td>
+                  <td className={cn("num px-2 text-right", h.trend > 0 ? "text-good" : "text-bad")}>{sign(h.trend, 1)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {hot.length === 0 && <div className="p-3 text-xs text-mute">Appears once 2026-27 games are played (live NBA box scores; season starts Oct 20).</div>}
         </Panel>
       </div>
       <div className="grid gap-3 xl:grid-cols-3">

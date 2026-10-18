@@ -102,3 +102,16 @@ A strategy = weights w_c ∈ {0, 0.4, 0.5, 1}. My picks take the best available 
 ## 11. Copilot (`copilot.ts`, `/api/copilot`)
 
 The engine builds a JSON fact sheet (league, draft position, roster, category win rates, top candidates with scores and impacts, lenses, survivors, scarcity, strategies, championship verdict, opponents, data caveats). Without an API key, deterministic templates answer the standard questions. With `ANTHROPIC_API_KEY`, Claude Opus 5.5 (low effort for speed, server-side refusal fallback enabled) explains the fact sheet under a system prompt that forbids inventing numbers. The engine's answer is always shown first; the AI explanation is appended and labelled.
+
+## In-season updating (live feed)
+
+Rest-of-season projections shrink the preseason WarRoom model toward 2026-27 actual play (`src/lib/live/blend.ts`):
+
+- Per-game counting stats and attempts: `(prior × 15 + season total) / (15 + games)`. After 15 games, actual play carries half the weight.
+- FG% / FT%: `(prior% × 250 + makes) / (250 + attempts)` (FT: 120 phantom attempts), applied to the blended attempts so team percentages stay volume-weighted.
+- Availability (gp / 82): `(prior rate × 20 + games played) / (20 + team games)`.
+- Uncertainty (SDs) shrinks by `sqrt(15 / (15 + games))`.
+- Injuries: ESPN "Out" → out (≥ 15 expected games from the return date → extended); "out for season" → OUT_SEASON; day-to-day/questionable → DAY_TO_DAY. Additional expected missed games reduce availability. Preseason "day-to-day/out at start" flags are cleared only when a complete report (≥ 10 entries) no longer lists the player.
+- Recent form ("hot free agents") values a player's last-14-days per-game line with the same z-score baseline as the projections.
+
+Both adjustments can be switched off on the Data page. Projections stay labelled as model estimates.

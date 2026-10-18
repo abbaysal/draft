@@ -22,6 +22,7 @@ import type { AdpRow, MetadataRow, ScheduleRow } from "@/lib/import/csv";
 import type { FastResult, StrategiesResult } from "@/workers/protocol";
 import type { CandidateTally, ChampionshipVerdict } from "@/lib/engine/championship";
 import type { CategoryWeights } from "@/lib/categories";
+import { applyLive, type LiveFeed, type LiveOptions, type LiveReport } from "@/lib/live/blend";
 
 export interface DatasetPayload {
   dataset: Dataset;
@@ -96,8 +97,14 @@ interface Store {
   fast: { key: string; result: FastResult | null; loading: boolean; error?: string };
   strategies: { key: string; result: StrategiesResult | null; loading: boolean; error?: string };
   champ: ChampState | null;
+  /** In-season feed from /api/live (box scores, injuries, schedule). */
+  live: LiveFeed | null;
+  liveStatus: { state: "idle" | "loading" | "ok" | "error"; error?: string; at?: string };
+  liveOpts: LiveOptions;
 
   init: () => Promise<void>;
+  loadLive: () => Promise<void>;
+  setLiveOpts: (o: Partial<LiveOptions>) => void;
   reloadDataset: () => Promise<void>;
   createSession: (name: string, settings: LeagueSettings, state?: DraftState) => Promise<SessionRec | null>;
   selectSession: (id: string) => void;
@@ -122,6 +129,7 @@ const LS = {
   queue: "wr.v1.queue",
   imports: "wr.v1.imports",
   watch: "wr.v1.watch",
+  live: "wr.v1.liveOpts",
 };
 
 function lsGet<T>(k: string, fallback: T): T {
@@ -178,12 +186,29 @@ export const useStore = create<Store>((set, get) => ({
   fast: { key: "", result: null, loading: false },
   strategies: { key: "", result: null, loading: false },
   champ: null,
+  live: null,
+  liveStatus: { state: "idle" },
+  liveOpts: { stats: true, injuries: true },
+
+  async loadLive() {
+    if (get().liveStatus.state === "loading") return;
+    set({ liveStatus: { ...get().liveStatus, state: "loading" } });
+    const r = await api<LiveFeed & { error?: string }>("/api/live").catch((e: Error) => ({ ok: false as const, data: { error: e.message } as LiveFeed & { error?: string } }));
+    if (r.ok && Array.isArray(r.data.sources)) set({ live: r.data, liveStatus: { state: "ok", at: r.data.generatedAt } });
+    else set({ liveStatus: { state: "error", error: r.data?.error ?? "Live feed unavailable" } });
+  },
+
+  setLiveOpts(o) {
+    const liveOpts = { ...get().liveOpts, ...o };
+    set({ liveOpts });
+    lsSet(LS.live, liveOpts);
+  },
 
   async init() {
     try {
       const cached = lsGet<SessionRec[]>(LS.sessions, []);
       const queue = lsGet<Pending[]>(LS.queue, []);
-      set({ watchlist: lsGet(LS.watch, []), localImports: { ...EMPTY_IMPORTS, ...lsGet(LS.imports, EMPTY_IMPORTS) }, queue });
+      set({ watchlist: lsGet(LS.watch, []), localImports: { ...EMPTY_IMPORTS, ...lsGet(LS.imports, EMPTY_IMPORTS) }, queue, liveOpts: { ...get().liveOpts, ...lsGet(LS.live, {}) } });
       const [health, auth] = await Promise.all([api<Record<string, unknown>>("/api/health"), api<Store["auth"]>("/api/auth/status")]);
       // Server persistence only when the database is up AND this client may write; otherwise
       // fall back to browser-local drafts so the draft board always works.
@@ -216,6 +241,9 @@ export const useStore = create<Store>((set, get) => ({
       if (!get().activeId && get().sessions[0]) set({ activeId: get().sessions[0].id });
       lsSet(LS.sessions, get().sessions);
       if (get().queue.length) void get().flushQueue();
+      // Live in-season data loads in the background; the app works without it.
+      void get().loadLive();
+      setInterval(() => void get().loadLive(), 30 * 60_000);
       window.addEventListener("online", () => void get().flushQueue());
       setInterval(() => {
         if (get().queue.length) void get().flushQueue();
@@ -422,16 +450,18 @@ export interface EffectiveDataset {
   projectionSetId: string;
   frozen: boolean;
   source: DatasetPayload["source"];
+  /** Live overlay applied to this dataset, if any. */
+  live: { generatedAt: string; report: LiveReport; opts: LiveOptions } | null;
 }
 
 let memo: { inputs: unknown[]; out: EffectiveDataset } | null = null;
 
-export function effectiveDataset(st: Pick<Store, "base" | "frozen" | "localImports" | "mode" | "sessions" | "activeId">): EffectiveDataset | null {
+export function effectiveDataset(st: Pick<Store, "base" | "frozen" | "localImports" | "mode" | "sessions" | "activeId" | "live" | "liveOpts">): EffectiveDataset | null {
   if (!st.base) return null;
   const s = st.sessions.find((x) => x.id === st.activeId);
   const wantSet = s?.projectionSetId;
   const payload = wantSet && st.frozen[wantSet] ? st.frozen[wantSet] : st.base;
-  const inputs = [payload, st.mode === "local" ? st.localImports : null];
+  const inputs = [payload, st.mode === "local" ? st.localImports : null, st.live, st.liveOpts];
   if (memo && memo.inputs.every((x, i) => x === inputs[i])) return memo.out;
   let players = payload.dataset.players;
   let schedule = payload.schedule;
@@ -447,14 +477,22 @@ export function effectiveDataset(st: Pick<Store, "base" | "frozen" | "localImpor
     for (const o of li.overrides) players = applyAvailabilityOverride(players, o.playerId, o.games, o.note);
     if (li.schedule) schedule = li.schedule;
   }
+  let live: EffectiveDataset["live"] = null;
+  if (st.live && (st.liveOpts.stats || st.liveOpts.injuries)) {
+    const r = applyLive(players, st.live, st.liveOpts);
+    players = r.players;
+    live = { generatedAt: st.live.generatedAt, report: r.report, opts: st.liveOpts };
+    if (st.live.schedule && !li?.schedule) schedule = st.live.schedule;
+  }
   const out: EffectiveDataset = {
-    key: `${payload.source}:${payload.dataVersion}:${setId}:${payload.adpSetId ?? ""}:${li?.version ?? 0}`,
+    key: `${payload.source}:${payload.dataVersion}:${setId}:${payload.adpSetId ?? ""}:${li?.version ?? 0}:${live ? `${live.generatedAt}:${+live.opts.stats}${+live.opts.injuries}` : "nolive"}`,
     players,
     schedule,
     meta: payload.dataset.meta,
     projectionSetId: setId,
     frozen: payload !== st.base,
     source: payload.source,
+    live,
   };
   memo = { inputs, out };
   return out;

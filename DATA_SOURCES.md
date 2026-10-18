@@ -48,3 +48,17 @@ Runtime imports (Data page / `POST /api/import/:kind`) follow the same validate 
 - **Coverage:** 1,200 of 1,230 games, 80 per team. The 30 Emirates NBA Cup knockout games (Dec 2026) are TBD and absent until the NBA publishes them, so the week of Dec 7–13 is under-counted.
 - **Use:** default schedule whenever no schedule has been imported into the database. It drives weekly games, playoff-week games, back-to-backs and the day-by-day lineup on *Matchups & Lineup*. A CSV import (date, home, away) replaces it.
 - **Matchup periods:** Yahoo merges the All-Star-break week (Feb 15–28, 2027) into one matchup, so the 25 calendar weeks map to 21 regular-season and 3 playoff matchups.
+
+## Live in-season feeds (`/api/live`)
+
+Fetched by the server (the deployed app; browsers would be blocked by CORS) and cached for 15 minutes in the Next.js data cache. A total failure is not cached. Each source reports its own status on **Data → Live in-season data**; when a source fails, the bundled data is used for that part.
+
+| Source | URL | Used for | Refresh |
+|---|---|---|---|
+| NBA.com schedule (CDN) | `cdn.nba.com/static/json/staticData/scheduleLeagueV2.json` | game ids, status, dates; replaces the bundled schedule once the full season (≥ 1,150 games, incl. NBA Cup knockouts) is listed | 15 min |
+| NBA.com box scores (CDN) | `cdn.nba.com/static/json/liveData/boxscore/boxscore_<gameId>.json` | 2026-27 season totals, last-14-days form, team games played | final games cached permanently |
+| ESPN injury report | `site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries` | current status, comment, estimated return date | 15 min |
+
+- **Matching:** box scores by NBA person id (name fallback), injuries by ESPN athlete id (name fallback). Unmatched names are listed on the Data page.
+- **Not reachable from the build sandbox:** these hosts were blocked where the app was developed, so the parsers follow the documented feed formats and are covered by fixture tests (`tests/unit/live.test.ts`). The Data page shows whether each feed works on the deployment.
+- **Terms:** public endpoints, used for personal, non-commercial analysis under each provider's terms. No authentication is bypassed.
