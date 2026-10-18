@@ -27,6 +27,26 @@
       "rows": 572,
       "sha256": "0b7872ed4ce5a78ca340bc3c472b745e6b6cde118e1e4e0aac453ff7fffd1cf8",
       "license": "No license file in the repository. Statistics only (percentages, no attempts)."
+    },
+    {
+      "file": "nbabench_2023-24_postseason_per_game.jsonl",
+      "source": "https://raw.githubusercontent.com/willccbb/nbabench-data/main/data/2024/postseason.jsonl",
+      "origin": "nbabench-data (ESPN player ids)",
+      "season": "2023-24 postseason, per game",
+      "rows": 214,
+      "sha256": "d5112a2209173273790abcb9fb8439660f5d732a462b18812055c093e1994b21",
+      "retrieved": "2026-10-19",
+      "license": "No license file in the repository. Statistics only (percentages, no attempts)."
+    },
+    {
+      "file": "nbabench_2024-25_postseason_per_game.jsonl",
+      "source": "https://raw.githubusercontent.com/willccbb/nbabench-data/main/data/2025/postseason.jsonl",
+      "origin": "nbabench-data (ESPN player ids)",
+      "season": "2024-25 postseason, per game",
+      "rows": 219,
+      "sha256": "f4df1feda8be8d0b066e2629ea67ef479bf986220c5f98215497d1993af539be",
+      "retrieved": "2026-10-19",
+      "license": "No license file in the repository. Statistics only (percentages, no attempts)."
     }
   ]
 }

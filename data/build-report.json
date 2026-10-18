@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-18T17:31:46.582Z",
+  "builtAt": "2026-10-18T23:41:24.296Z",
   "counts": {
     "players": 626,
     "projected": 533
@@ -32,6 +32,14 @@
     {
       "level": "info",
       "msg": "2023-24: matched 388, unmatched 184 (unmatched = not in 2025-26 player pool and not researched as returning)"
+    },
+    {
+      "level": "info",
+      "msg": "2024-25 playoffs: 202 players matched"
+    },
+    {
+      "level": "info",
+      "msg": "2023-24 playoffs: 180 players matched"
     },
     {
       "level": "info",

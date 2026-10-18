@@ -62,3 +62,10 @@ Fetched by the server (the deployed app; browsers would be blocked by CORS) and 
 - **Matching:** box scores by NBA person id (name fallback), injuries by ESPN athlete id (name fallback). Unmatched names are listed on the Data page.
 - **Not reachable from the build sandbox:** these hosts were blocked where the app was developed, so the parsers follow the documented feed formats and are covered by fixture tests (`tests/unit/live.test.ts`). The Data page shows whether each feed works on the deployment.
 - **Terms:** public endpoints, used for personal, non-commercial analysis under each provider's terms. No authentication is bypassed.
+
+## Player detail additions (2026-10-19)
+
+- **2025-26 NBA Stats totals** (already bundled) now also feed: 3PA, offensive/defensive rebounds, personal fouls, team wins/losses in the player's games, and country.
+- **Playoff history:** `data/raw/nbabench_2023-24_postseason_per_game.jsonl` and `nbabench_2024-25_postseason_per_game.jsonl` from willccbb/nbabench-data (`data/{2024,2025}/postseason.jsonl`; sha256 in MANIFEST.json). Per-game, percentages only, matched by ESPN id (name fallback): 180 players (2023-24) and 202 players (2024-25). Shown on player profiles only; not used in projections.
+- **Derived metrics** (`src/lib/engine/profile.ts`, no new assumptions): TS%, eFG%, 3P%, 3PA rate, FT rate, usage proxy per 36, AST/TO, stocks, per-36 projection, category ranks, archetype, per-season fantasy value under the league baseline (trend), durability, and similar players.
+- Projections are unchanged by these additions (verified: 0 projection differences after the rebuild).

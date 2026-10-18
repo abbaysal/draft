@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { CAT_KEYS, CAT_BY_KEY, uniformWeights, type CategoryWeights } from "@/lib/categories";
 import { valuePlayers } from "@/lib/engine/valuation";
 import { playerRisk } from "@/lib/engine/risk";
+import { advancedLine, seasonValues, strengths, valueTrend } from "@/lib/engine/profile";
 import type { Player, SlotPos } from "@/lib/types";
 import { nameKey } from "@/lib/names";
 import { useEngineContext, useFast } from "@/client/analysis";
@@ -13,7 +14,7 @@ import { Badge, Button, cn, inputCls, Panel, Tabs } from "@/components/ui";
 import { PlayerLink, useDraftPlayer } from "@/components/player";
 import { WeightsEditor } from "@/components/weights";
 
-type ColKey = "team" | "pos" | "rank" | "puntRank" | "adp" | "adpDiff" | "pts" | "fg3m" | "reb" | "ast" | "stl" | "blk" | "fgPct" | "fga" | "ftPct" | "fta" | "tov" | "gp" | "min" | "risk" | "avail" | "status" | "z";
+type ColKey = "team" | "pos" | "rank" | "puntRank" | "adp" | "adpDiff" | "pts" | "fg3m" | "reb" | "ast" | "stl" | "blk" | "fgPct" | "fga" | "ftPct" | "fta" | "tov" | "gp" | "min" | "risk" | "avail" | "status" | "z" | "age" | "height" | "ts" | "usg" | "fg3Pct" | "astTo" | "oreb" | "stocks" | "winPct" | "trend" | "durability" | "archetype";
 
 const COLS: { key: ColKey; label: string; title?: string; def: boolean }[] = [
   { key: "team", label: "Team", def: true },
@@ -39,6 +40,18 @@ const COLS: { key: ColKey; label: string; title?: string; def: boolean }[] = [
   { key: "risk", label: "Risk", def: true },
   { key: "avail", label: "Surv", title: "P(available at your next pick)", def: true },
   { key: "status", label: "Status", def: true },
+  { key: "archetype", label: "Type", title: "Fantasy archetype from the strongest categories", def: false },
+  { key: "age", label: "Age", def: false },
+  { key: "height", label: "Ht", title: "Height (cm)", def: false },
+  { key: "ts", label: "TS%", title: "True shooting % (2025-26)", def: false },
+  { key: "usg", label: "USG/36", title: "Usage proxy: (FGA + 0.44 FTA + TOV) per 36 min (2025-26)", def: false },
+  { key: "fg3Pct", label: "3P%", title: "3-point % (2025-26)", def: false },
+  { key: "astTo", label: "A/TO", title: "Assist-to-turnover ratio", def: false },
+  { key: "oreb", label: "OREB", title: "Offensive rebounds per game (2025-26)", def: false },
+  { key: "stocks", label: "STK", title: "Steals + blocks per game", def: false },
+  { key: "winPct", label: "Win%", title: "Team win % in his 2025-26 games", def: false },
+  { key: "trend", label: "Trend", title: "Change in per-game fantasy value from his earliest to latest season (2023-24 → 2025-26)", def: false },
+  { key: "durability", label: "Avg GP", title: "Average games played per season (last 3 seasons)", def: false },
 ];
 
 export default function PlayersPage() {
@@ -64,6 +77,17 @@ export default function PlayersPage() {
 
   const puntVals = useMemo(() => (ctx ? valuePlayers(ctx.players, ctx.baseline, weights) : null), [ctx, weights]);
   const risks = useMemo(() => new Map((ctx?.players ?? []).map((p) => [p.id, playerRisk(p)])), [ctx]);
+  const prof = useMemo(() => {
+    if (!ctx) return new Map<string, { adv: ReturnType<typeof advancedLine>; trend: number | null; gp: number | null; arch: string }>();
+    const sv = seasonValues(ctx);
+    return new Map(
+      ctx.players.map((p) => {
+        const rows = sv.get(p.id);
+        const gps = p.hist.map((h) => h.gp);
+        return [p.id, { adv: advancedLine(p), trend: valueTrend(rows), gp: gps.length ? gps.reduce((a, b) => a + b, 0) / gps.length : null, arch: strengths(ctx, p.id).archetype }];
+      }),
+    );
+  }, [ctx]);
   const teams = useMemo(() => [...new Set((ctx?.players ?? []).map((p) => p.team))].sort(), [ctx]);
   const tags = useMemo(() => [...new Set((ctx?.players ?? []).flatMap((p) => p.tags.map((t) => t.kind)))].sort(), [ctx]);
 
@@ -103,13 +127,37 @@ export default function PlayersPage() {
           return fast.result?.avail.survival.get(p.id) ?? 1;
         case "name":
           return 0;
+        case "age":
+          return p.age ?? 99;
+        case "height":
+          return p.heightM ?? 0;
+        case "ts":
+          return prof.get(p.id)?.adv?.ts ?? 0;
+        case "usg":
+          return prof.get(p.id)?.adv?.usage36 ?? 0;
+        case "fg3Pct":
+          return prof.get(p.id)?.adv?.fg3Pct ?? 0;
+        case "astTo":
+          return prof.get(p.id)?.adv?.astTo ?? 0;
+        case "oreb":
+          return prof.get(p.id)?.adv?.oreb ?? 0;
+        case "stocks":
+          return prof.get(p.id)?.adv?.stocks ?? 0;
+        case "winPct":
+          return prof.get(p.id)?.adv?.record?.pct ?? 0;
+        case "trend":
+          return prof.get(p.id)?.trend ?? -99;
+        case "durability":
+          return prof.get(p.id)?.gp ?? 0;
+        case "archetype":
+          return 0;
         default:
           return j ? ((j as unknown as Record<string, number>)[sort.key] ?? 0) * (["gp", "min"].includes(sort.key) ? 1 : m) : -1;
       }
     };
     list = [...list].sort((a, b) => (sort.key === "name" ? a.name.localeCompare(b.name) * sort.dir : (val(a) - val(b)) * sort.dir));
     return list;
-  }, [ctx, puntVals, q, view, watch, pos, team, tag, risk, risks, sort, basis, fast.result]);
+  }, [ctx, puntVals, q, view, watch, pos, team, tag, risk, risks, sort, basis, fast.result, prof]);
 
   if (!ctx || !puntVals) return null;
   const surv = fast.result && !fast.stale ? fast.result.avail.survival : null;
@@ -174,6 +222,14 @@ export default function PlayersPage() {
           </select>
           <Tabs value={basis} onChange={setBasis} options={[{ value: "perGame", label: "Per game" }, { value: "season", label: "Season totals" }]} />
           <div className="ml-auto flex gap-2">
+            <Button
+              size="sm"
+              data-testid="advanced-view"
+              variant={cols.has("ts") ? "primary" : "default"}
+              onClick={() => setCols(cols.has("ts") ? new Set(COLS.filter((c) => c.def).map((c) => c.key)) : new Set<ColKey>(["team", "pos", "rank", "archetype", "age", "ts", "usg", "fg3Pct", "astTo", "oreb", "stocks", "winPct", "trend", "durability", "z", "status"]))}
+            >
+              {cols.has("ts") ? "Standard view" : "Advanced view"}
+            </Button>
             <Button size="sm" onClick={() => setShowCols(!showCols)}>
               Columns
             </Button>
@@ -222,6 +278,7 @@ export default function PlayersPage() {
                 const r = risks.get(p.id);
                 const drafted = ctx.drafted.has(p.id);
                 const adp = p.adp ?? ctx.marketRank.get(p.id);
+                const pr = prof.get(p.id);
                 const cell: Record<ColKey, React.ReactNode> = {
                   team: p.team,
                   pos: p.elig.join("/"),
@@ -246,6 +303,18 @@ export default function PlayersPage() {
                   risk: r ? <Badge tone={r.overall === "high" ? "bad" : r.overall === "medium" ? "warn" : "good"}>{r.overall}</Badge> : "—",
                   avail: drafted ? "—" : surv?.get(p.id) != null ? `${(surv.get(p.id)! * 100).toFixed(0)}%` : "…",
                   status: drafted ? <Badge>drafted</Badge> : p.availability && p.availability.status !== "HEALTHY" ? <Badge tone="warn">{p.availability.status}</Badge> : "",
+                  archetype: <span className="text-mute">{pr?.arch ?? ""}</span>,
+                  age: p.age ?? "—",
+                  height: p.heightM ? (p.heightM * 100).toFixed(0) : "—",
+                  ts: pr?.adv?.ts != null ? fmt(pr.adv.ts * 100) : "—",
+                  usg: pr?.adv?.usage36 != null ? fmt(pr.adv.usage36) : "—",
+                  fg3Pct: pr?.adv?.fg3Pct != null ? fmt(pr.adv.fg3Pct * 100) : "—",
+                  astTo: pr?.adv?.astTo != null ? fmt(pr.adv.astTo, 2) : "—",
+                  oreb: pr?.adv?.oreb != null ? fmt(pr.adv.oreb) : "—",
+                  stocks: pr?.adv ? fmt(pr.adv.stocks) : "—",
+                  winPct: pr?.adv?.record ? fmt(pr.adv.record.pct * 100, 0) : "—",
+                  trend: pr?.trend != null ? <span className={cn(pr.trend > 0.75 ? "text-good" : pr.trend < -0.75 ? "text-bad" : "")}>{pr.trend > 0 ? "+" : ""}{pr.trend.toFixed(1)}</span> : "—",
+                  durability: pr?.gp != null ? fmt(pr.gp, 0) : "—",
                 };
                 return (
                   <tr key={p.id} className={cn("border-b border-line/50 hover:bg-panel2", drafted && "opacity-50")}>

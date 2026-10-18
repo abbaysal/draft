@@ -46,6 +46,30 @@ export interface HistSeason extends StatLine {
   /** True when FGA/FTA were not in the source and were derived (see METHODOLOGY.md). */
   attemptsEstimated: boolean;
   team?: string;
+  /** Detail only available from the 2025-26 NBA Stats totals (per game; wins/losses are counts). */
+  fg3a?: number;
+  oreb?: number;
+  dreb?: number;
+  pf?: number;
+  wins?: number;
+  losses?: number;
+}
+
+/** Postseason per-game line (nbabench-data; percentages only, no attempts). */
+export interface PlayoffSeason {
+  season: string;
+  team: string;
+  gp: number;
+  min: number;
+  pts: number;
+  fg3m: number;
+  reb: number;
+  ast: number;
+  stl: number;
+  blk: number;
+  tov: number;
+  fgPct: number;
+  ftPct: number;
 }
 
 export type ConfidenceLevel = "high" | "medium" | "low";
@@ -137,6 +161,9 @@ export interface Player {
   /** Imported ADP, if any (null = not imported). */
   adp?: number | null;
   adpSource?: string | null;
+  country?: string;
+  /** Playoff history (2023-24, 2024-25). */
+  playoffs?: PlayoffSeason[];
   /** 2026-27 season-to-date actuals from the live feed (NBA.com box scores), when loaded. */
   live?: LivePlayerStats;
 }

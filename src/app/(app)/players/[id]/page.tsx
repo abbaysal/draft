@@ -12,6 +12,7 @@ import type { CategoryKey } from "@/lib/types";
 import { runChampionship, useCurrentKey, useEngineContext, useFast } from "@/client/analysis";
 import { useActiveSession, useDataset, useStore } from "@/client/store";
 import { Badge, Button, cn, Delta, Panel, ProbBar, Spinner, Stat } from "@/components/ui";
+import { advancedLine, categoryRanks, per36, seasonValues, similarPlayers, strengths, valueTrend } from "@/lib/engine/profile";
 import { PlayerLink, StatusBadge, useDraftPlayer } from "@/components/player";
 import { CatImpact } from "@/components/recs";
 
@@ -307,6 +308,119 @@ export default function PlayerDetail({ params }: { params: Promise<{ id: string 
         </div>
       )}
 
+      {(() => {
+        const adv = advancedLine(p);
+        const p36 = per36(p);
+        const ranks = categoryRanks(ctx).get(id);
+        const st = strengths(ctx, id);
+        const seasons = seasonValues(ctx).get(id) ?? [];
+        const trend = valueTrend(seasons);
+        const similar = similarPlayers(ctx, id);
+        const f1 = (x: number | null, d = 1) => (x == null ? "—" : x.toFixed(d));
+        const pc = (x: number | null) => (x == null ? "—" : `${(x * 100).toFixed(1)}%`);
+        const maxAbs = Math.max(1, ...seasons.map((x) => Math.abs(x.value)));
+        return (
+          <div className="grid gap-3 xl:grid-cols-4" data-testid="player-advanced">
+            <Panel title="Player profile">
+              <div className="space-y-2 text-xs">
+                <div><span className="text-dim">Archetype</span> <span className="font-semibold text-accent">{st.archetype}</span></div>
+                <div className="flex flex-wrap gap-1">
+                  {st.strengths.map((c) => <Badge key={c} tone="good">{CAT_BY_KEY[c].short} +</Badge>)}
+                  {st.weaknesses.map((c) => <Badge key={c} tone="bad">{CAT_BY_KEY[c].short} −</Badge>)}
+                </div>
+                <table className="w-full">
+                  <tbody>
+                    {[
+                      ["Age", p.age ?? "—"],
+                      ["Experience", p.experience != null ? `${p.experience} yrs` : "—"],
+                      ["Height / weight", p.heightM ? `${(p.heightM * 100).toFixed(0)} cm${p.weightKg ? ` · ${p.weightKg.toFixed(0)} kg` : ""}` : "—"],
+                      ["Country", p.country ?? "—"],
+                      ["Team record (2025-26, in his games)", adv?.record ? `${adv.record.wins}-${adv.record.losses} (${(adv.record.pct * 100).toFixed(0)}%)` : "—"],
+                    ].map(([k, v]) => (
+                      <tr key={k as string} className="border-t border-line/50"><td className="py-0.5 text-dim">{k}</td><td className="num text-right">{v}</td></tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Panel>
+            <Panel title={`Shooting, usage & role (${adv?.basis ?? "—"})`}>
+              <table className="w-full text-xs">
+                <tbody>
+                  {[
+                    ["True shooting %", pc(adv?.ts ?? null), "PTS / (2 × (FGA + 0.44 FTA))"],
+                    ["Effective FG %", pc(adv?.efg ?? null), "(FGM + 0.5 × 3PM) / FGA"],
+                    ["3P % (3PA / game)", adv?.fg3Pct != null ? `${pc(adv.fg3Pct)} (${f1(adv.fg3a)})` : "—", ""],
+                    ["3PA rate", pc(adv?.fg3Rate ?? null), "share of shots that are threes"],
+                    ["FT rate (FTA / FGA)", f1(adv?.ftRate ?? null, 2), "free-throw volume drives FT% impact"],
+                    ["Usage proxy / 36", f1(adv?.usage36 ?? null), "(FGA + 0.44 FTA + TOV) per 36 min"],
+                    ["AST / TO", f1(adv?.astTo ?? null, 2), ""],
+                    ["OREB / DREB", adv?.oreb != null ? `${f1(adv.oreb)} / ${f1(adv.dreb)}` : "—", ""],
+                    ["Stocks (STL + BLK)", f1(adv?.stocks ?? null), ""],
+                    ["Fouls / game", f1(adv?.pf ?? null), ""],
+                  ].map(([k, v, t]) => (
+                    <tr key={k} className="border-t border-line/50" title={t}><td className="py-0.5 text-dim">{k}</td><td className="num text-right">{v}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </Panel>
+            <Panel title="Category ranks & per 36">
+              <table className="w-full text-xs">
+                <thead className="text-[10px] text-dim uppercase"><tr><th className="text-left">Cat</th><th className="text-right" title="Rank among all projected players">Rank</th><th className="text-right">Per 36</th></tr></thead>
+                <tbody>
+                  {ctx.cats.map((c) => {
+                    const r = ranks?.[c];
+                    const k = c === "fgPct" ? null : c === "ftPct" ? null : c;
+                    return (
+                      <tr key={c} className="border-t border-line/50">
+                        <td className="py-0.5 font-semibold">{CAT_BY_KEY[c].short}</td>
+                        <td className={cn("num text-right", r && r <= 30 ? "text-good" : r && r > 200 ? "text-bad" : "")}>{r ?? "—"}</td>
+                        <td className="num text-right">{k && p36 ? p36[k]?.toFixed(1) : c === "fgPct" && j?.fga ? pc(j.fgm / j.fga) : c === "ftPct" && j?.fta ? pc(j.ftm / j.fta) : "—"}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </Panel>
+            <Panel title="Value trend & durability">
+              <div className="space-y-1 text-xs">
+                {seasons.map((x) => (
+                  <div key={x.season} className="flex items-center gap-2">
+                    <span className="w-14 text-dim">{x.season}</span>
+                    <div className="relative h-3 flex-1 rounded bg-panel2">
+                      <div className={cn("absolute top-0 h-3 rounded", x.value >= 0 ? "left-1/2 bg-good/70" : "right-1/2 bg-bad/70")} style={{ width: `${(Math.abs(x.value) / maxAbs) * 50}%` }} />
+                    </div>
+                    <span className="num w-10 text-right">{x.value.toFixed(1)}</span>
+                    <span className="num w-10 text-right text-dim">{x.gp} G</span>
+                  </div>
+                ))}
+                {v && (
+                  <div className="flex items-center gap-2">
+                    <span className="w-14 font-semibold text-accent">2026-27</span>
+                    <div className="relative h-3 flex-1 rounded bg-panel2">
+                      <div className={cn("absolute top-0 h-3 rounded", v.total >= 0 ? "left-1/2 bg-accent/70" : "right-1/2 bg-bad/70")} style={{ width: `${(Math.min(maxAbs, Math.abs(v.total)) / maxAbs) * 50}%` }} />
+                    </div>
+                    <span className="num w-10 text-right">{v.total.toFixed(1)}</span>
+                    <span className="num w-10 text-right text-dim">{j ? j.gp.toFixed(0) : "—"} G</span>
+                  </div>
+                )}
+                <div className="pt-1 text-[11px] text-mute">
+                  {trend == null ? "Not enough seasons for a trend." : trend > 0.75 ? `Rising: +${trend.toFixed(1)} z since ${seasons[0].season}.` : trend < -0.75 ? `Declining: ${trend.toFixed(1)} z since ${seasons[0].season}.` : "Stable value across seasons."}
+                  {seasons.length > 0 && ` Average ${(seasons.reduce((a, x) => a + x.gp, 0) / seasons.length).toFixed(0)} games per season.`}
+                </div>
+                <div className="text-[10px] text-dim">Per-game value (total z) of each season under this league&apos;s categories and baseline; 2026-27 = projection.</div>
+              </div>
+              <div className="mt-3 border-t border-line pt-2 text-xs">
+                <div className="mb-1 text-[10px] tracking-wider text-dim uppercase">Similar fantasy profiles</div>
+                {similar.map((x) => {
+                  const q = ctx.byId.get(x.id);
+                  return q ? <div key={x.id} className="flex justify-between"><PlayerLink p={q} /><span className="num text-dim">{(x.sim * 100).toFixed(0)}</span></div> : null;
+                })}
+              </div>
+            </Panel>
+          </div>
+        );
+      })()}
+
       <div className="grid gap-3 xl:grid-cols-3">
         <Panel title="Performance (actual, per game)" className="xl:col-span-2" bodyClass="p-0">
           <table className="w-full text-xs">
@@ -359,6 +473,31 @@ export default function PlayerDetail({ params }: { params: Promise<{ id: string 
           </table>
           <div className="px-2 py-1 text-[10px] text-dim">Italic attempts = estimated (source had percentages only). 2026-27 rows = live NBA.com box scores (refreshed every 15 min). 2025-26 = official NBA Stats totals; earlier seasons from per-game aggregates.</div>
         </Panel>
+        {p.playoffs && p.playoffs.length > 0 && (
+          <Panel title="Playoff history (per game)" className="xl:col-span-2" bodyClass="p-0">
+            <table className="w-full text-xs" data-testid="playoff-history">
+              <thead className="text-[10px] text-dim uppercase">
+                <tr className="border-b border-line">
+                  {["Season", "Team", "GP", "MIN", "PTS", "3PM", "REB", "AST", "STL", "BLK", "FG%", "FT%", "TO"].map((h) => <th key={h} className="px-1.5 py-1 text-right first:text-left">{h}</th>)}
+                </tr>
+              </thead>
+              <tbody className="num">
+                {p.playoffs.map((x) => (
+                  <tr key={x.season} className="border-b border-line/50">
+                    <td className="px-1.5 py-1">{x.season}</td>
+                    <td className="px-1.5 py-1 text-right">{x.team}</td>
+                    <td className="px-1.5 py-1 text-right">{x.gp}</td>
+                    {[x.min, x.pts, x.fg3m, x.reb, x.ast, x.stl, x.blk].map((y, i) => <td key={i} className="px-1.5 py-1 text-right">{y.toFixed(1)}</td>)}
+                    <td className="px-1.5 py-1 text-right">{(x.fgPct * 100).toFixed(1)}%</td>
+                    <td className="px-1.5 py-1 text-right">{(x.ftPct * 100).toFixed(1)}%</td>
+                    <td className="px-1.5 py-1 text-right">{x.tov.toFixed(1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="px-2 py-1 text-[10px] text-dim">NBA playoffs (real basketball), not fantasy playoffs. Source: nbabench-data postseason aggregates.</div>
+          </Panel>
+        )}
         <div className="space-y-3">
           {po && (
             <Panel title="Fantasy playoff schedule">

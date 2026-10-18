@@ -74,6 +74,8 @@ const NbaRow = z.object({
   turnovers: optNum,
   steals: optNum,
   blocks: optNum,
+  personal_fouls: optNum,
+  country: z.string().optional(),
 });
 
 const NBA_FILE = "data/raw/nba_stats_2025-26_regular_season_totals.csv";
@@ -114,6 +116,12 @@ for (const raw of readCsv(NBA_FILE)) {
           fta: d.one_point_attempted / gp,
           attemptsEstimated: false,
           team: d.team,
+          fg3a: d.three_point_attempted / gp,
+          oreb: d.offensive_rebounds / gp,
+          dreb: d.defensive_rebounds / gp,
+          pf: d.personal_fouls != null ? d.personal_fouls / gp : undefined,
+          wins: d.wins,
+          losses: d.losses,
         },
       ];
   const birth = d.birthdate ? new Date(d.birthdate + "T00:00:00Z") : undefined;
@@ -131,6 +139,7 @@ for (const raw of readCsv(NBA_FILE)) {
     experience: d.experience != null ? d.experience + 1 : undefined,
     heightM: d.height_m,
     weightKg: d.weight_kg,
+    country: d.country || undefined,
     proj: null,
     hist,
     tags: [],
@@ -248,6 +257,25 @@ for (const [season, file] of [
   info(`${season}: matched ${matched}, unmatched ${unmatched} (unmatched = not in 2025-26 player pool and not researched as returning)`);
 }
 for (const p of extraPlayers.values()) players.set(p.id, p);
+
+// ---------- Playoff history 2023-24 / 2024-25 (nbabench-data postseason, ESPN-keyed) ----------
+const byEspn = new Map([...players.values()].filter((p) => p.espnId).map((p) => [p.espnId!, p]));
+for (const [season, file] of [
+  ["2024-25", "data/raw/nbabench_2024-25_postseason_per_game.jsonl"],
+  ["2023-24", "data/raw/nbabench_2023-24_postseason_per_game.jsonl"],
+] as const) {
+  let matched = 0;
+  for (const line of readFileSync(join(ROOT, file), "utf8").split("\n").filter(Boolean)) {
+    const parsed = BenchRow.safeParse(JSON.parse(line));
+    if (!parsed.success || parsed.data.gp <= 0) continue;
+    const b = parsed.data;
+    const p = byEspn.get(b.id) ?? byKey.get(nameKey(b.player)) ?? undefined;
+    if (!p) continue;
+    matched++;
+    (p.playoffs ??= []).push({ season, team: b.team, gp: b.gp, min: b.mpg, pts: b.pts, fg3m: b.three_pm, reb: b.rpg, ast: b.apg, stl: b.stpg, blk: b.blkpg, tov: b.topg, fgPct: b.fg_pct, ftPct: b.ft_pct });
+  }
+  info(`${season} playoffs: ${matched} players matched`);
+}
 
 // ---------- Offseason moves ----------
 const MoveRow = z.object({
@@ -456,6 +484,14 @@ const dataset: Dataset = {
         season: "2023-24",
         retrieved: "2026-10-18",
         sha256: sha("data/raw/nbabench_2023-24_season_per_game.jsonl"),
+      },
+      {
+        id: "nbabench-playoffs",
+        name: "nbabench-data 2023-24 and 2024-25 postseason per-game aggregates (willccbb/nbabench-data)",
+        url: "https://github.com/willccbb/nbabench-data",
+        season: "2023-24, 2024-25 playoffs",
+        retrieved: "2026-10-19",
+        sha256: sha("data/raw/nbabench_2024-25_postseason_per_game.jsonl"),
       },
       {
         id: "research-2026-offseason",
