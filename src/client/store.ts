@@ -185,7 +185,9 @@ export const useStore = create<Store>((set, get) => ({
       const queue = lsGet<Pending[]>(LS.queue, []);
       set({ watchlist: lsGet(LS.watch, []), localImports: { ...EMPTY_IMPORTS, ...lsGet(LS.imports, EMPTY_IMPORTS) }, queue });
       const [health, auth] = await Promise.all([api<Record<string, unknown>>("/api/health"), api<Store["auth"]>("/api/auth/status")]);
-      const mode = health.data.database === "ok" ? "server" : "local";
+      // Server persistence only when the database is up AND this client may write; otherwise
+      // fall back to browser-local drafts so the draft board always works.
+      const mode = health.data.database === "ok" && auth.data.canWrite ? "server" : "local";
       set({ health: health.data, auth: auth.data, mode, sync: { status: mode === "server" ? "synced" : "local" } });
       await get().reloadDataset();
       let sessions = cached;
