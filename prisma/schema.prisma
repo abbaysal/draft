@@ -1,0 +1,277 @@
+// NBA 9-Cat Draft War Room — PostgreSQL schema (Neon / Supabase / any managed Postgres).
+// DATABASE_URL = pooled connection (serverless functions); DIRECT_URL = direct connection (migrations).
+// See DATABASE_SCHEMA.md for the full description of every table.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// Player identity + slowly changing metadata. Source-of-truth for identity matching.
+model Player {
+  id               String   @id
+  nbaId            Int?     @unique
+  espnId           Int?
+  name             String
+  nameKey          String
+  team             String
+  nbaPos           String
+  elig             String[]
+  eligSource       String   @default("derived")
+  age              Int?
+  birthdate        String?
+  experience       Int?
+  heightM          Float?
+  weightKg         Float?
+  rookie           Json?
+  teamChange       Json?
+  availability     Json?
+  tags             Json     @default("[]")
+  updatedAt        DateTime @updatedAt
+  createdAt        DateTime @default(now())
+
+  seasonStats SeasonStat[]
+  projections Projection[]
+  adpEntries  AdpEntry[]
+  overrides   PlayerOverride[]
+
+  @@index([nameKey])
+  @@index([team])
+}
+
+/// Historical and current-season ACTUAL statistics (per game). Never projections.
+model SeasonStat {
+  id                String  @id @default(cuid())
+  playerId          String
+  season            String
+  kind              String  @default("historical") // historical | current_actual
+  source            String
+  team              String?
+  gp                Int
+  min               Float
+  pts               Float
+  fg3m              Float
+  reb               Float
+  ast               Float
+  stl               Float
+  blk               Float
+  tov               Float
+  fgm               Float
+  fga               Float
+  ftm               Float
+  fta               Float
+  attemptsEstimated Boolean @default(false)
+  player            Player  @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([playerId, season, source])
+  @@index([season])
+}
+
+/// Immutable projection version (model, external import, consensus or custom).
+model ProjectionSet {
+  id          String       @id
+  label       String
+  source      String
+  kind        String // model | external | consensus | custom
+  isActive    Boolean      @default(false)
+  notes       String?
+  createdAt   DateTime     @default(now())
+  projections Projection[]
+  sessions    DraftSession[]
+
+  @@index([isActive])
+}
+
+model Projection {
+  id         String        @id @default(cuid())
+  setId      String
+  playerId   String
+  gp         Float
+  min        Float
+  pts        Float
+  fg3m       Float
+  reb        Float
+  ast        Float
+  stl        Float
+  blk        Float
+  tov        Float
+  fgm        Float
+  fga        Float
+  ftm        Float
+  fta        Float
+  sd         Json
+  gpSd       Float
+  confidence Float
+  kind       String // estimate | projection
+  flags      String[]
+  set        ProjectionSet @relation(fields: [setId], references: [id], onDelete: Cascade)
+  player     Player        @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([setId, playerId])
+  @@index([setId])
+}
+
+model AdpSet {
+  id        String     @id
+  source    String
+  isActive  Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  entries   AdpEntry[]
+}
+
+model AdpEntry {
+  id       String @id @default(cuid())
+  setId    String
+  playerId String
+  adp      Float
+  set      AdpSet @relation(fields: [setId], references: [id], onDelete: Cascade)
+  player   Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([setId, playerId])
+}
+
+model ScheduleGame {
+  id     String @id @default(cuid())
+  season String
+  date   String
+  home   String
+  away   String
+  source String
+
+  @@unique([season, date, home, away])
+  @@index([season])
+}
+
+/// Manual corrections layered on top of imported data (audit-friendly; never overwrite raw data).
+model PlayerOverride {
+  id        String   @id @default(cuid())
+  playerId  String
+  field     String // team | elig | availability | gamesMissed
+  value     Json
+  note      String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  player    Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@index([playerId])
+}
+
+model NewsItem {
+  id          String   @id @default(cuid())
+  playerId    String?
+  title       String
+  body        String?
+  kind        String // injury | trade | rotation | projection | other
+  status      String   @default("reported") // confirmed | reported | rumor
+  confidence  String   @default("medium")
+  sourceName  String
+  sourceUrl   String?
+  publishedAt DateTime
+  createdAt   DateTime @default(now())
+  dedupeKey   String   @unique
+
+  @@index([playerId])
+  @@index([publishedAt])
+}
+
+/// A draft. `state` mirrors the reducer state; DraftPick rows enforce uniqueness transactionally.
+model DraftSession {
+  id              String         @id @default(cuid())
+  name            String
+  settings        Json
+  state           Json
+  version         Int            @default(0)
+  projectionSetId String?
+  projectionSet   ProjectionSet? @relation(fields: [projectionSetId], references: [id])
+  adpSetId        String?
+  datasetHash     String?
+  archived        Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  picks           DraftPick[]
+  audits          DraftAudit[]
+  simulations     SimulationResult[]
+
+  @@index([updatedAt])
+}
+
+model DraftPick {
+  id        String       @id @default(cuid())
+  sessionId String
+  overall   Int
+  round     Int
+  teamIndex Int
+  playerId  String
+  at        DateTime
+  session   DraftSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, overall])
+  @@unique([sessionId, playerId])
+}
+
+/// Immutable audit trail: what the model recommended when each pick was made.
+model DraftAudit {
+  id              String       @id @default(cuid())
+  sessionId       String
+  version         Int
+  action          String
+  overall         Int?
+  playerId        String?
+  teamIndex       Int?
+  recommendation  Json?
+  categoryImpact  Json?
+  simulation      Json?
+  stateBefore     Json
+  projectionSetId String?
+  createdAt       DateTime     @default(now())
+  session         DraftSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, version])
+}
+
+model SimulationResult {
+  id           String       @id @default(cuid())
+  sessionId    String
+  stateVersion Int
+  kind         String // championship | strategy | mock
+  params       Json
+  result       Json
+  createdAt    DateTime     @default(now())
+  session      DraftSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, stateVersion])
+}
+
+model ImportLog {
+  id           String   @id @default(cuid())
+  kind         String
+  filename     String?
+  rowsTotal    Int
+  rowsImported Int
+  unmatched    Json
+  issues       Json
+  targetId     String?
+  createdAt    DateTime @default(now())
+}
+
+model RefreshRun {
+  id         String    @id @default(cuid())
+  job        String
+  status     String // ok | error | skipped
+  detail     Json?
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+
+  @@index([job, startedAt])
+}
+
+model AppConfig {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}

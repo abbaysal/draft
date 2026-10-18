@@ -34,6 +34,10 @@ export interface ChampionshipOptions {
   /** Simulate only sims in [from, to) — lets a worker run in cancellable chunks. */
   from?: number;
   to?: number;
+  /** Collect per-sim final objective values and my final rosters (mock draft distributions). */
+  collect?: boolean;
+  /** Optional static strategy weights for MY future picks (otherwise the marginal policy). */
+  myWeights?: Record<string, number> | null;
 }
 
 export interface CandidateTally {
@@ -48,6 +52,9 @@ export interface CandidateTally {
   champBits: number[];
   playoffBits: number[];
   unavailable: number;
+  finalObjs?: number[];
+  rosters?: string[][];
+  ranks?: number[];
 }
 
 export interface ChampionshipChunk {
@@ -296,6 +303,18 @@ export function simulateChampionship(ctx: AnalysisContext, opts: ChampionshipOpt
   const valueOrder = base.ids.map((_, i) => i).sort((a, b) => (ctx.values.get(base.ids[a])?.rank ?? 1e9) - (ctx.values.get(base.ids[b])?.rank ?? 1e9));
   const fillAvg = field.myFills.length ? averageAgg(field.myFills) : emptyAgg();
   const weeks = roundRobin(ctx.settings.teams, ctx.settings.regularSeasonWeeks);
+  const w = opts.myWeights;
+  const weightOrder = w
+    ? base.ids
+        .map((id, i) => {
+          const v = ctx.values.get(id);
+          const gp = ctx.lines.get(id)?.gp ?? 0;
+          const raw = v ? Object.entries(w).reduce((a, [c, wt]) => a + wt * (v.cat[c as CategoryKey] ?? 0), 0) : -99;
+          return { i, s: raw >= 0 ? raw * Math.min(1, gp / 72) : raw };
+        })
+        .sort((a, b) => b.s - a.s)
+        .map((x) => x.i)
+    : null;
 
   for (let s = from; s < to; s++) {
     const simSeed = hashSeed(opts.seed, s);
@@ -319,8 +338,13 @@ export function simulateChampionship(ctx: AnalysisContext, opts: ChampionshipOpt
             tally.unavailable++;
           }
           usedCandidate = true;
-          const fill = scaleFill(fillAvg, Math.max(0, myRemaining - 1));
-          idx = policyPick(ctx, sim, t, myRemaining, valueOrder, fieldAggs, fill);
+          if (weightOrder) {
+            idx = -1;
+            for (const i of weightOrder) if (!sim.taken[i]) { idx = i; break; }
+          } else {
+            const fill = scaleFill(fillAvg, Math.max(0, myRemaining - 1));
+            idx = policyPick(ctx, sim, t, myRemaining, valueOrder, fieldAggs, fill);
+          }
         } else {
           idx = opponentPick(ctx, sim, t, remainingAfter[k], tendencies, rng);
         }
@@ -357,6 +381,12 @@ export function simulateChampionship(ctx: AnalysisContext, opts: ChampionshipOpt
       const obj = objectiveValue(ev, ctx.settings.format);
       tally.finalObj += obj;
       tally.finalObjSq += obj * obj;
+      if (opts.collect) {
+        (tally.finalObjs ??= []).push(obj);
+        (tally.rosters ??= []).push(sim.rosters[ctx.myIndex].slice());
+        const myPts = res.pts[ctx.myIndex];
+        (tally.ranks ??= []).push(1 + res.pts.filter((p) => p > myPts).length);
+      }
     });
   }
   return { from, to, tallies };
@@ -391,6 +421,9 @@ export function mergeChunks(chunks: ChampionshipChunk[]): CandidateTally[] {
       out.unavailable += t.unavailable;
       out.champBits.push(...t.champBits);
       out.playoffBits.push(...t.playoffBits);
+      if (t.finalObjs) (out.finalObjs ??= []).push(...t.finalObjs);
+      if (t.rosters) (out.rosters ??= []).push(...t.rosters);
+      if (t.ranks) (out.ranks ??= []).push(...t.ranks);
     }
     return out;
   });

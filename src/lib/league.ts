@@ -86,6 +86,37 @@ export const DEFAULT_SETTINGS: LeagueSettings = {
   riskAversion: 0.25,
 };
 
+/** League presets. BİLLUR CUP: Yahoo, 12 teams, snake, İlker's Splendid Team picks 1st (draft Sun Oct 18 2026, 20:30 CEST). */
+export const LEAGUE_PRESETS: { key: string; label: string; settings: LeagueSettings }[] = [
+  {
+    key: "billur-cup",
+    label: "BİLLUR CUP (Yahoo, 12 teams, pick 1)",
+    settings: {
+      ...DEFAULT_SETTINGS,
+      name: "BİLLUR CUP",
+      teams: 12,
+      myPosition: 1,
+      rounds: 13,
+      slots: { PG: 1, SG: 1, G: 1, SF: 1, PF: 1, F: 1, C: 1, UTIL: 3, BN: 3, IL: 2 },
+      teamNames: [
+        "İlker's Splendid Team",
+        "Ilgar's Ingenious Team",
+        "Kemal's Awesome Team",
+        "Efe's Extraordinary Team",
+        "Kadıköy UNO's",
+        "Egemen's Expert Team",
+        "Burak's Brilliant Team",
+        "Yağız's Perfect Team",
+        "Ilgarı yedim's Optimal",
+        "Efe's Expert Team",
+        "Yao's Quality Team",
+        "Emre's Expert Team",
+      ],
+    },
+  },
+  { key: "standard", label: "Standard 12-team 9-cat (pick 6)", settings: DEFAULT_SETTINGS },
+];
+
 export function startingSlots(s: Pick<LeagueSettings, "slots">): LineupSlot[] {
   const order: (keyof SlotCounts)[] = ["PG", "SG", "G", "SF", "PF", "F", "C", "UTIL"];
   const out: LineupSlot[] = [];
