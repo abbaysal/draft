@@ -205,7 +205,15 @@ export const useStore = create<Store>((set, get) => ({
       } else sessions = cached.map((s) => ({ ...s, local: true }));
       const active = lsGet<string | null>(LS.active, null);
       set({ sessions, activeId: sessions.find((s) => s.id === active)?.id ?? sessions[0]?.id ?? null, boot: "ready" });
-      if (!get().sessions.length) await get().createSession(LEAGUE_PRESETS[0].settings.name, LEAGUE_PRESETS[0].settings);
+      // Draft-day fix: Yahoo changed the BİLLUR CUP order (Yao's team replaced, İlker moved to pick 3).
+      // Drop untouched local drafts created with the old order and make sure the current preset exists.
+      const stale = get().sessions.filter((x) => x.local && x.state.picks.length === 0 && x.settings.teamNames.includes("Yao's Quality Team"));
+      if (stale.length) set({ sessions: get().sessions.filter((x) => !stale.includes(x)), activeId: null });
+      const preset = LEAGUE_PRESETS[0].settings;
+      const current = get().sessions.find((x) => x.settings.teamNames.join("|") === preset.teamNames.join("|") && x.settings.myPosition === preset.myPosition);
+      if (current && !get().activeId) set({ activeId: current.id });
+      if (!get().sessions.length || (stale.length && !current)) await get().createSession(preset.name, preset);
+      if (!get().activeId && get().sessions[0]) set({ activeId: get().sessions[0].id });
       lsSet(LS.sessions, get().sessions);
       if (get().queue.length) void get().flushQueue();
       window.addEventListener("online", () => void get().flushQueue());

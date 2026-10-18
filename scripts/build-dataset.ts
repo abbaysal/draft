@@ -378,6 +378,26 @@ for (const raw of readCsv("data/research/rookies_2026.csv")) {
   });
 }
 
+// ---------- Placeholders for picks of players not in the database ----------
+// If an opponent drafts someone we have no record of (deep rookie, overseas signing),
+// the pick can still be recorded in order without inventing any statistics.
+for (let i = 1; i <= 30; i++) {
+  const id = `other-${i}`;
+  players.set(id, {
+    id,
+    name: `Other player #${i} (not in database)`,
+    team: "—",
+    nbaPos: "F",
+    elig: ["SF", "PF"],
+    eligSource: "manual",
+    proj: null,
+    hist: [],
+    tags: [],
+    adp: null,
+    adpSource: null,
+  });
+}
+
 // ---------- Projections ----------
 const leagueRows: { nbaPos: string; season: HistSeason }[] = [];
 for (const p of players.values()) for (const h of p.hist) leagueRows.push({ nbaPos: p.nbaPos, season: h });

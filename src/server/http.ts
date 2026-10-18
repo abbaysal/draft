@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
+import { hasDatabase } from "./db";
 
 export function json<T>(data: T, init?: number | ResponseInit) {
   return NextResponse.json(data, typeof init === "number" ? { status: init } : init);
@@ -23,5 +24,5 @@ export class HttpError extends Error {
 }
 
 export function requireDb() {
-  if (!process.env.DATABASE_URL) throw new HttpError(503, "Database not configured (DATABASE_URL). The app runs in local mode.");
+  if (!hasDatabase()) throw new HttpError(503, "Database not configured (DATABASE_URL). The app runs in local mode.");
 }

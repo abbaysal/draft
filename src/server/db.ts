@@ -7,6 +7,12 @@ import { PrismaClient } from "@prisma/client";
  */
 const g = globalThis as unknown as { __prisma?: PrismaClient };
 
+// Accept the variable names used by Vercel's Neon / Postgres integrations.
+if (!process.env.DATABASE_URL && (process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL))
+  process.env.DATABASE_URL = process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL;
+if (!process.env.DIRECT_URL && process.env.DATABASE_URL)
+  process.env.DIRECT_URL = process.env.DATABASE_URL_UNPOOLED || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL;
+
 export function hasDatabase(): boolean {
   return !!process.env.DATABASE_URL;
 }
