@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import {
-  Activity, BarChart3, BookOpen, Brain, CalendarDays, Database, FlaskConical, GitCompare, History, LayoutDashboard, Settings, Shuffle, Swords, Target, Users,
+  Activity, BarChart3, ListChecks, BookOpen, Brain, CalendarDays, Database, FlaskConical, GitCompare, History, LayoutDashboard, Settings, Shuffle, Swords, Target, Users,
 } from "lucide-react";
 import { useStore, useActiveSession } from "@/client/store";
 import { AnalysisRunner, useEngineContext } from "@/client/analysis";
@@ -16,6 +16,7 @@ const NAV = [
   { href: "/players", label: "Players", icon: Users },
   { href: "/punt-lab", label: "Punt Lab", icon: FlaskConical },
   { href: "/team", label: "My Team", icon: BarChart3 },
+  { href: "/lineup", label: "Matchups & Lineup", icon: ListChecks },
   { href: "/opponents", label: "Opponents", icon: Swords },
   { href: "/compare", label: "Compare", icon: GitCompare },
   { href: "/mock", label: "Mock Simulator", icon: Shuffle },

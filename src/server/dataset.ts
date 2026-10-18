@@ -1,6 +1,7 @@
 import type { Availability, Dataset, HistSeason, Player, PlayerTag, Projection, SlotPos, TeamChange } from "@/lib/types";
 import type { ScheduleGame } from "@/lib/engine/schedule";
 import bundled from "@/data/dataset.generated.json";
+import bundledSchedule from "@/data/schedule.generated.json";
 import { db, getConfig, hasDatabase } from "./db";
 
 export interface DatasetPayload {
@@ -19,7 +20,7 @@ const cache = new Map<string, Cached>();
 export async function loadDataset(setId?: string | null): Promise<DatasetPayload> {
   if (!hasDatabase()) {
     const ds = bundled as unknown as Dataset;
-    return { dataset: ds, schedule: [], projectionSetId: ds.meta.projectionVersion, adpSetId: null, dataVersion: 0, source: "bundled" };
+    return { dataset: ds, schedule: bundledSchedule as ScheduleGame[], projectionSetId: ds.meta.projectionVersion, adpSetId: null, dataVersion: 0, source: "bundled" };
   }
   const prisma = db();
   const dataVersion = await getConfig<number>("dataVersion", 0);
@@ -98,7 +99,7 @@ export async function loadDataset(setId?: string | null): Promise<DatasetPayload
   };
   const payload: DatasetPayload = {
     dataset,
-    schedule: games.map((g) => ({ date: g.date, home: g.home, away: g.away })),
+    schedule: games.length ? games.map((g) => ({ date: g.date, home: g.home, away: g.away })) : (bundledSchedule as ScheduleGame[]),
     projectionSetId: activeSet.id,
     adpSetId: activeAdp?.id ?? null,
     dataVersion,

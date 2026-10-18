@@ -117,6 +117,15 @@ export const LEAGUE_PRESETS: { key: string; label: string; settings: LeagueSetti
   { key: "standard", label: "Standard 12-team 9-cat (pick 6)", settings: DEFAULT_SETTINGS },
 ];
 
+/** BİLLUR CUP 2026-27 regular-season opponents for İlker's Splendid Team (weeks 1–21, from Yahoo). */
+export const BILLUR_SCHEDULE: string[] = [
+  "Kadıköy UNO's", "Emre's Expert Team", "Efe's Extraordinary Team", "Ilgarı yedim's Optimal Team", "Barış's Best Team",
+  "Ilgar's Ingenious Team", "Burak's Brilliant Team", "Yağız's Perfect Team", "Egemen's Expert Team", "Kemal's Awesome Team",
+  "Efe's Expert Team", "Kadıköy UNO's", "Emre's Expert Team", "Efe's Extraordinary Team", "Ilgarı yedim's Optimal Team",
+  "Barış's Best Team", "Ilgar's Ingenious Team", "Burak's Brilliant Team", "Yağız's Perfect Team", "Egemen's Expert Team",
+  "Kemal's Awesome Team",
+];
+
 export function startingSlots(s: Pick<LeagueSettings, "slots">): LineupSlot[] {
   const order: (keyof SlotCounts)[] = ["PG", "SG", "G", "SF", "PF", "F", "C", "UTIL"];
   const out: LineupSlot[] = [];

@@ -174,3 +174,60 @@ describe("position eligibility", () => {
     expect(filled).toBe(3);
   });
 });
+
+describe("weekly lineup", () => {
+  it("parses a pasted Yahoo schedule and resolves curly-apostrophe team names", async () => {
+    const { parseSchedule, resolveTeam } = await import("@/lib/engine/lineup");
+    const sched = parseSchedule("1\tlogo Kadıköy UNO’s\t \t0 - 0\n2\tlogo Ilgarı yedim's Optimal Team\t \t \n");
+    expect(sched).toEqual(["Kadıköy UNO’s", "Ilgarı yedim's Optimal Team"]);
+    expect(resolveTeam(sched[0], ["A", "Kadıköy UNO's"])).toBe(1);
+    expect(resolveTeam(sched[1], ["Ilgarı yedim's Optimal", "B"])).toBe(0);
+  });
+
+  it("builds a feasible lineup with every slot filled and probabilities in range", async () => {
+    const { planWeek } = await import("@/lib/engine/lineup");
+    const ctx = buildContext({ players: pool, settings, draft: draftTo(48) });
+    const opp = (ctx.myIndex + 1) % settings.teams;
+    const plan = planWeek(ctx, 3, opp);
+    const starters = plan.lineup.filter((r) => r.slot !== "BN" && r.slot !== "IL");
+    expect(starters.length).toBeGreaterThan(0);
+    expect(new Set(plan.lineup.map((r) => r.id)).size).toBe(plan.lineup.length);
+    expect(plan.winProb).toBeGreaterThanOrEqual(0);
+    expect(plan.winProb).toBeLessThanOrEqual(1);
+    for (let i = 1; i < starters.length; i++) expect(Number.isFinite(starters[i].score)).toBe(true);
+  });
+});
+
+describe("official schedule and daily start/sit", () => {
+  it("bundled 2026-27 schedule has 1,200 games (80 per team) and 24 Yahoo matchup periods", async () => {
+    const games = (await import("@/data/schedule.generated.json")).default as { date: string; home: string; away: string }[];
+    const { buildScheduleModel, fantasyWeek } = await import("@/lib/engine/schedule");
+    const { matchupPeriods, periodOf } = await import("@/lib/engine/lineup");
+    expect(games).toHaveLength(1200);
+    const m = buildScheduleModel(games);
+    expect(m.teams()).toHaveLength(30);
+    for (const t of m.teams()) expect(m.avgGames(t, Array.from({ length: 25 }, (_, i) => i + 1)) * 25).toBeCloseTo(80, 6);
+    const periods = matchupPeriods();
+    expect(periods).toHaveLength(24);
+    expect(periods[17]).toEqual([fantasyWeek("2027-02-15"), fantasyWeek("2027-02-22")]);
+    expect(periodOf("2026-10-20")).toBe(1);
+    expect(periodOf("2027-04-11")).toBe(24);
+  });
+
+  it("starts only players with a game that day, never more than the slots", async () => {
+    const games = (await import("@/data/schedule.generated.json")).default as { date: string; home: string; away: string }[];
+    const { buildScheduleModel } = await import("@/lib/engine/schedule");
+    const { planWeek } = await import("@/lib/engine/lineup");
+    const teams = buildScheduleModel(games).teams();
+    const nbaPool = pool.map((p, i) => ({ ...p, team: teams[i % teams.length] }));
+    const ctx = buildContext({ players: nbaPool, settings, draft: draftTo(48, nbaPool), schedule: buildScheduleModel(games) });
+    const plan = planWeek(ctx, 2, (ctx.myIndex + 1) % settings.teams);
+    expect(plan.daily.length).toBeGreaterThan(0);
+    for (const d of plan.daily) {
+      expect(d.starters.length).toBeLessThanOrEqual(ctx.starters);
+      for (const s of d.starters) expect(ctx.schedule.gameDates(ctx.byId.get(s.id)!.team, 2)).toContain(d.date);
+      if (d.sit.length) expect(d.starters.length).toBe(ctx.starters);
+    }
+    for (const r of plan.lineup) expect(r.starts).toBeLessThanOrEqual(r.scheduled);
+  });
+});

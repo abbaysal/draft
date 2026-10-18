@@ -254,6 +254,12 @@ const TEAM_NAMES: Record<string, string> = {
   "new york knicks": "NYK", "oklahoma city thunder": "OKC", "orlando magic": "ORL", "philadelphia 76ers": "PHI", "phoenix suns": "PHX",
   "portland trail blazers": "POR", "sacramento kings": "SAC", "san antonio spurs": "SAS", "toronto raptors": "TOR", "utah jazz": "UTA",
   "washington wizards": "WAS",
+  // City-only names as printed in the official NBA schedule PDF.
+  atlanta: "ATL", boston: "BOS", brooklyn: "BKN", charlotte: "CHA", chicago: "CHI", cleveland: "CLE", dallas: "DAL", denver: "DEN",
+  detroit: "DET", "golden state": "GSW", houston: "HOU", indiana: "IND", "la lakers": "LAL", memphis: "MEM", miami: "MIA",
+  milwaukee: "MIL", minnesota: "MIN", "new orleans": "NOP", "new york": "NYK", "oklahoma city": "OKC", orlando: "ORL",
+  philadelphia: "PHI", phoenix: "PHX", portland: "POR", sacramento: "SAC", "san antonio": "SAS", toronto: "TOR", utah: "UTA",
+  washington: "WAS",
 };
 const ABBR = new Set(Object.values(TEAM_NAMES));
 const ABBR_FIX: Record<string, string> = { BRK: "BKN", PHO: "PHX", CHO: "CHA", GS: "GSW", NO: "NOP", NY: "NYK", SA: "SAS", UTAH: "UTA", WSH: "WAS" };

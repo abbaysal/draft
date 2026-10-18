@@ -40,3 +40,11 @@ Hashtag Basketball, Basketball Monster, ESPN, Yahoo and Basketball-Reference wer
 10. **Error logging.** Warnings and info entries go to the build report.
 
 Runtime imports (Data page / `POST /api/import/:kind`) follow the same validate → match → report flow. Each projections or ADP import creates a **new immutable version**. Draft sessions keep the projection version they were created with (frozen snapshot for auditing). The scheduled refresh (`/api/cron/refresh`) only pulls URLs you configure (`PROJECTIONS_CSV_URL`, `ADP_CSV_URL`, `SCHEDULE_CSV_URL`, `NEWS_FEED_URLS`) and skips unchanged content by hash.
+
+## NBA schedule 2026-27 (bundled)
+
+- **File:** `data/research/nba_schedule_2026-27.csv` → `src/data/schedule.generated.json` (`npm run data:schedule`).
+- **Source:** official NBA "2026-27 NBA Regular Season Schedule" PDF (as of August 13, 2026, subject to change), supplied by the user and transcribed verbatim (game number, date, home, away, neutral-site flag).
+- **Coverage:** 1,200 of 1,230 games, 80 per team. The 30 Emirates NBA Cup knockout games (Dec 2026) are TBD and absent until the NBA publishes them, so the week of Dec 7–13 is under-counted.
+- **Use:** default schedule whenever no schedule has been imported into the database. It drives weekly games, playoff-week games, back-to-backs and the day-by-day lineup on *Matchups & Lineup*. A CSV import (date, home, away) replaces it.
+- **Matchup periods:** Yahoo merges the All-Star-break week (Feb 15–28, 2027) into one matchup, so the 25 calendar weeks map to 21 regular-season and 3 playoff matchups.

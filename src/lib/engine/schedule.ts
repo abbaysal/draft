@@ -1,10 +1,9 @@
 /**
  * NBA schedule model. The official 2026-27 schedule (opening night Tue Oct 20 2026,
- * final day Sun Apr 11 2027 — NBA.com / pr.nba.com) is published as PDFs on hosts
- * this project could not access, so it must be IMPORTED as CSV (date,home,away).
- * Until then a clearly-labelled UNIFORM model spreads 82 games evenly over the
- * season's days. Uniform mode cannot distinguish playoff-week schedules between
- * teams; the UI says so.
+ * final day Sun Apr 11 2027) ships bundled (src/data/schedule.generated.json, built from
+ * data/research/nba_schedule_2026-27.csv) and can be replaced by a CSV import
+ * (date,home,away). Without any schedule a clearly-labelled UNIFORM model spreads 82
+ * games evenly over the season's days; the UI says so.
  */
 export interface ScheduleGame {
   date: string; // YYYY-MM-DD (US Eastern date)
@@ -51,6 +50,8 @@ export interface ScheduleModel {
   backToBacks(team: string, weeks: number[]): number;
   /** Number of NBA games on each date of a week (lineup congestion indicator). */
   dailyGameCounts(week: number): { date: string; games: number }[];
+  /** Dates (YYYY-MM-DD) on which an NBA team plays in a fantasy week; empty in uniform mode. */
+  gameDates(team: string, week: number): string[];
   teams(): string[];
 }
 
@@ -95,6 +96,7 @@ export function buildScheduleModel(games: ScheduleGame[] | null | undefined): Sc
       }
       return out;
     },
+    gameDates: (team, week) => (datesByTeam.get(team) ?? []).filter((d) => fantasyWeek(d) === week),
     teams: () => [...teams].sort(),
   };
   return model;
@@ -118,6 +120,7 @@ export function uniformSchedule(): ScheduleModel {
       for (let t = utc(r.start); t <= utc(r.end); t += DAY) out.push({ date: new Date(t).toISOString().slice(0, 10), games: 15 * perDay });
       return out;
     },
+    gameDates: () => [],
     teams: () => [],
   };
   return model;
