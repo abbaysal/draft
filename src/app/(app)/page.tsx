@@ -4,6 +4,7 @@ import { AlertsPanel, AvailableTable, CategoryOutlook, InjuryWatch, MyRoster, Op
 import { CandidateTable, LabelledPicks, MetricBanner, TopPickCard } from "@/components/recs";
 import { useStrategies } from "@/client/analysis";
 import { Badge, Panel, Spinner } from "@/components/ui";
+import { YahooSync } from "@/components/yahoo-sync";
 
 function BuildPanel() {
   const s = useStrategies();
@@ -34,6 +35,7 @@ export default function WarRoom() {
       </div>
       <div className="grid grid-cols-1 gap-3 xl:grid-cols-12">
         <div className="space-y-3 xl:col-span-5">
+          <YahooSync />
           <TopPickCard />
           <CandidateTable limit={6} />
           <BuildPanel />
