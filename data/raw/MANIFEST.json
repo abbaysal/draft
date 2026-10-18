@@ -1,0 +1,32 @@
+{
+  "retrieved": "2026-10-18",
+  "files": [
+    {
+      "file": "nba_stats_2025-26_regular_season_totals.csv",
+      "source": "https://raw.githubusercontent.com/EasySportsApps/nba_api_25_26_data/main/nba_players_regular_season_25_26_wide_data.csv",
+      "origin": "NBA Stats API (stats.nba.com) via the nba_api library, collected by EasySportsApps",
+      "season": "2025-26 regular season, season totals",
+      "rows": 582,
+      "sha256": "8a23aa3be2945f3e64c70072a83d123c1ae431193386f8094272bc448e438c8d",
+      "license": "No license file in the repository; underlying data subject to NBA.com terms. Used for personal, non-commercial analysis."
+    },
+    {
+      "file": "nbabench_2024-25_season_per_game.jsonl",
+      "source": "https://raw.githubusercontent.com/willccbb/nbabench-data/main/data/2025/season.jsonl",
+      "origin": "nbabench-data (ESPN player ids)",
+      "season": "2024-25 regular season, per game",
+      "rows": 569,
+      "sha256": "170250d17a460bac10e52a46538a234aad37f6cfa48c1677947ed5b3540f79de",
+      "license": "No license file in the repository. Statistics only (percentages, no attempts)."
+    },
+    {
+      "file": "nbabench_2023-24_season_per_game.jsonl",
+      "source": "https://raw.githubusercontent.com/willccbb/nbabench-data/main/data/2024/season.jsonl",
+      "origin": "nbabench-data (ESPN player ids)",
+      "season": "2023-24 regular season, per game",
+      "rows": 572,
+      "sha256": "0b7872ed4ce5a78ca340bc3c472b745e6b6cde118e1e4e0aac453ff7fffd1cf8",
+      "license": "No license file in the repository. Statistics only (percentages, no attempts)."
+    }
+  ]
+}

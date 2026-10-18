@@ -18,7 +18,10 @@
     "db:migrate:dev": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
     "postinstall": "prisma generate",
-    "vercel-build": "node scripts/vercel-build.mjs"
+    "vercel-build": "node scripts/vercel-build.mjs",
+    "test:db": "node --env-file=.env node_modules/vitest/vitest.mjs run tests/integration",
+    "test:e2e:db": "E2E_DB=1 playwright test",
+    "engine:smoke": "tsx scripts/engine-smoke.ts"
   },
   "engines": {
     "node": ">=20.9"
