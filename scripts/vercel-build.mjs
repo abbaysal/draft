@@ -8,8 +8,17 @@ import { execSync } from "node:child_process";
 const run = (cmd) => execSync(cmd, { stdio: "inherit", env: process.env });
 run("npx prisma generate");
 // Vercel's Neon / Postgres integrations use different variable names; map them.
-process.env.DATABASE_URL ||= process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL || "";
-process.env.DIRECT_URL ||= process.env.DATABASE_URL_UNPOOLED || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL;
+// Integrations may add a custom prefix (e.g. STORAGE_DATABASE_URL).
+const findEnv = (sufs) => {
+  for (const suf of sufs) {
+    if (process.env[suf]) return process.env[suf];
+    const key = Object.keys(process.env).find((k) => k.endsWith(`_${suf}`) && process.env[k]);
+    if (key) return process.env[key];
+  }
+  return "";
+};
+process.env.DATABASE_URL ||= findEnv(["DATABASE_URL", "POSTGRES_PRISMA_URL", "POSTGRES_URL"]);
+process.env.DIRECT_URL ||= findEnv(["DATABASE_URL_UNPOOLED", "POSTGRES_URL_NON_POOLING"]) || process.env.DATABASE_URL;
 if (process.env.DATABASE_URL) {
   run("npx prisma migrate deploy");
   if (process.env.SKIP_SEED !== "true") run("npx tsx prisma/seed.ts");

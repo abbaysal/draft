@@ -7,11 +7,22 @@ import { PrismaClient } from "@prisma/client";
  */
 const g = globalThis as unknown as { __prisma?: PrismaClient };
 
-// Accept the variable names used by Vercel's Neon / Postgres integrations.
-if (!process.env.DATABASE_URL && (process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL))
-  process.env.DATABASE_URL = process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL;
+// Accept the variable names used by Vercel's Neon / Postgres integrations, including
+// integrations installed with a custom prefix (e.g. STORAGE_DATABASE_URL).
+function findEnv(suffixes: string[]): string | undefined {
+  for (const suf of suffixes) {
+    if (process.env[suf]) return process.env[suf];
+    const key = Object.keys(process.env).find((k) => k.endsWith(`_${suf}`) && process.env[k]);
+    if (key) return process.env[key];
+  }
+  return undefined;
+}
+if (!process.env.DATABASE_URL) {
+  const url = findEnv(["DATABASE_URL", "POSTGRES_PRISMA_URL", "POSTGRES_URL"]);
+  if (url) process.env.DATABASE_URL = url;
+}
 if (!process.env.DIRECT_URL && process.env.DATABASE_URL)
-  process.env.DIRECT_URL = process.env.DATABASE_URL_UNPOOLED || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL;
+  process.env.DIRECT_URL = findEnv(["DATABASE_URL_UNPOOLED", "POSTGRES_URL_NON_POOLING"]) ?? process.env.DATABASE_URL;
 
 export function hasDatabase(): boolean {
   return !!process.env.DATABASE_URL;
