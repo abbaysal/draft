@@ -29,7 +29,7 @@ import {
 } from "../src/lib/projection/model";
 import { buildBaseline, valuePlayers, DEFAULT_VALUATION } from "../src/lib/engine/valuation";
 import { classifyPlayer } from "../src/lib/engine/tags";
-import type { Availability, Dataset, HistSeason, Player, TeamChange } from "../src/lib/types";
+import type { Availability, Dataset, HistSeason, Player, TeamChange, SlotPos } from "../src/lib/types";
 
 const ROOT = join(__dirname, "..");
 const SEASON_START = new Date("2026-10-20T00:00:00Z");
@@ -424,6 +424,21 @@ for (let i = 1; i <= 30; i++) {
     adp: null,
     adpSource: null,
   });
+}
+
+// ---------- Platform (Yahoo) position eligibility, observed on league pages ----------
+const finalByKey = new Map([...players.values()].map((p) => [nameKey(p.name), p]));
+for (const raw of readCsv("data/research/yahoo_eligibility_2026-27.csv")) {
+  const p = finalByKey.get(nameKey(raw.player_name));
+  if (!p) {
+    warn(`yahoo eligibility: no player match for ${raw.player_name}`);
+    continue;
+  }
+  const elig = raw.positions.split(",").map((x) => x.trim()).filter((x): x is SlotPos => ["PG", "SG", "SF", "PF", "C"].includes(x));
+  if (!elig.length) continue;
+  if (p.team !== raw.team) warn(`yahoo eligibility: ${p.name} is ${p.team} in data but ${raw.team} on Yahoo`);
+  p.elig = elig;
+  p.eligSource = "imported";
 }
 
 // ---------- Projections ----------

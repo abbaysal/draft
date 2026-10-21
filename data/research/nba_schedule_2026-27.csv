@@ -1,1201 +1,1201 @@
-game_id,date,home,away,neutral
-1,2026-10-20,Detroit,Boston,0
-2,2026-10-20,New York,Philadelphia,0
-3,2026-10-20,San Antonio,Oklahoma City,0
-4,2026-10-21,Miami,Minnesota,0
-5,2026-10-21,LA Lakers,Golden State,0
-85,2026-10-21,Orlando,Atlanta,0
-86,2026-10-21,Washington,Milwaukee,0
-87,2026-10-21,Brooklyn,Charlotte,0
-88,2026-10-21,Toronto,Chicago,0
-89,2026-10-21,Memphis,Utah,0
-90,2026-10-21,New Orleans,Indiana,0
-91,2026-10-21,Houston,Dallas,0
-92,2026-10-21,Portland,Phoenix,0
-93,2026-10-21,LA Clippers,Sacramento,0
-6,2026-10-22,Philadelphia,Cleveland,0
-7,2026-10-22,Oklahoma City,Denver,0
-8,2026-10-23,Boston,New York,0
-9,2026-10-23,San Antonio,Houston,0
-94,2026-10-23,Charlotte,Atlanta,0
-95,2026-10-23,Indiana,Dallas,0
-96,2026-10-23,Orlando,Minnesota,0
-97,2026-10-23,Washington,Toronto,0
-98,2026-10-23,Miami,Detroit,0
-99,2026-10-23,Milwaukee,Chicago,0
-100,2026-10-23,Utah,New Orleans,0
-101,2026-10-23,Golden State,Memphis,0
-102,2026-10-23,LA Lakers,LA Clippers,0
-103,2026-10-23,Sacramento,Portland,0
-104,2026-10-24,Charlotte,Miami,0
-105,2026-10-24,Cleveland,Brooklyn,0
-106,2026-10-24,Philadelphia,Milwaukee,0
-107,2026-10-24,Atlanta,Houston,0
-108,2026-10-24,Chicago,Washington,0
-109,2026-10-24,Dallas,San Antonio,0
-110,2026-10-24,Denver,New Orleans,0
-111,2026-10-24,Phoenix,Golden State,0
-112,2026-10-25,Utah,LA Lakers,0
-113,2026-10-25,Brooklyn,Indiana,0
-114,2026-10-25,New York,Orlando,0
-115,2026-10-25,Minnesota,Toronto,0
-116,2026-10-25,Oklahoma City,LA Clippers,0
-117,2026-10-25,Philadelphia,Detroit,0
-118,2026-10-25,Sacramento,Memphis,0
-119,2026-10-26,Charlotte,Washington,0
-120,2026-10-26,Cleveland,Minnesota,0
-121,2026-10-26,Boston,Chicago,0
-122,2026-10-26,Miami,Dallas,0
-123,2026-10-26,Milwaukee,Indiana,0
-124,2026-10-26,Oklahoma City,Phoenix,0
-125,2026-10-26,Houston,Atlanta,0
-126,2026-10-26,Utah,Memphis,0
-127,2026-10-26,Denver,Golden State,0
-128,2026-10-27,Boston,Brooklyn,0
-129,2026-10-27,New York,Detroit,0
-130,2026-10-27,San Antonio,Sacramento,0
-131,2026-10-27,LA Lakers,Portland,0
-132,2026-10-28,Atlanta,Miami,0
-133,2026-10-28,Cleveland,Washington,0
-134,2026-10-28,Detroit,Charlotte,0
-135,2026-10-28,Indiana,Philadelphia,0
-136,2026-10-28,Toronto,Orlando,0
-137,2026-10-28,Chicago,New York,0
-138,2026-10-28,Milwaukee,Houston,0
-139,2026-10-28,Minnesota,Golden State,0
-140,2026-10-28,New Orleans,Denver,0
-141,2026-10-28,Utah,San Antonio,0
-142,2026-10-28,Dallas,Oklahoma City,0
-143,2026-10-28,LA Clippers,LA Lakers,0
-144,2026-10-29,Atlanta,Cleveland,0
-145,2026-10-29,New Orleans,Sacramento,0
-146,2026-10-29,Portland,Memphis,0
-15,2026-10-30,Washington,Charlotte,0
-16,2026-10-30,Boston,Chicago,0
-17,2026-10-30,Brooklyn,Detroit,0
-18,2026-10-30,Philadelphia,New York,0
-19,2026-10-30,Toronto,Orlando,0
-20,2026-10-30,Miami,Indiana,0
-21,2026-10-30,Dallas,Houston,0
-22,2026-10-30,Minnesota,LA Clippers,0
-23,2026-10-30,Golden State,LA Lakers,0
-24,2026-10-30,Phoenix,Denver,0
-147,2026-10-31,Utah,Portland,0
-148,2026-10-31,Charlotte,Philadelphia,0
-149,2026-10-31,New Orleans,Atlanta,0
-150,2026-10-31,Memphis,Sacramento,0
-151,2026-10-31,Milwaukee,Cleveland,0
-152,2026-10-31,San Antonio,Minnesota,0
-153,2026-10-31,Houston,Oklahoma City,0
-154,2026-11-01,Orlando,Boston,0
-155,2026-11-01,Indiana,Brooklyn,0
-156,2026-11-01,Golden State,LA Clippers,0
-157,2026-11-01,LA Lakers,Toronto,0
-158,2026-11-02,Cleveland,Oklahoma City,0
-159,2026-11-02,Charlotte,Detroit,0
-160,2026-11-02,Indiana,Atlanta,0
-161,2026-11-02,New York,Brooklyn,0
-162,2026-11-02,Orlando,Washington,0
-163,2026-11-02,Philadelphia,Chicago,0
-164,2026-11-02,Dallas,Sacramento,0
-165,2026-11-02,Memphis,New Orleans,0
-166,2026-11-02,Minnesota,Milwaukee,0
-167,2026-11-02,Houston,Boston,0
-168,2026-11-02,San Antonio,Utah,0
-169,2026-11-02,Denver,Portland,0
-170,2026-11-02,Golden State,Phoenix,0
-171,2026-11-02,LA Clippers,Toronto,0
-172,2026-11-02,LA Lakers,Miami,0
-173,2026-11-04,Detroit,Philadelphia,0
-174,2026-11-04,Washington,Atlanta,0
-175,2026-11-04,Boston,Milwaukee,0
-176,2026-11-04,Brooklyn,Charlotte,0
-177,2026-11-04,New York,Chicago,0
-178,2026-11-04,Memphis,Indiana,0
-179,2026-11-04,New Orleans,Utah,0
-180,2026-11-04,Oklahoma City,Cleveland,0
-181,2026-11-04,Houston,Minnesota,0
-182,2026-11-04,Denver,Toronto,0
-183,2026-11-04,Phoenix,Portland,0
-184,2026-11-04,San Antonio,Dallas,0
-185,2026-11-04,Sacramento,LA Lakers,0
-186,2026-11-04,LA Clippers,Miami,0
-187,2026-11-05,Phoenix,Orlando,0
-188,2026-11-05,Golden State,Miami,0
-25,2026-11-06,Atlanta,Washington,0
-26,2026-11-06,Charlotte,Boston,0
-27,2026-11-06,Cleveland,Philadelphia,0
-28,2026-11-06,Dallas,Utah,0
-29,2026-11-06,Memphis,Oklahoma City,0
-30,2026-11-06,Milwaukee,Toronto,0
-31,2026-11-06,New Orleans,Minnesota,0
-32,2026-11-06,LA Lakers,Portland,0
-33,2026-11-06,Sacramento,San Antonio,0
-189,2026-11-07,Indiana,Denver,1
-190,2026-11-07,Atlanta,Brooklyn,0
-191,2026-11-07,Cleveland,New York,0
-192,2026-11-07,Oklahoma City,Washington,0
-193,2026-11-07,Golden State,Orlando,0
-194,2026-11-07,Phoenix,Houston,0
-195,2026-11-07,Portland,San Antonio,0
-196,2026-11-08,Chicago,Philadelphia,0
-197,2026-11-08,Detroit,LA Lakers,0
-198,2026-11-08,Minnesota,Utah,0
-199,2026-11-08,Dallas,Brooklyn,0
-200,2026-11-08,Milwaukee,Boston,0
-201,2026-11-08,LA Clippers,New Orleans,0
-202,2026-11-08,Sacramento,Miami,0
-203,2026-11-09,Atlanta,LA Lakers,0
-204,2026-11-09,Charlotte,Cleveland,0
-205,2026-11-09,Detroit,Washington,0
-206,2026-11-09,Toronto,Memphis,0
-207,2026-11-09,Dallas,Indiana,0
-208,2026-11-09,Houston,Denver,0
-209,2026-11-09,Phoenix,San Antonio,0
-210,2026-11-09,Golden State,New Orleans,0
-211,2026-11-10,New York,Milwaukee,0
-212,2026-11-10,Philadelphia,Boston,0
-213,2026-11-10,Phoenix,LA Clippers,0
-214,2026-11-10,Utah,Miami,0
-215,2026-11-10,Sacramento,Orlando,0
-216,2026-11-10,Portland,Oklahoma City,0
-217,2026-11-11,Indiana,Washington,0
-218,2026-11-11,New York,Cleveland,0
-219,2026-11-11,Toronto,Boston,0
-220,2026-11-11,Chicago,San Antonio,0
-221,2026-11-11,Memphis,Denver,0
-222,2026-11-11,Milwaukee,LA Lakers,0
-223,2026-11-11,New Orleans,Brooklyn,0
-224,2026-11-11,Utah,Orlando,0
-225,2026-11-11,Houston,Golden State,0
-226,2026-11-11,Portland,Oklahoma City,0
-227,2026-11-12,Philadelphia,Toronto,0
-228,2026-11-12,Washington,Detroit,0
-229,2026-11-12,Minnesota,Dallas,0
-230,2026-11-12,Phoenix,Charlotte,0
-34,2026-11-13,Indiana,New York,0
-35,2026-11-13,Orlando,Milwaukee,0
-36,2026-11-13,Miami,Cleveland,0
-37,2026-11-13,Chicago,Atlanta,0
-38,2026-11-13,New Orleans,Memphis,0
-39,2026-11-13,Houston,Utah,0
-40,2026-11-13,San Antonio,Golden State,0
-41,2026-11-13,Sacramento,Portland,0
-42,2026-11-13,LA Clippers,Oklahoma City,0
-231,2026-11-14,New Orleans,Denver,0
-232,2026-11-14,Cleveland,Dallas,0
-233,2026-11-14,Miami,Detroit,0
-234,2026-11-14,Memphis,Brooklyn,0
-235,2026-11-14,Minnesota,Chicago,0
-236,2026-11-15,Philadelphia,Indiana,0
-237,2026-11-15,Phoenix,LA Lakers,0
-238,2026-11-15,LA Clippers,Charlotte,0
-239,2026-11-15,Utah,San Antonio,0
-240,2026-11-15,Boston,Dallas,0
-241,2026-11-15,Toronto,New York,0
-242,2026-11-15,Washington,Houston,0
-243,2026-11-15,Milwaukee,Atlanta,0
-244,2026-11-15,Sacramento,Oklahoma City,0
-245,2026-11-16,Boston,Orlando,0
-246,2026-11-16,Cleveland,Chicago,0
-247,2026-11-16,Washington,Memphis,0
-248,2026-11-16,Brooklyn,Philadelphia,0
-249,2026-11-16,Miami,Houston,0
-250,2026-11-16,Minnesota,Portland,0
-251,2026-11-16,New Orleans,Golden State,0
-252,2026-11-16,Denver,Phoenix,0
-253,2026-11-17,Toronto,New York,0
-254,2026-11-17,Minnesota,Portland,0
-255,2026-11-17,San Antonio,Detroit,0
-256,2026-11-17,LA Lakers,Charlotte,0
-257,2026-11-17,LA Clippers,Utah,0
-258,2026-11-18,Cleveland,Memphis,0
-259,2026-11-18,Indiana,Houston,0
-260,2026-11-18,Miami,Milwaukee,0
-261,2026-11-18,Orlando,Philadelphia,0
-262,2026-11-18,Brooklyn,Chicago,0
-263,2026-11-18,Toronto,Washington,0
-264,2026-11-18,New Orleans,Detroit,0
-265,2026-11-18,Oklahoma City,Atlanta,0
-266,2026-11-18,Denver,Boston,0
-267,2026-11-18,Dallas,Golden State,0
-268,2026-11-18,LA Lakers,Utah,0
-269,2026-11-18,Sacramento,Phoenix,0
-270,2026-11-19,Memphis,Golden State,0
-271,2026-11-19,Milwaukee,Portland,0
-272,2026-11-19,Minnesota,New York,0
-273,2026-11-19,San Antonio,LA Clippers,0
-43,2026-11-20,Atlanta,Charlotte,0
-44,2026-11-20,Brooklyn,Orlando,0
-45,2026-11-20,Cleveland,Indiana,0
-46,2026-11-20,Detroit,Toronto,0
-47,2026-11-20,Chicago,Washington,0
-48,2026-11-20,Oklahoma City,New Orleans,0
-49,2026-11-20,Utah,Phoenix,0
-50,2026-11-20,Denver,Houston,0
-51,2026-11-20,LA Lakers,Sacramento,0
-274,2026-11-21,Philadelphia,Milwaukee,0
-275,2026-11-21,New York,Portland,0
-276,2026-11-21,Dallas,LA Clippers,0
-277,2026-11-21,Minnesota,Memphis,0
-278,2026-11-21,San Antonio,New Orleans,0
-279,2026-11-21,Sacramento,Boston,0
-280,2026-11-22,Atlanta,Detroit,0
-281,2026-11-22,Miami,Oklahoma City,0
-282,2026-11-22,Washington,Orlando,0
-283,2026-11-22,Chicago,Denver,0
-284,2026-11-22,Utah,Dallas,0
-285,2026-11-22,New York,Indiana,0
-286,2026-11-22,Golden State,Boston,0
-287,2026-11-23,Charlotte,Memphis,0
-288,2026-11-23,Philadelphia,Portland,0
-289,2026-11-23,Indiana,Oklahoma City,0
-290,2026-11-23,Toronto,Milwaukee,0
-291,2026-11-23,Minnesota,Brooklyn,0
-292,2026-11-23,Chicago,Cleveland,0
-293,2026-11-23,New Orleans,Phoenix,0
-294,2026-11-23,Houston,LA Clippers,0
-295,2026-11-23,LA Lakers,Utah,0
-296,2026-11-23,Sacramento,San Antonio,0
-52,2026-11-24,Orlando,Detroit,0
-53,2026-11-24,Washington,Boston,0
-54,2026-11-24,Denver,Dallas,0
-55,2026-11-25,Philadelphia,Miami,0
-56,2026-11-25,Charlotte,Chicago,0
-57,2026-11-25,New York,Cleveland,0
-58,2026-11-25,Oklahoma City,Minnesota,0
-59,2026-11-25,Memphis,LA Clippers,0
-60,2026-11-25,Milwaukee,Brooklyn,0
-61,2026-11-25,Houston,Phoenix,0
-62,2026-11-25,Golden State,Sacramento,0
-63,2026-11-25,Portland,San Antonio,0
-64,2026-11-27,New York,Miami,0
-65,2026-11-27,Detroit,Milwaukee,0
-66,2026-11-27,Indiana,Philadelphia,0
-67,2026-11-27,Toronto,Brooklyn,0
-68,2026-11-27,Boston,Atlanta,0
-69,2026-11-27,Minnesota,Memphis,0
-70,2026-11-27,Phoenix,Dallas,0
-71,2026-11-27,San Antonio,LA Lakers,0
-72,2026-11-27,Utah,Denver,0
-73,2026-11-27,LA Clippers,New Orleans,0
-74,2026-11-27,Portland,Golden State,0
-297,2026-11-28,Washington,Orlando,0
-298,2026-11-28,Charlotte,Brooklyn,0
-299,2026-11-28,Chicago,Indiana,0
-300,2026-11-28,Milwaukee,Oklahoma City,0
-301,2026-11-28,Houston,Philadelphia,0
-302,2026-11-29,Memphis,LA Lakers,0
-303,2026-11-29,San Antonio,Boston,0
-304,2026-11-29,Utah,Phoenix,0
-305,2026-11-29,Cleveland,Miami,0
-306,2026-11-29,Detroit,Orlando,0
-307,2026-11-29,New York,Atlanta,0
-308,2026-11-29,Toronto,Denver,0
-309,2026-11-29,Portland,New Orleans,0
-310,2026-11-29,Golden State,LA Clippers,0
-311,2026-11-29,Sacramento,Minnesota,0
-312,2026-11-30,Charlotte,Washington,0
-313,2026-11-30,Detroit,Denver,0
-314,2026-11-30,Brooklyn,Oklahoma City,0
-315,2026-11-30,Houston,LA Lakers,0
-316,2026-11-30,Dallas,Boston,0
-317,2026-11-30,Milwaukee,San Antonio,0
-318,2026-11-30,Sacramento,New Orleans,0
-319,2026-12-01,Cleveland,Indiana,0
-320,2026-12-01,Philadelphia,Memphis,0
-321,2026-12-01,Miami,Atlanta,0
-322,2026-12-01,Chicago,New York,0
-323,2026-12-01,Houston,Toronto,0
-324,2026-12-01,Phoenix,LA Clippers,0
-325,2026-12-01,Portland,Minnesota,0
-326,2026-12-01,Golden State,Utah,0
-327,2026-12-02,Detroit,Memphis,0
-328,2026-12-02,Philadelphia,Denver,0
-329,2026-12-02,Boston,Charlotte,0
-330,2026-12-02,Dallas,Orlando,0
-331,2026-12-02,Milwaukee,New York,0
-332,2026-12-02,New Orleans,LA Lakers,0
-333,2026-12-02,Oklahoma City,Brooklyn,0
-334,2026-12-02,Phoenix,Sacramento,0
-335,2026-12-02,LA Clippers,Minnesota,0
-336,2026-12-03,Atlanta,Indiana,0
-337,2026-12-03,Miami,Washington,0
-338,2026-12-03,Chicago,Cleveland,0
-339,2026-12-03,San Antonio,Toronto,0
-340,2026-12-03,Portland,Utah,0
-341,2026-12-12,Memphis,Milwaukee,0
-342,2026-12-12,Washington,Charlotte,0
-343,2026-12-12,Philadelphia,Orlando,0
-344,2026-12-12,Cleveland,Golden State,0
-345,2026-12-12,Miami,New York,0
-346,2026-12-12,Phoenix,Minnesota,0
-347,2026-12-12,Utah,Denver,0
-348,2026-12-12,Portland,Atlanta,0
-349,2026-12-13,Brooklyn,Boston,0
-350,2026-12-13,Oklahoma City,Toronto,0
-351,2026-12-13,Indiana,Detroit,0
-352,2026-12-13,Chicago,Houston,0
-353,2026-12-13,San Antonio,LA Clippers,0
-354,2026-12-13,Sacramento,New Orleans,0
-355,2026-12-14,Charlotte,Toronto,0
-356,2026-12-14,Detroit,Brooklyn,0
-357,2026-12-14,Orlando,Philadelphia,0
-358,2026-12-14,Boston,Washington,0
-359,2026-12-14,Chicago,Miami,0
-360,2026-12-14,Dallas,Milwaukee,0
-361,2026-12-14,Memphis,Golden State,0
-362,2026-12-14,Houston,New York,0
-363,2026-12-14,Phoenix,Atlanta,0
-364,2026-12-14,Utah,Minnesota,0
-365,2026-12-14,LA Lakers,New Orleans,0
-366,2026-12-15,Cleveland,San Antonio,0
-367,2026-12-15,Portland,Denver,0
-368,2026-12-16,Boston,Washington,0
-369,2026-12-16,Charlotte,LA Clippers,0
-370,2026-12-16,Detroit,Phoenix,0
-371,2026-12-16,Indiana,Golden State,0
-372,2026-12-16,Orlando,Cleveland,0
-373,2026-12-16,Brooklyn,Dallas,0
-374,2026-12-16,Toronto,San Antonio,0
-375,2026-12-16,Chicago,Utah,0
-376,2026-12-16,Memphis,Miami,0
-377,2026-12-16,New Orleans,New York,0
-378,2026-12-16,Oklahoma City,Sacramento,0
-379,2026-12-16,Houston,Milwaukee,0
-380,2026-12-16,Minnesota,LA Lakers,0
-381,2026-12-17,Indiana,Portland,0
-382,2026-12-17,Philadelphia,Dallas,0
-383,2026-12-17,Denver,Atlanta,0
-384,2026-12-18,Charlotte,Oklahoma City,0
-385,2026-12-18,Miami,LA Clippers,0
-386,2026-12-18,Washington,New York,0
-387,2026-12-18,Boston,Utah,0
-388,2026-12-18,Brooklyn,Orlando,0
-389,2026-12-18,Detroit,Cleveland,0
-390,2026-12-18,Toronto,Golden State,0
-391,2026-12-18,Memphis,Houston,0
-392,2026-12-18,Milwaukee,Phoenix,0
-393,2026-12-18,Minnesota,LA Lakers,0
-394,2026-12-18,New Orleans,Sacramento,0
-395,2026-12-18,San Antonio,Chicago,0
-396,2026-12-19,Charlotte,Portland,0
-397,2026-12-19,Atlanta,Orlando,0
-398,2026-12-19,Dallas,Chicago,0
-399,2026-12-19,Denver,LA Lakers,0
-400,2026-12-20,Brooklyn,Washington,0
-401,2026-12-20,Toronto,Houston,0
-402,2026-12-20,Memphis,Phoenix,0
-403,2026-12-20,Cleveland,Utah,0
-404,2026-12-20,Miami,Sacramento,0
-405,2026-12-20,Atlanta,Oklahoma City,0
-406,2026-12-20,New Orleans,San Antonio,0
-407,2026-12-20,Boston,Detroit,0
-408,2026-12-20,Milwaukee,Golden State,0
-409,2026-12-20,LA Clippers,Indiana,0
-410,2026-12-21,Charlotte,Philadelphia,0
-411,2026-12-21,Cleveland,New York,0
-412,2026-12-21,Orlando,Sacramento,0
-413,2026-12-21,Brooklyn,Portland,0
-414,2026-12-21,Miami,Chicago,0
-415,2026-12-21,Minnesota,Phoenix,0
-416,2026-12-21,New Orleans,Memphis,0
-417,2026-12-21,San Antonio,Milwaukee,0
-418,2026-12-21,LA Lakers,Indiana,0
-419,2026-12-21,LA Clippers,Denver,0
-420,2026-12-22,Washington,Toronto,0
-421,2026-12-22,Oklahoma City,Detroit,0
-422,2026-12-22,Golden State,Dallas,0
-423,2026-12-23,Atlanta,Detroit,0
-424,2026-12-23,Orlando,Charlotte,0
-425,2026-12-23,Washington,Cleveland,0
-426,2026-12-23,Boston,Portland,0
-427,2026-12-23,Brooklyn,San Antonio,0
-428,2026-12-23,Miami,Chicago,0
-429,2026-12-23,New York,Utah,0
-430,2026-12-23,Philadelphia,Houston,0
-431,2026-12-23,Memphis,Toronto,0
-432,2026-12-23,Milwaukee,Minnesota,0
-433,2026-12-23,New Orleans,Oklahoma City,0
-434,2026-12-23,Phoenix,Indiana,0
-435,2026-12-23,LA Lakers,Denver,0
-436,2026-12-23,Sacramento,Dallas,0
-437,2026-12-23,LA Clippers,Golden State,0
-10,2026-12-25,New York,San Antonio,0
-11,2026-12-25,Boston,Miami,0
-12,2026-12-25,LA Lakers,Philadelphia,0
-13,2026-12-25,Minnesota,Oklahoma City,0
-14,2026-12-25,Golden State,Denver,0
-438,2026-12-26,Washington,Portland,0
-439,2026-12-26,Atlanta,Charlotte,0
-440,2026-12-26,Utah,Indiana,0
-441,2026-12-26,Brooklyn,New Orleans,0
-442,2026-12-26,Orlando,Toronto,0
-443,2026-12-26,Chicago,Detroit,0
-444,2026-12-26,Dallas,Phoenix,0
-445,2026-12-26,LA Clippers,Memphis,0
-446,2026-12-27,Houston,Oklahoma City,0
-447,2026-12-27,Cleveland,Washington,0
-448,2026-12-27,Miami,Charlotte,0
-449,2026-12-27,New York,Brooklyn,0
-450,2026-12-27,Orlando,Milwaukee,0
-451,2026-12-27,Sacramento,Utah,0
-452,2026-12-27,Detroit,Portland,0
-453,2026-12-27,San Antonio,Atlanta,0
-454,2026-12-27,Denver,Indiana,0
-455,2026-12-27,Golden State,Minnesota,0
-456,2026-12-27,LA Clippers,Philadelphia,0
-457,2026-12-27,LA Lakers,Memphis,0
-458,2026-12-28,Toronto,New Orleans,0
-459,2026-12-28,Boston,Cleveland,0
-460,2026-12-28,Phoenix,Golden State,0
-461,2026-12-28,Denver,Minnesota,0
-462,2026-12-29,Atlanta,Chicago,0
-463,2026-12-29,Charlotte,Orlando,0
-464,2026-12-29,Indiana,LA Clippers,0
-465,2026-12-29,Dallas,Miami,0
-466,2026-12-29,Memphis,San Antonio,0
-467,2026-12-29,Oklahoma City,Milwaukee,0
-468,2026-12-29,Portland,Brooklyn,0
-469,2026-12-29,Sacramento,Philadelphia,0
-470,2026-12-29,LA Lakers,Houston,0
-471,2026-12-30,Detroit,New Orleans,0
-472,2026-12-30,Toronto,Washington,0
-473,2026-12-30,Chicago,Boston,0
-474,2026-12-30,Phoenix,Philadelphia,0
-475,2026-12-30,Utah,New York,0
-476,2026-12-30,Golden State,Houston,0
-477,2026-12-31,Charlotte,San Antonio,0
-478,2026-12-31,Atlanta,Milwaukee,0
-479,2026-12-31,Cleveland,LA Clippers,0
-480,2026-12-31,Indiana,Orlando,0
-481,2026-12-31,Minnesota,Denver,0
-482,2026-12-31,Sacramento,Brooklyn,0
-483,2026-12-31,New Orleans,LA Lakers,0
-484,2026-12-31,Oklahoma City,Miami,0
-485,2026-12-31,Phoenix,New York,0
-486,2027-01-01,Washington,San Antonio,0
-487,2027-01-01,Detroit,Orlando,0
-488,2027-01-01,Toronto,LA Clippers,0
-489,2027-01-01,Milwaukee,Philadelphia,0
-490,2027-01-01,Houston,Dallas,0
-491,2027-01-01,Utah,Boston,0
-492,2027-01-02,Charlotte,Cleveland,0
-493,2027-01-02,Denver,New York,0
-494,2027-01-02,Indiana,Minnesota,0
-495,2027-01-02,New Orleans,Miami,0
-496,2027-01-02,Atlanta,Dallas,0
-497,2027-01-02,Chicago,LA Lakers,0
-498,2027-01-02,Oklahoma City,Utah,0
-499,2027-01-02,Golden State,Brooklyn,0
-500,2027-01-02,Phoenix,Sacramento,0
-501,2027-01-02,Portland,Boston,0
-502,2027-01-03,Denver,Detroit,0
-503,2027-01-03,Milwaukee,Charlotte,0
-504,2027-01-03,Orlando,Memphis,0
-505,2027-01-03,Toronto,LA Lakers,0
-506,2027-01-03,Washington,LA Clippers,0
-507,2027-01-03,Houston,Cleveland,0
-508,2027-01-03,Minnesota,San Antonio,0
-509,2027-01-03,Oklahoma City,Sacramento,0
-510,2027-01-04,Indiana,Chicago,0
-511,2027-01-04,Philadelphia,Atlanta,0
-512,2027-01-04,New Orleans,Dallas,0
-513,2027-01-04,Phoenix,Boston,0
-514,2027-01-04,Utah,Brooklyn,0
-515,2027-01-04,Portland,New York,0
-516,2027-01-05,Charlotte,Atlanta,0
-517,2027-01-05,Cleveland,Toronto,0
-518,2027-01-05,Orlando,LA Clippers,0
-519,2027-01-05,Washington,LA Lakers,0
-520,2027-01-05,Miami,Memphis,0
-521,2027-01-05,Chicago,Milwaukee,0
-522,2027-01-05,Houston,Minnesota,0
-523,2027-01-05,Denver,Phoenix,0
-524,2027-01-05,Sacramento,Detroit,0
-525,2027-01-06,Brooklyn,Utah,0
-526,2027-01-06,Philadelphia,Oklahoma City,0
-527,2027-01-06,New Orleans,Portland,0
-528,2027-01-06,San Antonio,Indiana,0
-529,2027-01-06,Golden State,New York,0
-530,2027-01-07,Atlanta,Indiana,0
-531,2027-01-07,Charlotte,Denver,0
-532,2027-01-07,Orlando,Cleveland,0
-533,2027-01-07,Washington,Oklahoma City,0
-534,2027-01-07,Brooklyn,Miami,0
-535,2027-01-07,Toronto,Minnesota,0
-536,2027-01-07,Dallas,Portland,0
-537,2027-01-07,Milwaukee,LA Clippers,0
-538,2027-01-07,Houston,Memphis,0
-539,2027-01-07,Golden State,Detroit,0
-540,2027-01-07,LA Lakers,Boston,0
-541,2027-01-07,Sacramento,Chicago,0
-542,2027-01-08,Philadelphia,Miami,0
-543,2027-01-08,Washington,Minnesota,0
-544,2027-01-08,Toronto,Utah,0
-545,2027-01-08,New Orleans,Orlando,0
-546,2027-01-08,San Antonio,Memphis,0
-547,2027-01-08,Dallas,Phoenix,0
-548,2027-01-08,LA Lakers,Detroit,0
-549,2027-01-08,Sacramento,New York,0
-550,2027-01-09,Cleveland,Denver,0
-551,2027-01-09,Brooklyn,Houston,0
-552,2027-01-09,Indiana,Milwaukee,0
-553,2027-01-09,Golden State,Chicago,0
-554,2027-01-09,Portland,Charlotte,0
-555,2027-01-09,LA Clippers,Boston,0
-556,2027-01-10,Atlanta,San Antonio,0
-557,2027-01-10,Detroit,Utah,0
-558,2027-01-10,Miami,New Orleans,0
-559,2027-01-10,Orlando,Oklahoma City,0
-560,2027-01-10,Toronto,Philadelphia,0
-561,2027-01-10,Memphis,Dallas,0
-562,2027-01-10,Phoenix,Chicago,0
-563,2027-01-10,Sacramento,Charlotte,0
-564,2027-01-11,Indiana,Brooklyn,0
-565,2027-01-11,Washington,Atlanta,0
-566,2027-01-11,Boston,Houston,0
-567,2027-01-11,New York,Denver,0
-568,2027-01-11,Minnesota,Cleveland,0
-569,2027-01-11,LA Clippers,LA Lakers,0
-570,2027-01-12,Miami,Brooklyn,0
-571,2027-01-12,Toronto,Detroit,0
-572,2027-01-12,Philadelphia,Washington,0
-573,2027-01-12,Memphis,Dallas,0
-574,2027-01-12,Milwaukee,Denver,0
-575,2027-01-12,Utah,Chicago,0
-576,2027-01-12,Portland,Orlando,0
-577,2027-01-12,Golden State,Sacramento,0
-578,2027-01-13,Atlanta,Cleveland,0
-579,2027-01-13,Boston,New York,0
-580,2027-01-13,Indiana,Milwaukee,0
-581,2027-01-13,Toronto,Phoenix,0
-582,2027-01-13,Oklahoma City,Houston,0
-583,2027-01-13,Golden State,Charlotte,0
-584,2027-01-13,Portland,LA Lakers,0
-75,2027-01-14,San Antonio,New Orleans,1
-585,2027-01-14,Detroit,Dallas,0
-586,2027-01-14,Philadelphia,Brooklyn,0
-587,2027-01-14,New York,Miami,0
-588,2027-01-14,Chicago,Minnesota,0
-589,2027-01-14,Denver,Memphis,0
-590,2027-01-14,Utah,Charlotte,0
-591,2027-01-14,LA Lakers,Orlando,0
-592,2027-01-14,Sacramento,LA Clippers,0
-593,2027-01-15,Atlanta,Golden State,0
-594,2027-01-15,Indiana,Phoenix,0
-595,2027-01-15,Toronto,Miami,0
-596,2027-01-15,Milwaukee,Cleveland,0
-597,2027-01-15,Oklahoma City,Utah,0
-598,2027-01-15,Houston,Washington,0
-599,2027-01-15,Portland,Sacramento,0
-600,2027-01-15,LA Clippers,Orlando,0
-601,2027-01-16,Philadelphia,Minnesota,0
-602,2027-01-16,Boston,Brooklyn,0
-603,2027-01-16,New York,Dallas,0
-604,2027-01-16,Memphis,Cleveland,0
-605,2027-01-16,Houston,Detroit,0
-606,2027-01-16,Denver,Charlotte,0
-76,2027-01-17,New Orleans,San Antonio,1
-607,2027-01-17,Washington,Indiana,0
-608,2027-01-17,Chicago,Toronto,0
-609,2027-01-17,Oklahoma City,Portland,0
-610,2027-01-17,Utah,Sacramento,0
-611,2027-01-17,Miami,Golden State,0
-612,2027-01-17,Denver,Orlando,0
-613,2027-01-17,LA Lakers,Milwaukee,0
-77,2027-01-18,Cleveland,Detroit,0
-78,2027-01-18,Atlanta,Philadelphia,0
-79,2027-01-18,New York,Minnesota,0
-80,2027-01-18,Memphis,Houston,0
-614,2027-01-18,Washington,Boston,0
-615,2027-01-18,Dallas,Oklahoma City,0
-616,2027-01-18,LA Clippers,Phoenix,0
-617,2027-01-19,Orlando,Golden State,0
-618,2027-01-19,Philadelphia,Indiana,0
-619,2027-01-19,Toronto,Chicago,0
-620,2027-01-19,Miami,Portland,0
-621,2027-01-19,Dallas,Charlotte,0
-622,2027-01-19,Denver,Utah,0
-623,2027-01-19,Sacramento,LA Lakers,0
-624,2027-01-20,Atlanta,Portland,0
-625,2027-01-20,Brooklyn,Chicago,0
-626,2027-01-20,Boston,Indiana,0
-627,2027-01-20,New York,Toronto,0
-628,2027-01-20,Minnesota,Houston,0
-629,2027-01-20,New Orleans,Oklahoma City,0
-630,2027-01-20,Phoenix,Memphis,0
-631,2027-01-20,Utah,LA Clippers,0
-632,2027-01-20,San Antonio,Miami,0
-633,2027-01-20,Sacramento,Milwaukee,0
-634,2027-01-21,Boston,Philadelphia,0
-635,2027-01-21,Brooklyn,Cleveland,0
-636,2027-01-21,Denver,Washington,0
-637,2027-01-21,Golden State,LA Lakers,0
-638,2027-01-22,Atlanta,New York,0
-639,2027-01-22,Charlotte,Houston,0
-640,2027-01-22,Orlando,Portland,0
-641,2027-01-22,Detroit,Indiana,0
-642,2027-01-22,New Orleans,Dallas,0
-643,2027-01-22,Oklahoma City,Memphis,0
-644,2027-01-22,Phoenix,Utah,0
-645,2027-01-22,San Antonio,Minnesota,0
-646,2027-01-22,Golden State,Milwaukee,0
-647,2027-01-22,LA Lakers,Sacramento,0
-648,2027-01-22,LA Clippers,Washington,0
-649,2027-01-23,Chicago,Philadelphia,0
-650,2027-01-23,Brooklyn,Toronto,0
-651,2027-01-23,Boston,Charlotte,0
-652,2027-01-23,Miami,Atlanta,0
-653,2027-01-23,Dallas,Cleveland,0
-654,2027-01-23,Denver,Milwaukee,0
-655,2027-01-24,San Antonio,Portland,0
-656,2027-01-24,Phoenix,Utah,0
-657,2027-01-24,LA Lakers,Washington,0
-658,2027-01-24,Detroit,Minnesota,0
-659,2027-01-24,Orlando,Houston,0
-660,2027-01-24,New York,LA Clippers,0
-661,2027-01-24,Golden State,Oklahoma City,0
-662,2027-01-25,Boston,Toronto,0
-663,2027-01-25,Charlotte,Orlando,0
-664,2027-01-25,Philadelphia,LA Clippers,0
-665,2027-01-25,Brooklyn,Miami,0
-666,2027-01-25,Chicago,Dallas,0
-667,2027-01-25,Memphis,Minnesota,0
-668,2027-01-25,New Orleans,Cleveland,0
-669,2027-01-25,Denver,Sacramento,0
-670,2027-01-26,Detroit,Atlanta,0
-671,2027-01-26,Indiana,Chicago,0
-672,2027-01-26,New York,Phoenix,0
-673,2027-01-26,San Antonio,Houston,0
-674,2027-01-26,Utah,Milwaukee,0
-675,2027-01-26,Portland,Washington,0
-676,2027-01-26,LA Lakers,Oklahoma City,0
-677,2027-01-27,Cleveland,Detroit,0
-678,2027-01-27,Philadelphia,Sacramento,0
-679,2027-01-27,Boston,LA Clippers,0
-680,2027-01-27,Brooklyn,Phoenix,0
-681,2027-01-27,Toronto,Dallas,0
-682,2027-01-27,San Antonio,Charlotte,0
-683,2027-01-27,Houston,New Orleans,0
-684,2027-01-27,Minnesota,Denver,0
-685,2027-01-27,Portland,Golden State,0
-686,2027-01-28,Indiana,LA Lakers,0
-687,2027-01-28,New York,Atlanta,0
-688,2027-01-28,Orlando,Chicago,0
-689,2027-01-28,Washington,Sacramento,0
-690,2027-01-28,New Orleans,Philadelphia,0
-691,2027-01-28,Oklahoma City,Memphis,0
-692,2027-01-28,Utah,Golden State,0
-693,2027-01-28,Milwaukee,Miami,0
-694,2027-01-29,Toronto,Cleveland,0
-695,2027-01-29,Boston,Phoenix,0
-696,2027-01-29,Brooklyn,LA Clippers,0
-697,2027-01-29,Dallas,Detroit,0
-698,2027-01-29,Houston,Orlando,0
-699,2027-01-29,Minnesota,Charlotte,0
-700,2027-01-30,Miami,Philadelphia,0
-701,2027-01-30,Oklahoma City,Denver,0
-702,2027-01-30,Golden State,San Antonio,0
-703,2027-01-30,Indiana,Washington,0
-704,2027-01-30,Cleveland,New Orleans,0
-705,2027-01-30,Milwaukee,Atlanta,0
-706,2027-01-30,New York,LA Lakers,0
-707,2027-01-30,Utah,Memphis,0
-708,2027-01-31,Detroit,Sacramento,0
-709,2027-01-31,Orlando,Brooklyn,0
-710,2027-01-31,Toronto,Boston,0
-711,2027-01-31,Minnesota,Phoenix,0
-712,2027-01-31,Oklahoma City,Chicago,0
-713,2027-01-31,Charlotte,LA Lakers,0
-714,2027-01-31,Denver,Portland,0
-715,2027-01-31,Dallas,Houston,0
-716,2027-02-01,Atlanta,Washington,0
-717,2027-02-01,Philadelphia,New Orleans,0
-718,2027-02-01,Brooklyn,New York,0
-719,2027-02-01,Indiana,Miami,0
-720,2027-02-01,Milwaukee,Memphis,0
-721,2027-02-01,Utah,Cleveland,0
-722,2027-02-01,Golden State,San Antonio,0
-723,2027-02-02,Detroit,Chicago,0
-724,2027-02-02,Orlando,New Orleans,0
-725,2027-02-02,Miami,Charlotte,0
-726,2027-02-02,Boston,LA Lakers,0
-727,2027-02-02,Dallas,Toronto,0
-728,2027-02-02,Denver,Oklahoma City,0
-729,2027-02-02,LA Clippers,San Antonio,0
-730,2027-02-02,Portland,Minnesota,0
-731,2027-02-03,Detroit,New York,0
-732,2027-02-03,Indiana,Atlanta,0
-733,2027-02-03,Memphis,Philadelphia,0
-734,2027-02-03,Phoenix,Cleveland,0
-735,2027-02-03,Houston,Utah,0
-736,2027-02-03,LA Clippers,Golden State,0
-737,2027-02-04,Washington,New Orleans,0
-738,2027-02-04,Brooklyn,LA Lakers,0
-739,2027-02-04,Charlotte,Boston,0
-740,2027-02-04,Miami,Milwaukee,0
-741,2027-02-04,New York,Toronto,0
-742,2027-02-04,Chicago,Oklahoma City,0
-743,2027-02-04,San Antonio,Orlando,0
-744,2027-02-04,Denver,Dallas,0
-745,2027-02-04,Portland,Cleveland,0
-746,2027-02-04,Sacramento,Minnesota,0
-747,2027-02-05,Atlanta,Boston,0
-748,2027-02-05,Charlotte,Golden State,0
-749,2027-02-05,Philadelphia,Detroit,0
-750,2027-02-05,Denver,LA Clippers,0
-751,2027-02-05,Phoenix,Houston,0
-752,2027-02-05,Oklahoma City,Indiana,0
-753,2027-02-06,Dallas,Utah,0
-754,2027-02-06,Minnesota,Miami,0
-755,2027-02-06,Memphis,Portland,0
-756,2027-02-06,Brooklyn,Washington,0
-757,2027-02-06,Cleveland,Orlando,0
-758,2027-02-06,Toronto,Milwaukee,0
-759,2027-02-06,Chicago,New Orleans,0
-760,2027-02-06,San Antonio,LA Lakers,0
-761,2027-02-06,Sacramento,Phoenix,0
-762,2027-02-07,Atlanta,Denver,0
-763,2027-02-07,Detroit,Golden State,0
-764,2027-02-07,Minnesota,Utah,0
-765,2027-02-07,Dallas,LA Clippers,0
-766,2027-02-07,Toronto,Charlotte,0
-767,2027-02-07,Philadelphia,Boston,0
-768,2027-02-07,Oklahoma City,New York,0
-769,2027-02-07,Sacramento,Houston,0
-770,2027-02-08,Atlanta,Miami,0
-771,2027-02-08,Indiana,New Orleans,0
-772,2027-02-08,Philadelphia,Brooklyn,0
-773,2027-02-08,Washington,Chicago,0
-774,2027-02-08,Memphis,Portland,0
-775,2027-02-08,Milwaukee,Orlando,0
-776,2027-02-08,Phoenix,LA Lakers,0
-777,2027-02-09,Cleveland,Toronto,0
-778,2027-02-09,Boston,Denver,0
-779,2027-02-09,Brooklyn,Minnesota,0
-780,2027-02-09,New York,Charlotte,0
-781,2027-02-09,Chicago,Golden State,0
-782,2027-02-09,Dallas,San Antonio,0
-783,2027-02-09,Milwaukee,Sacramento,0
-784,2027-02-09,Oklahoma City,Portland,0
-785,2027-02-09,Utah,Houston,0
-786,2027-02-09,LA Clippers,Detroit,0
-787,2027-02-10,Atlanta,New Orleans,0
-788,2027-02-10,Indiana,Cleveland,0
-789,2027-02-10,Washington,Miami,0
-790,2027-02-10,Boston,Golden State,0
-791,2027-02-10,Memphis,Orlando,0
-792,2027-02-10,Phoenix,Detroit,0
-793,2027-02-10,LA Lakers,LA Clippers,0
-794,2027-02-11,Charlotte,Milwaukee,0
-795,2027-02-11,Indiana,Utah,0
-796,2027-02-11,Philadelphia,New York,0
-797,2027-02-11,Dallas,Portland,0
-798,2027-02-11,Houston,Sacramento,0
-799,2027-02-11,Denver,Chicago,0
-800,2027-02-11,Oklahoma City,San Antonio,0
-801,2027-02-12,Atlanta,Phoenix,0
-802,2027-02-12,Orlando,Miami,0
-803,2027-02-12,Washington,Brooklyn,0
-804,2027-02-12,Toronto,Cleveland,0
-805,2027-02-12,Boston,Minnesota,0
-806,2027-02-12,Memphis,LA Clippers,0
-807,2027-02-12,New Orleans,Houston,0
-808,2027-02-12,LA Lakers,Denver,0
-809,2027-02-13,Indiana,Sacramento,0
-810,2027-02-13,Charlotte,Dallas,0
-811,2027-02-13,Portland,Detroit,0
-812,2027-02-13,Oklahoma City,Philadelphia,0
-813,2027-02-13,Orlando,San Antonio,0
-814,2027-02-13,Washington,Milwaukee,0
-815,2027-02-13,New York,Golden State,0
-816,2027-02-14,Atlanta,Sacramento,0
-817,2027-02-14,Boston,Toronto,0
-818,2027-02-14,Cleveland,Phoenix,0
-819,2027-02-14,Miami,Brooklyn,0
-820,2027-02-14,Houston,Denver,0
-821,2027-02-14,New Orleans,LA Clippers,0
-822,2027-02-14,Portland,Chicago,0
-81,2027-02-15,Charlotte,Minnesota,0
-82,2027-02-15,Dallas,Philadelphia,0
-83,2027-02-15,Miami,San Antonio,0
-84,2027-02-15,Golden State,Indiana,0
-823,2027-02-15,Washington,Phoenix,0
-824,2027-02-15,Memphis,New York,0
-825,2027-02-15,Oklahoma City,Orlando,0
-826,2027-02-15,Utah,Detroit,0
-827,2027-02-16,Cleveland,Milwaukee,0
-828,2027-02-16,Atlanta,Toronto,0
-829,2027-02-16,LA Lakers,Chicago,0
-830,2027-02-16,Portland,New Orleans,0
-831,2027-02-16,LA Clippers,Houston,0
-832,2027-02-17,Charlotte,Toronto,0
-833,2027-02-17,Cleveland,Milwaukee,0
-834,2027-02-17,Detroit,New York,0
-835,2027-02-17,Orlando,Dallas,0
-836,2027-02-17,Philadelphia,Phoenix,0
-837,2027-02-17,Washington,Miami,0
-838,2027-02-17,Brooklyn,Atlanta,0
-839,2027-02-17,Memphis,San Antonio,0
-840,2027-02-17,Denver,Utah,0
-841,2027-02-17,Oklahoma City,Boston,0
-842,2027-02-17,Golden State,New Orleans,0
-843,2027-02-17,Sacramento,Indiana,0
-844,2027-02-17,LA Clippers,Chicago,0
-845,2027-02-18,Minnesota,San Antonio,0
-846,2027-02-18,Memphis,Boston,0
-847,2027-02-18,LA Lakers,Houston,0
-848,2027-02-18,Portland,Indiana,0
-849,2027-02-25,Cleveland,Sacramento,0
-850,2027-02-25,Detroit,Miami,0
-851,2027-02-25,Orlando,Charlotte,0
-852,2027-02-25,Brooklyn,Philadelphia,0
-853,2027-02-25,New York,Oklahoma City,0
-854,2027-02-25,Chicago,Atlanta,0
-855,2027-02-25,Milwaukee,Washington,0
-856,2027-02-25,New Orleans,Phoenix,0
-857,2027-02-25,Golden State,Dallas,0
-858,2027-02-25,LA Clippers,Utah,0
-859,2027-02-26,Boston,Cleveland,0
-860,2027-02-26,Toronto,Atlanta,0
-861,2027-02-26,Minnesota,Indiana,0
-862,2027-02-26,San Antonio,Memphis,0
-863,2027-02-26,Houston,Charlotte,0
-864,2027-02-26,Denver,LA Lakers,0
-865,2027-02-26,Portland,Dallas,0
-866,2027-02-27,Utah,Washington,0
-867,2027-02-27,Detroit,Oklahoma City,0
-868,2027-02-27,Chicago,Brooklyn,0
-869,2027-02-27,Memphis,Sacramento,0
-870,2027-02-27,New York,Philadelphia,0
-871,2027-02-27,Phoenix,New Orleans,0
-872,2027-02-28,San Antonio,Denver,0
-873,2027-02-28,Dallas,LA Lakers,0
-874,2027-02-28,Indiana,Toronto,0
-875,2027-02-28,Orlando,Atlanta,0
-876,2027-02-28,Charlotte,Sacramento,0
-877,2027-02-28,Minnesota,Boston,0
-878,2027-02-28,New York,Milwaukee,0
-879,2027-02-28,Houston,Miami,0
-880,2027-02-28,LA Clippers,Portland,0
-881,2027-03-01,Cleveland,Philadelphia,0
-882,2027-03-01,Detroit,Chicago,0
-883,2027-03-01,New Orleans,Utah,0
-884,2027-03-01,Houston,Golden State,0
-885,2027-03-01,Denver,Brooklyn,0
-886,2027-03-01,Phoenix,Washington,0
-887,2027-03-02,Indiana,Boston,0
-888,2027-03-02,Orlando,LA Lakers,0
-889,2027-03-02,Miami,Toronto,0
-890,2027-03-02,New York,Memphis,0
-891,2027-03-02,Dallas,Golden State,0
-892,2027-03-02,Milwaukee,Detroit,0
-893,2027-03-02,Oklahoma City,Minnesota,0
-894,2027-03-02,Sacramento,Washington,0
-895,2027-03-02,Portland,LA Clippers,0
-896,2027-03-03,Atlanta,Chicago,0
-897,2027-03-03,Philadelphia,Charlotte,0
-898,2027-03-03,Miami,Toronto,0
-899,2027-03-03,Milwaukee,Utah,0
-900,2027-03-03,Houston,New Orleans,0
-901,2027-03-03,Phoenix,Brooklyn,0
-902,2027-03-03,Denver,San Antonio,0
-903,2027-03-04,Cleveland,Portland,0
-904,2027-03-04,Orlando,Indiana,0
-905,2027-03-04,Philadelphia,LA Lakers,0
-906,2027-03-04,Atlanta,Memphis,0
-907,2027-03-04,Dallas,New York,0
-908,2027-03-04,Golden State,Washington,0
-909,2027-03-04,Sacramento,Oklahoma City,0
-910,2027-03-04,LA Clippers,Brooklyn,0
-911,2027-03-05,Detroit,Boston,0
-912,2027-03-05,Orlando,Utah,0
-913,2027-03-05,Toronto,Portland,0
-914,2027-03-05,New Orleans,Milwaukee,0
-915,2027-03-05,Phoenix,Minnesota,0
-916,2027-03-05,Houston,San Antonio,0
-917,2027-03-06,Miami,Indiana,0
-918,2027-03-06,Chicago,Charlotte,0
-919,2027-03-06,Cleveland,Atlanta,0
-920,2027-03-06,Washington,Utah,0
-921,2027-03-06,Memphis,New Orleans,0
-922,2027-03-06,LA Lakers,Oklahoma City,0
-923,2027-03-06,Sacramento,LA Clippers,0
-924,2027-03-07,Boston,Philadelphia,0
-925,2027-03-07,Denver,Minnesota,0
-926,2027-03-07,Chicago,Portland,0
-927,2027-03-07,San Antonio,New York,0
-928,2027-03-07,Golden State,Houston,0
-929,2027-03-07,LA Lakers,Brooklyn,0
-930,2027-03-08,Indiana,Charlotte,0
-931,2027-03-08,Philadelphia,Utah,0
-932,2027-03-08,Miami,Phoenix,0
-933,2027-03-08,Memphis,Atlanta,0
-934,2027-03-08,Minnesota,New Orleans,0
-935,2027-03-08,Oklahoma City,Dallas,0
-936,2027-03-08,Sacramento,Denver,0
-937,2027-03-08,LA Clippers,Houston,0
-938,2027-03-09,Orlando,Phoenix,0
-939,2027-03-09,Brooklyn,Milwaukee,0
-940,2027-03-09,Detroit,Cleveland,0
-941,2027-03-09,Chicago,Boston,0
-942,2027-03-09,Dallas,Memphis,0
-943,2027-03-09,San Antonio,Washington,0
-944,2027-03-09,Golden State,Portland,0
-945,2027-03-10,Charlotte,New Orleans,0
-946,2027-03-10,Miami,Orlando,0
-947,2027-03-10,Toronto,Oklahoma City,0
-948,2027-03-10,Utah,Houston,0
-949,2027-03-10,Minnesota,Atlanta,0
-950,2027-03-10,Portland,Denver,0
-951,2027-03-10,Sacramento,Golden State,0
-952,2027-03-10,LA Clippers,New York,0
-953,2027-03-11,Charlotte,Indiana,0
-954,2027-03-11,Detroit,Milwaukee,0
-955,2027-03-11,Boston,Memphis,0
-956,2027-03-11,San Antonio,Philadelphia,0
-957,2027-03-11,Atlanta,Brooklyn,0
-958,2027-03-11,Chicago,Phoenix,0
-959,2027-03-11,Dallas,Washington,0
-960,2027-03-11,LA Lakers,New York,0
-961,2027-03-11,LA Clippers,Cleveland,0
-962,2027-03-12,Boston,Oklahoma City,0
-963,2027-03-12,Milwaukee,Miami,0
-964,2027-03-12,New Orleans,Toronto,0
-965,2027-03-12,Utah,Sacramento,0
-966,2027-03-12,Denver,Golden State,0
-967,2027-03-12,LA Lakers,Cleveland,0
-968,2027-03-13,Atlanta,Orlando,0
-969,2027-03-13,Detroit,Brooklyn,0
-970,2027-03-13,Houston,Indiana,0
-971,2027-03-13,Charlotte,Phoenix,0
-972,2027-03-13,Chicago,Memphis,0
-973,2027-03-13,Dallas,New Orleans,0
-974,2027-03-13,Minnesota,Philadelphia,0
-975,2027-03-13,Portland,LA Clippers,0
-976,2027-03-14,New York,Boston,0
-977,2027-03-14,Oklahoma City,San Antonio,0
-978,2027-03-14,Toronto,Detroit,0
-979,2027-03-14,Sacramento,Cleveland,0
-980,2027-03-14,Denver,Miami,0
-981,2027-03-14,Minnesota,Washington,0
-982,2027-03-14,LA Lakers,Golden State,0
-983,2027-03-15,Philadelphia,Toronto,0
-984,2027-03-15,Brooklyn,Indiana,0
-985,2027-03-15,Chicago,Orlando,0
-986,2027-03-15,Memphis,Phoenix,0
-987,2027-03-15,Dallas,Atlanta,0
-988,2027-03-16,Washington,New York,0
-989,2027-03-16,Boston,Sacramento,0
-990,2027-03-16,Indiana,Detroit,0
-991,2027-03-16,Milwaukee,Orlando,0
-992,2027-03-16,New Orleans,Minnesota,0
-993,2027-03-16,Oklahoma City,Charlotte,0
-994,2027-03-16,Houston,San Antonio,0
-995,2027-03-16,Golden State,Cleveland,0
-996,2027-03-16,Portland,LA Lakers,0
-997,2027-03-16,LA Clippers,Denver,0
-998,2027-03-17,Philadelphia,Chicago,0
-999,2027-03-17,New York,Sacramento,0
-1000,2027-03-17,Oklahoma City,Dallas,0
-1001,2027-03-17,Houston,Brooklyn,0
-1002,2027-03-17,Utah,Atlanta,0
-1003,2027-03-17,Golden State,Memphis,0
-1004,2027-03-17,LA Lakers,Phoenix,0
-1005,2027-03-17,Portland,Miami,0
-1006,2027-03-18,Indiana,Toronto,0
-1007,2027-03-18,Washington,Philadelphia,0
-1008,2027-03-18,Boston,Orlando,0
-1009,2027-03-18,Milwaukee,Detroit,0
-1010,2027-03-18,New Orleans,Charlotte,0
-1011,2027-03-18,San Antonio,Brooklyn,0
-1012,2027-03-18,Denver,Cleveland,0
-1013,2027-03-18,Utah,Minnesota,0
-1014,2027-03-18,LA Clippers,Memphis,0
-1015,2027-03-19,Toronto,Sacramento,0
-1016,2027-03-19,New Orleans,Houston,0
-1017,2027-03-19,San Antonio,Dallas,0
-1018,2027-03-19,Golden State,Portland,0
-1019,2027-03-19,LA Lakers,Atlanta,0
-1020,2027-03-19,Phoenix,Miami,0
-1021,2027-03-20,New York,Washington,0
-1022,2027-03-20,Orlando,Denver,0
-1023,2027-03-20,Cleveland,Chicago,0
-1024,2027-03-20,Detroit,Charlotte,0
-1025,2027-03-20,Memphis,Oklahoma City,0
-1026,2027-03-20,Milwaukee,Indiana,0
-1027,2027-03-20,LA Clippers,Atlanta,0
-1028,2027-03-21,Boston,New Orleans,0
-1029,2027-03-21,Brooklyn,Sacramento,0
-1030,2027-03-21,Utah,Toronto,0
-1031,2027-03-21,Phoenix,Portland,0
-1032,2027-03-21,Miami,Denver,0
-1033,2027-03-21,Philadelphia,San Antonio,0
-1034,2027-03-21,LA Lakers,Dallas,0
-1035,2027-03-22,Cleveland,Houston,0
-1036,2027-03-22,Orlando,Indiana,0
-1037,2027-03-22,Chicago,Sacramento,0
-1038,2027-03-22,Memphis,Charlotte,0
-1039,2027-03-22,Milwaukee,Washington,0
-1040,2027-03-22,Minnesota,Detroit,0
-1041,2027-03-22,Golden State,Atlanta,0
-1042,2027-03-22,LA Clippers,Dallas,0
-1043,2027-03-23,Brooklyn,Boston,0
-1044,2027-03-23,New York,New Orleans,0
-1045,2027-03-23,Miami,LA Lakers,0
-1046,2027-03-23,Utah,Philadelphia,0
-1047,2027-03-23,Portland,Toronto,0
-1048,2027-03-23,Phoenix,Oklahoma City,0
-1049,2027-03-24,Charlotte,Detroit,0
-1050,2027-03-24,Indiana,Memphis,0
-1051,2027-03-24,Washington,Denver,0
-1052,2027-03-24,Boston,San Antonio,0
-1053,2027-03-24,New York,Houston,0
-1054,2027-03-24,Chicago,Orlando,0
-1055,2027-03-24,Minnesota,Dallas,0
-1056,2027-03-24,Golden State,Philadelphia,0
-1057,2027-03-24,Phoenix,Oklahoma City,0
-1058,2027-03-24,Sacramento,Atlanta,0
-1059,2027-03-24,LA Clippers,Milwaukee,0
-1060,2027-03-25,Cleveland,LA Lakers,0
-1061,2027-03-25,Detroit,Houston,0
-1062,2027-03-25,Indiana,San Antonio,0
-1063,2027-03-25,Brooklyn,Denver,0
-1064,2027-03-25,Miami,Utah,0
-1065,2027-03-25,Memphis,Chicago,0
-1066,2027-03-25,Golden State,Toronto,0
-1067,2027-03-26,Charlotte,New York,0
-1068,2027-03-26,Dallas,New Orleans,0
-1069,2027-03-26,Minnesota,Orlando,0
-1070,2027-03-26,Oklahoma City,LA Clippers,0
-1071,2027-03-26,Phoenix,Milwaukee,0
-1072,2027-03-26,Portland,Philadelphia,0
-1073,2027-03-27,Detroit,San Antonio,0
-1074,2027-03-27,Atlanta,Utah,0
-1075,2027-03-27,Washington,Golden State,0
-1076,2027-03-27,Miami,Boston,0
-1077,2027-03-27,Chicago,LA Clippers,0
-1078,2027-03-27,Portland,Milwaukee,0
-1079,2027-03-27,Sacramento,Toronto,0
-1080,2027-03-28,Orlando,New York,0
-1081,2027-03-28,Brooklyn,Memphis,0
-1082,2027-03-28,Houston,LA Lakers,0
-1083,2027-03-28,Charlotte,Utah,0
-1084,2027-03-28,Washington,Dallas,0
-1085,2027-03-28,New Orleans,Boston,0
-1086,2027-03-28,Minnesota,Oklahoma City,0
-1087,2027-03-28,Phoenix,Toronto,0
-1088,2027-03-28,Denver,Philadelphia,0
-1089,2027-03-29,Atlanta,Minnesota,0
-1090,2027-03-29,Cleveland,Miami,0
-1091,2027-03-29,Detroit,LA Clippers,0
-1092,2027-03-29,Brooklyn,Golden State,0
-1093,2027-03-29,Chicago,Indiana,0
-1094,2027-03-29,Milwaukee,Dallas,0
-1095,2027-03-29,San Antonio,Phoenix,0
-1096,2027-03-29,Sacramento,Denver,0
-1097,2027-03-30,Charlotte,Miami,0
-1098,2027-03-30,Indiana,Boston,0
-1099,2027-03-30,Orlando,New York,0
-1100,2027-03-30,Memphis,LA Lakers,0
-1101,2027-03-30,Utah,Oklahoma City,0
-1102,2027-03-30,Portland,Houston,0
-1103,2027-03-31,Atlanta,LA Clippers,0
-1104,2027-03-31,Detroit,Toronto,0
-1105,2027-03-31,Philadelphia,Golden State,0
-1106,2027-03-31,Washington,Chicago,0
-1107,2027-03-31,Brooklyn,Cleveland,0
-1108,2027-03-31,Milwaukee,New Orleans,0
-1109,2027-03-31,Minnesota,Sacramento,0
-1110,2027-03-31,San Antonio,Phoenix,0
-1111,2027-03-31,Dallas,Denver,0
-1112,2027-03-31,Portland,Houston,0
-1113,2027-04-01,Cleveland,Boston,0
-1114,2027-04-01,Indiana,Orlando,0
-1115,2027-04-01,New York,Charlotte,0
-1116,2027-04-01,Oklahoma City,LA Lakers,0
-1117,2027-04-02,Washington,Philadelphia,0
-1118,2027-04-02,Boston,Miami,0
-1119,2027-04-02,Brooklyn,New York,0
-1120,2027-04-02,Minnesota,Golden State,0
-1121,2027-04-02,Chicago,Detroit,0
-1122,2027-04-02,Dallas,Sacramento,0
-1123,2027-04-02,Milwaukee,Charlotte,0
-1124,2027-04-02,Toronto,Atlanta,0
-1125,2027-04-02,Houston,Memphis,0
-1126,2027-04-02,Phoenix,Denver,0
-1127,2027-04-02,Portland,Utah,0
-1128,2027-04-02,LA Clippers,San Antonio,0
-1129,2027-04-03,Oklahoma City,New Orleans,0
-1130,2027-04-03,Orlando,Washington,0
-1131,2027-04-04,Philadelphia,Atlanta,0
-1132,2027-04-04,Milwaukee,Brooklyn,0
-1133,2027-04-04,Cleveland,Charlotte,0
-1134,2027-04-04,Detroit,Miami,0
-1135,2027-04-04,Dallas,Minnesota,0
-1136,2027-04-04,Toronto,Indiana,0
-1137,2027-04-04,Houston,Chicago,0
-1138,2027-04-04,LA Clippers,Phoenix,0
-1139,2027-04-04,Denver,Memphis,0
-1140,2027-04-04,Utah,Portland,0
-1141,2027-04-04,Sacramento,Golden State,0
-1142,2027-04-04,New York,Boston,0
-1143,2027-04-04,LA Lakers,San Antonio,0
-1144,2027-04-05,Cleveland,Brooklyn,0
-1145,2027-04-05,Orlando,Miami,0
-1146,2027-04-05,New Orleans,Washington,0
-1147,2027-04-06,Charlotte,Indiana,0
-1148,2027-04-06,Toronto,Philadelphia,0
-1149,2027-04-06,Atlanta,New York,0
-1150,2027-04-06,Memphis,Detroit,0
-1151,2027-04-06,Milwaukee,Chicago,0
-1152,2027-04-06,San Antonio,Sacramento,0
-1153,2027-04-06,Denver,New Orleans,0
-1154,2027-04-06,Utah,Oklahoma City,0
-1155,2027-04-06,LA Lakers,Dallas,0
-1156,2027-04-06,LA Clippers,Minnesota,0
-1157,2027-04-06,Golden State,Phoenix,0
-1158,2027-04-07,Detroit,Indiana,0
-1159,2027-04-07,Orlando,Boston,0
-1160,2027-04-07,Toronto,Brooklyn,0
-1161,2027-04-07,San Antonio,Cleveland,0
-1162,2027-04-07,Chicago,Charlotte,0
-1163,2027-04-07,Memphis,Washington,0
-1164,2027-04-07,Houston,Sacramento,0
-1165,2027-04-07,LA Lakers,Minnesota,0
-1166,2027-04-07,Portland,Dallas,0
-1167,2027-04-08,Miami,Philadelphia,0
-1168,2027-04-08,Milwaukee,New York,0
-1169,2027-04-08,Denver,LA Clippers,0
-1170,2027-04-08,Utah,New Orleans,0
-1171,2027-04-08,Oklahoma City,Golden State,0
-1172,2027-04-09,Atlanta,Boston,0
-1173,2027-04-09,Charlotte,Brooklyn,0
-1174,2027-04-09,Indiana,Cleveland,0
-1175,2027-04-09,New York,Detroit,0
-1176,2027-04-09,Orlando,Toronto,0
-1177,2027-04-09,Miami,Washington,0
-1178,2027-04-09,Chicago,Milwaukee,0
-1179,2027-04-09,Oklahoma City,Golden State,0
-1180,2027-04-09,Houston,Portland,0
-1181,2027-04-09,San Antonio,Denver,0
-1182,2027-04-09,Utah,LA Clippers,0
-1183,2027-04-09,LA Lakers,Minnesota,0
-1184,2027-04-09,Phoenix,Memphis,0
-1185,2027-04-09,Sacramento,Dallas,0
-1186,2027-04-11,Boston,Milwaukee,0
-1187,2027-04-11,Brooklyn,Toronto,0
-1188,2027-04-11,Cleveland,Atlanta,0
-1189,2027-04-11,Miami,Orlando,0
-1190,2027-04-11,New York,Indiana,0
-1191,2027-04-11,Philadelphia,Charlotte,0
-1192,2027-04-11,Washington,Detroit,0
-1193,2027-04-11,New Orleans,Chicago,0
-1194,2027-04-11,Dallas,Memphis,0
-1195,2027-04-11,Minnesota,Houston,0
-1196,2027-04-11,San Antonio,Portland,0
-1197,2027-04-11,Denver,Oklahoma City,0
-1198,2027-04-11,Golden State,Utah,0
-1199,2027-04-11,LA Clippers,Sacramento,0
-1200,2027-04-11,LA Lakers,Phoenix,0
+game_id,date,home,away,neutral,time_et
+1,2026-10-20,Detroit,Boston,0,3:00 PM
+2,2026-10-20,New York,Philadelphia,0,7:00 PM
+3,2026-10-20,San Antonio,Oklahoma City,0,9:30 PM
+4,2026-10-21,Miami,Minnesota,0,7:30 PM
+5,2026-10-21,LA Lakers,Golden State,0,10:00 PM
+85,2026-10-21,Orlando,Atlanta,0,7:00 PM
+86,2026-10-21,Washington,Milwaukee,0,7:00 PM
+87,2026-10-21,Brooklyn,Charlotte,0,7:30 PM
+88,2026-10-21,Toronto,Chicago,0,7:30 PM
+89,2026-10-21,Memphis,Utah,0,8:00 PM
+90,2026-10-21,New Orleans,Indiana,0,8:00 PM
+91,2026-10-21,Houston,Dallas,0,8:30 PM
+92,2026-10-21,Portland,Phoenix,0,10:00 PM
+93,2026-10-21,LA Clippers,Sacramento,0,10:30 PM
+6,2026-10-22,Philadelphia,Cleveland,0,7:00 PM
+7,2026-10-22,Oklahoma City,Denver,0,9:30 PM
+8,2026-10-23,Boston,New York,0,7:00 PM
+9,2026-10-23,San Antonio,Houston,0,9:30 PM
+94,2026-10-23,Charlotte,Atlanta,0,7:00 PM
+95,2026-10-23,Indiana,Dallas,0,7:00 PM
+96,2026-10-23,Orlando,Minnesota,0,7:00 PM
+97,2026-10-23,Washington,Toronto,0,7:00 PM
+98,2026-10-23,Miami,Detroit,0,8:00 PM
+99,2026-10-23,Milwaukee,Chicago,0,8:00 PM
+100,2026-10-23,Utah,New Orleans,0,9:30 PM
+101,2026-10-23,Golden State,Memphis,0,10:00 PM
+102,2026-10-23,LA Lakers,LA Clippers,0,10:00 PM
+103,2026-10-23,Sacramento,Portland,0,10:00 PM
+104,2026-10-24,Charlotte,Miami,0,6:00 PM
+105,2026-10-24,Cleveland,Brooklyn,0,7:30 PM
+106,2026-10-24,Philadelphia,Milwaukee,0,7:30 PM
+107,2026-10-24,Atlanta,Houston,0,8:00 PM
+108,2026-10-24,Chicago,Washington,0,8:00 PM
+109,2026-10-24,Dallas,San Antonio,0,8:00 PM
+110,2026-10-24,Denver,New Orleans,0,9:00 PM
+111,2026-10-24,Phoenix,Golden State,0,10:00 PM
+112,2026-10-25,Utah,LA Lakers,0,5:00 PM
+113,2026-10-25,Brooklyn,Indiana,0,6:00 PM
+114,2026-10-25,New York,Orlando,0,7:00 PM
+115,2026-10-25,Minnesota,Toronto,0,7:00 PM
+116,2026-10-25,Oklahoma City,LA Clippers,0,7:00 PM
+117,2026-10-25,Philadelphia,Detroit,0,7:30 PM
+118,2026-10-25,Sacramento,Memphis,0,9:00 PM
+119,2026-10-26,Charlotte,Washington,0,7:00 PM
+120,2026-10-26,Cleveland,Minnesota,0,7:00 PM
+121,2026-10-26,Boston,Chicago,0,7:30 PM
+122,2026-10-26,Miami,Dallas,0,7:30 PM
+123,2026-10-26,Milwaukee,Indiana,0,8:00 PM
+124,2026-10-26,Oklahoma City,Phoenix,0,8:00 PM
+125,2026-10-26,Houston,Atlanta,0,8:30 PM
+126,2026-10-26,Utah,Memphis,0,9:00 PM
+127,2026-10-26,Denver,Golden State,0,10:00 PM
+128,2026-10-27,Boston,Brooklyn,0,7:30 PM
+129,2026-10-27,New York,Detroit,0,8:00 PM
+130,2026-10-27,San Antonio,Sacramento,0,8:00 PM
+131,2026-10-27,LA Lakers,Portland,0,11:00 PM
+132,2026-10-28,Atlanta,Miami,0,7:00 PM
+133,2026-10-28,Cleveland,Washington,0,7:00 PM
+134,2026-10-28,Detroit,Charlotte,0,7:00 PM
+135,2026-10-28,Indiana,Philadelphia,0,7:00 PM
+136,2026-10-28,Toronto,Orlando,0,7:30 PM
+137,2026-10-28,Chicago,New York,0,8:00 PM
+138,2026-10-28,Milwaukee,Houston,0,8:00 PM
+139,2026-10-28,Minnesota,Golden State,0,8:00 PM
+140,2026-10-28,New Orleans,Denver,0,8:00 PM
+141,2026-10-28,Utah,San Antonio,0,9:00 PM
+142,2026-10-28,Dallas,Oklahoma City,0,9:30 PM
+143,2026-10-28,LA Clippers,LA Lakers,0,10:30 PM
+144,2026-10-29,Atlanta,Cleveland,0,7:00 PM
+145,2026-10-29,New Orleans,Sacramento,0,8:00 PM
+146,2026-10-29,Portland,Memphis,0,10:00 PM
+15,2026-10-30,Washington,Charlotte,0,7:00 PM
+16,2026-10-30,Boston,Chicago,0,7:30 PM
+17,2026-10-30,Brooklyn,Detroit,0,7:30 PM
+18,2026-10-30,Philadelphia,New York,0,7:30 PM
+19,2026-10-30,Toronto,Orlando,0,7:30 PM
+20,2026-10-30,Miami,Indiana,0,8:00 PM
+21,2026-10-30,Dallas,Houston,0,8:00 PM
+22,2026-10-30,Minnesota,LA Clippers,0,8:00 PM
+23,2026-10-30,Golden State,LA Lakers,0,10:00 PM
+24,2026-10-30,Phoenix,Denver,0,10:00 PM
+147,2026-10-31,Utah,Portland,0,3:00 PM
+148,2026-10-31,Charlotte,Philadelphia,0,6:00 PM
+149,2026-10-31,New Orleans,Atlanta,0,7:00 PM
+150,2026-10-31,Memphis,Sacramento,0,8:00 PM
+151,2026-10-31,Milwaukee,Cleveland,0,8:00 PM
+152,2026-10-31,San Antonio,Minnesota,0,8:00 PM
+153,2026-10-31,Houston,Oklahoma City,0,8:30 PM
+154,2026-11-01,Orlando,Boston,0,3:30 PM
+155,2026-11-01,Indiana,Brooklyn,0,5:00 PM
+156,2026-11-01,Golden State,LA Clippers,0,8:30 PM
+157,2026-11-01,LA Lakers,Toronto,0,9:00 PM
+158,2026-11-02,Cleveland,Oklahoma City,0,7:00 PM
+159,2026-11-02,Charlotte,Detroit,0,7:30 PM
+160,2026-11-02,Indiana,Atlanta,0,7:30 PM
+161,2026-11-02,New York,Brooklyn,0,7:30 PM
+162,2026-11-02,Orlando,Washington,0,7:30 PM
+163,2026-11-02,Philadelphia,Chicago,0,7:30 PM
+164,2026-11-02,Dallas,Sacramento,0,8:00 PM
+165,2026-11-02,Memphis,New Orleans,0,8:00 PM
+166,2026-11-02,Minnesota,Milwaukee,0,8:00 PM
+167,2026-11-02,Houston,Boston,0,8:30 PM
+168,2026-11-02,San Antonio,Utah,0,8:30 PM
+169,2026-11-02,Denver,Portland,0,9:00 PM
+170,2026-11-02,Golden State,Phoenix,0,10:00 PM
+171,2026-11-02,LA Clippers,Toronto,0,10:00 PM
+172,2026-11-02,LA Lakers,Miami,0,10:00 PM
+173,2026-11-04,Detroit,Philadelphia,0,7:00 PM
+174,2026-11-04,Washington,Atlanta,0,7:00 PM
+175,2026-11-04,Boston,Milwaukee,0,7:30 PM
+176,2026-11-04,Brooklyn,Charlotte,0,7:30 PM
+177,2026-11-04,New York,Chicago,0,7:30 PM
+178,2026-11-04,Memphis,Indiana,0,8:00 PM
+179,2026-11-04,New Orleans,Utah,0,8:00 PM
+180,2026-11-04,Oklahoma City,Cleveland,0,8:00 PM
+181,2026-11-04,Houston,Minnesota,0,8:30 PM
+182,2026-11-04,Denver,Toronto,0,9:00 PM
+183,2026-11-04,Phoenix,Portland,0,9:00 PM
+184,2026-11-04,San Antonio,Dallas,0,9:30 PM
+185,2026-11-04,Sacramento,LA Lakers,0,10:00 PM
+186,2026-11-04,LA Clippers,Miami,0,10:30 PM
+187,2026-11-05,Phoenix,Orlando,0,9:00 PM
+188,2026-11-05,Golden State,Miami,0,10:00 PM
+25,2026-11-06,Atlanta,Washington,0,7:00 PM
+26,2026-11-06,Charlotte,Boston,0,7:00 PM
+27,2026-11-06,Cleveland,Philadelphia,0,7:30 PM
+28,2026-11-06,Dallas,Utah,0,8:00 PM
+29,2026-11-06,Memphis,Oklahoma City,0,8:00 PM
+30,2026-11-06,Milwaukee,Toronto,0,8:00 PM
+31,2026-11-06,New Orleans,Minnesota,0,8:00 PM
+32,2026-11-06,LA Lakers,Portland,0,10:00 PM
+33,2026-11-06,Sacramento,San Antonio,0,10:00 PM
+189,2026-11-07,Indiana,Denver,1,5:00 PM
+190,2026-11-07,Atlanta,Brooklyn,0,7:30 PM
+191,2026-11-07,Cleveland,New York,0,8:00 PM
+192,2026-11-07,Oklahoma City,Washington,0,8:00 PM
+193,2026-11-07,Golden State,Orlando,0,8:30 PM
+194,2026-11-07,Phoenix,Houston,0,9:00 PM
+195,2026-11-07,Portland,San Antonio,0,10:00 PM
+196,2026-11-08,Chicago,Philadelphia,0,3:30 PM
+197,2026-11-08,Detroit,LA Lakers,0,6:00 PM
+198,2026-11-08,Minnesota,Utah,0,7:00 PM
+199,2026-11-08,Dallas,Brooklyn,0,7:30 PM
+200,2026-11-08,Milwaukee,Boston,0,8:00 PM
+201,2026-11-08,LA Clippers,New Orleans,0,9:00 PM
+202,2026-11-08,Sacramento,Miami,0,9:00 PM
+203,2026-11-09,Atlanta,LA Lakers,0,7:00 PM
+204,2026-11-09,Charlotte,Cleveland,0,7:00 PM
+205,2026-11-09,Detroit,Washington,0,7:00 PM
+206,2026-11-09,Toronto,Memphis,0,7:30 PM
+207,2026-11-09,Dallas,Indiana,0,8:00 PM
+208,2026-11-09,Houston,Denver,0,8:30 PM
+209,2026-11-09,Phoenix,San Antonio,0,9:00 PM
+210,2026-11-09,Golden State,New Orleans,0,10:00 PM
+211,2026-11-10,New York,Milwaukee,0,7:30 PM
+212,2026-11-10,Philadelphia,Boston,0,8:00 PM
+213,2026-11-10,Phoenix,LA Clippers,0,9:00 PM
+214,2026-11-10,Utah,Miami,0,9:00 PM
+215,2026-11-10,Sacramento,Orlando,0,10:00 PM
+216,2026-11-10,Portland,Oklahoma City,0,11:00 PM
+217,2026-11-11,Indiana,Washington,0,7:00 PM
+218,2026-11-11,New York,Cleveland,0,7:00 PM
+219,2026-11-11,Toronto,Boston,0,7:00 PM
+220,2026-11-11,Chicago,San Antonio,0,8:00 PM
+221,2026-11-11,Memphis,Denver,0,8:00 PM
+222,2026-11-11,Milwaukee,LA Lakers,0,8:00 PM
+223,2026-11-11,New Orleans,Brooklyn,0,8:00 PM
+224,2026-11-11,Utah,Orlando,0,9:00 PM
+225,2026-11-11,Houston,Golden State,0,9:30 PM
+226,2026-11-11,Portland,Oklahoma City,0,10:00 PM
+227,2026-11-12,Philadelphia,Toronto,0,7:00 PM
+228,2026-11-12,Washington,Detroit,0,7:00 PM
+229,2026-11-12,Minnesota,Dallas,0,8:00 PM
+230,2026-11-12,Phoenix,Charlotte,0,9:00 PM
+34,2026-11-13,Indiana,New York,0,7:00 PM
+35,2026-11-13,Orlando,Milwaukee,0,7:00 PM
+36,2026-11-13,Miami,Cleveland,0,8:00 PM
+37,2026-11-13,Chicago,Atlanta,0,8:00 PM
+38,2026-11-13,New Orleans,Memphis,0,8:00 PM
+39,2026-11-13,Houston,Utah,0,8:30 PM
+40,2026-11-13,San Antonio,Golden State,0,9:30 PM
+41,2026-11-13,Sacramento,Portland,0,10:00 PM
+42,2026-11-13,LA Clippers,Oklahoma City,0,10:30 PM
+231,2026-11-14,New Orleans,Denver,0,7:00 PM
+232,2026-11-14,Cleveland,Dallas,0,7:30 PM
+233,2026-11-14,Miami,Detroit,0,8:00 PM
+234,2026-11-14,Memphis,Brooklyn,0,8:00 PM
+235,2026-11-14,Minnesota,Chicago,0,8:00 PM
+236,2026-11-15,Philadelphia,Indiana,0,1:00 PM
+237,2026-11-15,Phoenix,LA Lakers,0,4:00 PM
+238,2026-11-15,LA Clippers,Charlotte,0,4:30 PM
+239,2026-11-15,Utah,San Antonio,0,5:00 PM
+240,2026-11-15,Boston,Dallas,0,6:00 PM
+241,2026-11-15,Toronto,New York,0,6:00 PM
+242,2026-11-15,Washington,Houston,0,7:00 PM
+243,2026-11-15,Milwaukee,Atlanta,0,8:00 PM
+244,2026-11-15,Sacramento,Oklahoma City,0,9:00 PM
+245,2026-11-16,Boston,Orlando,0,7:00 PM
+246,2026-11-16,Cleveland,Chicago,0,7:00 PM
+247,2026-11-16,Washington,Memphis,0,7:00 PM
+248,2026-11-16,Brooklyn,Philadelphia,0,7:30 PM
+249,2026-11-16,Miami,Houston,0,7:30 PM
+250,2026-11-16,Minnesota,Portland,0,8:00 PM
+251,2026-11-16,New Orleans,Golden State,0,8:00 PM
+252,2026-11-16,Denver,Phoenix,0,9:00 PM
+253,2026-11-17,Toronto,New York,0,7:30 PM
+254,2026-11-17,Minnesota,Portland,0,8:00 PM
+255,2026-11-17,San Antonio,Detroit,0,8:00 PM
+256,2026-11-17,LA Lakers,Charlotte,0,10:00 PM
+257,2026-11-17,LA Clippers,Utah,0,11:00 PM
+258,2026-11-18,Cleveland,Memphis,0,7:00 PM
+259,2026-11-18,Indiana,Houston,0,7:00 PM
+260,2026-11-18,Miami,Milwaukee,0,7:00 PM
+261,2026-11-18,Orlando,Philadelphia,0,7:00 PM
+262,2026-11-18,Brooklyn,Chicago,0,7:30 PM
+263,2026-11-18,Toronto,Washington,0,7:30 PM
+264,2026-11-18,New Orleans,Detroit,0,8:00 PM
+265,2026-11-18,Oklahoma City,Atlanta,0,8:00 PM
+266,2026-11-18,Denver,Boston,0,9:00 PM
+267,2026-11-18,Dallas,Golden State,0,9:30 PM
+268,2026-11-18,LA Lakers,Utah,0,10:00 PM
+269,2026-11-18,Sacramento,Phoenix,0,10:00 PM
+270,2026-11-19,Memphis,Golden State,0,8:00 PM
+271,2026-11-19,Milwaukee,Portland,0,8:00 PM
+272,2026-11-19,Minnesota,New York,0,8:00 PM
+273,2026-11-19,San Antonio,LA Clippers,0,8:00 PM
+43,2026-11-20,Atlanta,Charlotte,0,7:00 PM
+44,2026-11-20,Brooklyn,Orlando,0,7:30 PM
+45,2026-11-20,Cleveland,Indiana,0,7:30 PM
+46,2026-11-20,Detroit,Toronto,0,7:30 PM
+47,2026-11-20,Chicago,Washington,0,8:00 PM
+48,2026-11-20,Oklahoma City,New Orleans,0,8:00 PM
+49,2026-11-20,Utah,Phoenix,0,9:30 PM
+50,2026-11-20,Denver,Houston,0,10:00 PM
+51,2026-11-20,LA Lakers,Sacramento,0,10:00 PM
+274,2026-11-21,Philadelphia,Milwaukee,0,1:00 PM
+275,2026-11-21,New York,Portland,0,7:30 PM
+276,2026-11-21,Dallas,LA Clippers,0,8:00 PM
+277,2026-11-21,Minnesota,Memphis,0,8:00 PM
+278,2026-11-21,San Antonio,New Orleans,0,8:00 PM
+279,2026-11-21,Sacramento,Boston,0,10:00 PM
+280,2026-11-22,Atlanta,Detroit,0,3:30 PM
+281,2026-11-22,Miami,Oklahoma City,0,6:00 PM
+282,2026-11-22,Washington,Orlando,0,7:00 PM
+283,2026-11-22,Chicago,Denver,0,7:00 PM
+284,2026-11-22,Utah,Dallas,0,7:00 PM
+285,2026-11-22,New York,Indiana,0,8:00 PM
+286,2026-11-22,Golden State,Boston,0,8:30 PM
+287,2026-11-23,Charlotte,Memphis,0,7:00 PM
+288,2026-11-23,Philadelphia,Portland,0,7:00 PM
+289,2026-11-23,Indiana,Oklahoma City,0,7:30 PM
+290,2026-11-23,Toronto,Milwaukee,0,7:30 PM
+291,2026-11-23,Minnesota,Brooklyn,0,7:30 PM
+292,2026-11-23,Chicago,Cleveland,0,8:00 PM
+293,2026-11-23,New Orleans,Phoenix,0,8:00 PM
+294,2026-11-23,Houston,LA Clippers,0,8:30 PM
+295,2026-11-23,LA Lakers,Utah,0,10:00 PM
+296,2026-11-23,Sacramento,San Antonio,0,10:00 PM
+52,2026-11-24,Orlando,Detroit,0,7:00 PM
+53,2026-11-24,Washington,Boston,0,8:00 PM
+54,2026-11-24,Denver,Dallas,0,10:00 PM
+55,2026-11-25,Philadelphia,Miami,0,5:00 PM
+56,2026-11-25,Charlotte,Chicago,0,7:00 PM
+57,2026-11-25,New York,Cleveland,0,7:30 PM
+58,2026-11-25,Oklahoma City,Minnesota,0,7:30 PM
+59,2026-11-25,Memphis,LA Clippers,0,8:00 PM
+60,2026-11-25,Milwaukee,Brooklyn,0,8:00 PM
+61,2026-11-25,Houston,Phoenix,0,8:30 PM
+62,2026-11-25,Golden State,Sacramento,0,10:00 PM
+63,2026-11-25,Portland,San Antonio,0,10:00 PM
+64,2026-11-27,New York,Miami,0,7:00 PM
+65,2026-11-27,Detroit,Milwaukee,0,7:30 PM
+66,2026-11-27,Indiana,Philadelphia,0,7:30 PM
+67,2026-11-27,Toronto,Brooklyn,0,7:30 PM
+68,2026-11-27,Boston,Atlanta,0,8:00 PM
+69,2026-11-27,Minnesota,Memphis,0,8:30 PM
+70,2026-11-27,Phoenix,Dallas,0,9:00 PM
+71,2026-11-27,San Antonio,LA Lakers,0,9:30 PM
+72,2026-11-27,Utah,Denver,0,9:30 PM
+73,2026-11-27,LA Clippers,New Orleans,0,9:30 PM
+74,2026-11-27,Portland,Golden State,0,9:30 PM
+297,2026-11-28,Washington,Orlando,0,5:00 PM
+298,2026-11-28,Charlotte,Brooklyn,0,6:00 PM
+299,2026-11-28,Chicago,Indiana,0,8:00 PM
+300,2026-11-28,Milwaukee,Oklahoma City,0,8:00 PM
+301,2026-11-28,Houston,Philadelphia,0,8:30 PM
+302,2026-11-29,Memphis,LA Lakers,0,4:00 PM
+303,2026-11-29,San Antonio,Boston,0,4:00 PM
+304,2026-11-29,Utah,Phoenix,0,5:00 PM
+305,2026-11-29,Cleveland,Miami,0,6:00 PM
+306,2026-11-29,Detroit,Orlando,0,6:00 PM
+307,2026-11-29,New York,Atlanta,0,6:00 PM
+308,2026-11-29,Toronto,Denver,0,6:00 PM
+309,2026-11-29,Portland,New Orleans,0,6:00 PM
+310,2026-11-29,Golden State,LA Clippers,0,8:30 PM
+311,2026-11-29,Sacramento,Minnesota,0,9:00 PM
+312,2026-11-30,Charlotte,Washington,0,7:00 PM
+313,2026-11-30,Detroit,Denver,0,7:00 PM
+314,2026-11-30,Brooklyn,Oklahoma City,0,7:30 PM
+315,2026-11-30,Houston,LA Lakers,0,7:30 PM
+316,2026-11-30,Dallas,Boston,0,8:00 PM
+317,2026-11-30,Milwaukee,San Antonio,0,8:00 PM
+318,2026-11-30,Sacramento,New Orleans,0,10:00 PM
+319,2026-12-01,Cleveland,Indiana,0,7:00 PM
+320,2026-12-01,Philadelphia,Memphis,0,7:00 PM
+321,2026-12-01,Miami,Atlanta,0,7:30 PM
+322,2026-12-01,Chicago,New York,0,8:00 PM
+323,2026-12-01,Houston,Toronto,0,8:30 PM
+324,2026-12-01,Phoenix,LA Clippers,0,9:00 PM
+325,2026-12-01,Portland,Minnesota,0,10:00 PM
+326,2026-12-01,Golden State,Utah,0,11:00 PM
+327,2026-12-02,Detroit,Memphis,0,7:00 PM
+328,2026-12-02,Philadelphia,Denver,0,7:00 PM
+329,2026-12-02,Boston,Charlotte,0,7:30 PM
+330,2026-12-02,Dallas,Orlando,0,8:00 PM
+331,2026-12-02,Milwaukee,New York,0,8:00 PM
+332,2026-12-02,New Orleans,LA Lakers,0,8:00 PM
+333,2026-12-02,Oklahoma City,Brooklyn,0,8:00 PM
+334,2026-12-02,Phoenix,Sacramento,0,9:00 PM
+335,2026-12-02,LA Clippers,Minnesota,0,10:30 PM
+336,2026-12-03,Atlanta,Indiana,0,7:00 PM
+337,2026-12-03,Miami,Washington,0,7:30 PM
+338,2026-12-03,Chicago,Cleveland,0,8:00 PM
+339,2026-12-03,San Antonio,Toronto,0,8:00 PM
+340,2026-12-03,Portland,Utah,0,10:00 PM
+341,2026-12-12,Memphis,Milwaukee,0,5:00 PM
+342,2026-12-12,Washington,Charlotte,0,7:00 PM
+343,2026-12-12,Philadelphia,Orlando,0,7:30 PM
+344,2026-12-12,Cleveland,Golden State,0,8:00 PM
+345,2026-12-12,Miami,New York,0,8:30 PM
+346,2026-12-12,Phoenix,Minnesota,0,9:00 PM
+347,2026-12-12,Utah,Denver,0,9:30 PM
+348,2026-12-12,Portland,Atlanta,0,10:00 PM
+349,2026-12-13,Brooklyn,Boston,0,3:00 PM
+350,2026-12-13,Oklahoma City,Toronto,0,3:30 PM
+351,2026-12-13,Indiana,Detroit,0,5:00 PM
+352,2026-12-13,Chicago,Houston,0,6:00 PM
+353,2026-12-13,San Antonio,LA Clippers,0,7:00 PM
+354,2026-12-13,Sacramento,New Orleans,0,9:00 PM
+355,2026-12-14,Charlotte,Toronto,0,7:00 PM
+356,2026-12-14,Detroit,Brooklyn,0,7:00 PM
+357,2026-12-14,Orlando,Philadelphia,0,7:00 PM
+358,2026-12-14,Boston,Washington,0,7:30 PM
+359,2026-12-14,Chicago,Miami,0,8:00 PM
+360,2026-12-14,Dallas,Milwaukee,0,8:00 PM
+361,2026-12-14,Memphis,Golden State,0,8:00 PM
+362,2026-12-14,Houston,New York,0,8:30 PM
+363,2026-12-14,Phoenix,Atlanta,0,9:00 PM
+364,2026-12-14,Utah,Minnesota,0,9:00 PM
+365,2026-12-14,LA Lakers,New Orleans,0,10:00 PM
+366,2026-12-15,Cleveland,San Antonio,0,8:00 PM
+367,2026-12-15,Portland,Denver,0,11:00 PM
+368,2026-12-16,Boston,Washington,0,7:00 PM
+369,2026-12-16,Charlotte,LA Clippers,0,7:00 PM
+370,2026-12-16,Detroit,Phoenix,0,7:00 PM
+371,2026-12-16,Indiana,Golden State,0,7:00 PM
+372,2026-12-16,Orlando,Cleveland,0,7:00 PM
+373,2026-12-16,Brooklyn,Dallas,0,7:30 PM
+374,2026-12-16,Toronto,San Antonio,0,7:30 PM
+375,2026-12-16,Chicago,Utah,0,8:00 PM
+376,2026-12-16,Memphis,Miami,0,8:00 PM
+377,2026-12-16,New Orleans,New York,0,8:00 PM
+378,2026-12-16,Oklahoma City,Sacramento,0,8:00 PM
+379,2026-12-16,Houston,Milwaukee,0,8:30 PM
+380,2026-12-16,Minnesota,LA Lakers,0,9:30 PM
+381,2026-12-17,Indiana,Portland,0,7:00 PM
+382,2026-12-17,Philadelphia,Dallas,0,7:00 PM
+383,2026-12-17,Denver,Atlanta,0,9:00 PM
+384,2026-12-18,Charlotte,Oklahoma City,0,7:00 PM
+385,2026-12-18,Miami,LA Clippers,0,7:00 PM
+386,2026-12-18,Washington,New York,0,7:00 PM
+387,2026-12-18,Boston,Utah,0,7:30 PM
+388,2026-12-18,Brooklyn,Orlando,0,7:30 PM
+389,2026-12-18,Detroit,Cleveland,0,7:30 PM
+390,2026-12-18,Toronto,Golden State,0,7:30 PM
+391,2026-12-18,Memphis,Houston,0,8:00 PM
+392,2026-12-18,Milwaukee,Phoenix,0,8:00 PM
+393,2026-12-18,Minnesota,LA Lakers,0,8:00 PM
+394,2026-12-18,New Orleans,Sacramento,0,8:00 PM
+395,2026-12-18,San Antonio,Chicago,0,8:00 PM
+396,2026-12-19,Charlotte,Portland,0,6:00 PM
+397,2026-12-19,Atlanta,Orlando,0,7:00 PM
+398,2026-12-19,Dallas,Chicago,0,8:00 PM
+399,2026-12-19,Denver,LA Lakers,0,9:00 PM
+400,2026-12-20,Brooklyn,Washington,0,3:00 PM
+401,2026-12-20,Toronto,Houston,0,3:30 PM
+402,2026-12-20,Memphis,Phoenix,0,4:00 PM
+403,2026-12-20,Cleveland,Utah,0,6:00 PM
+404,2026-12-20,Miami,Sacramento,0,6:00 PM
+405,2026-12-20,Atlanta,Oklahoma City,0,7:00 PM
+406,2026-12-20,New Orleans,San Antonio,0,7:00 PM
+407,2026-12-20,Boston,Detroit,0,8:00 PM
+408,2026-12-20,Milwaukee,Golden State,0,8:00 PM
+409,2026-12-20,LA Clippers,Indiana,0,10:00 PM
+410,2026-12-21,Charlotte,Philadelphia,0,7:00 PM
+411,2026-12-21,Cleveland,New York,0,7:00 PM
+412,2026-12-21,Orlando,Sacramento,0,7:00 PM
+413,2026-12-21,Brooklyn,Portland,0,7:30 PM
+414,2026-12-21,Miami,Chicago,0,7:30 PM
+415,2026-12-21,Minnesota,Phoenix,0,8:00 PM
+416,2026-12-21,New Orleans,Memphis,0,8:00 PM
+417,2026-12-21,San Antonio,Milwaukee,0,8:00 PM
+418,2026-12-21,LA Lakers,Indiana,0,10:00 PM
+419,2026-12-21,LA Clippers,Denver,0,10:30 PM
+420,2026-12-22,Washington,Toronto,0,7:00 PM
+421,2026-12-22,Oklahoma City,Detroit,0,8:00 PM
+422,2026-12-22,Golden State,Dallas,0,10:30 PM
+423,2026-12-23,Atlanta,Detroit,0,7:00 PM
+424,2026-12-23,Orlando,Charlotte,0,7:00 PM
+425,2026-12-23,Washington,Cleveland,0,7:00 PM
+426,2026-12-23,Boston,Portland,0,7:30 PM
+427,2026-12-23,Brooklyn,San Antonio,0,7:30 PM
+428,2026-12-23,Miami,Chicago,0,7:30 PM
+429,2026-12-23,New York,Utah,0,7:30 PM
+430,2026-12-23,Philadelphia,Houston,0,7:30 PM
+431,2026-12-23,Memphis,Toronto,0,8:00 PM
+432,2026-12-23,Milwaukee,Minnesota,0,8:00 PM
+433,2026-12-23,New Orleans,Oklahoma City,0,8:00 PM
+434,2026-12-23,Phoenix,Indiana,0,9:00 PM
+435,2026-12-23,LA Lakers,Denver,0,10:00 PM
+436,2026-12-23,Sacramento,Dallas,0,10:00 PM
+437,2026-12-23,LA Clippers,Golden State,0,10:30 PM
+10,2026-12-25,New York,San Antonio,0,12:00 PM
+11,2026-12-25,Boston,Miami,0,2:30 PM
+12,2026-12-25,LA Lakers,Philadelphia,0,5:00 PM
+13,2026-12-25,Minnesota,Oklahoma City,0,8:00 PM
+14,2026-12-25,Golden State,Denver,0,10:30 PM
+438,2026-12-26,Washington,Portland,0,1:00 PM
+439,2026-12-26,Atlanta,Charlotte,0,3:30 PM
+440,2026-12-26,Utah,Indiana,0,5:00 PM
+441,2026-12-26,Brooklyn,New Orleans,0,6:00 PM
+442,2026-12-26,Orlando,Toronto,0,7:00 PM
+443,2026-12-26,Chicago,Detroit,0,8:00 PM
+444,2026-12-26,Dallas,Phoenix,0,8:00 PM
+445,2026-12-26,LA Clippers,Memphis,0,10:30 PM
+446,2026-12-27,Houston,Oklahoma City,0,3:30 PM
+447,2026-12-27,Cleveland,Washington,0,6:00 PM
+448,2026-12-27,Miami,Charlotte,0,6:00 PM
+449,2026-12-27,New York,Brooklyn,0,6:00 PM
+450,2026-12-27,Orlando,Milwaukee,0,6:00 PM
+451,2026-12-27,Sacramento,Utah,0,6:00 PM
+452,2026-12-27,Detroit,Portland,0,7:00 PM
+453,2026-12-27,San Antonio,Atlanta,0,7:00 PM
+454,2026-12-27,Denver,Indiana,0,8:00 PM
+455,2026-12-27,Golden State,Minnesota,0,8:30 PM
+456,2026-12-27,LA Clippers,Philadelphia,0,9:00 PM
+457,2026-12-27,LA Lakers,Memphis,0,9:00 PM
+458,2026-12-28,Toronto,New Orleans,0,7:30 PM
+459,2026-12-28,Boston,Cleveland,0,8:00 PM
+460,2026-12-28,Phoenix,Golden State,0,9:00 PM
+461,2026-12-28,Denver,Minnesota,0,10:30 PM
+462,2026-12-29,Atlanta,Chicago,0,7:00 PM
+463,2026-12-29,Charlotte,Orlando,0,7:00 PM
+464,2026-12-29,Indiana,LA Clippers,0,7:00 PM
+465,2026-12-29,Dallas,Miami,0,8:00 PM
+466,2026-12-29,Memphis,San Antonio,0,8:00 PM
+467,2026-12-29,Oklahoma City,Milwaukee,0,8:00 PM
+468,2026-12-29,Portland,Brooklyn,0,10:00 PM
+469,2026-12-29,Sacramento,Philadelphia,0,10:00 PM
+470,2026-12-29,LA Lakers,Houston,0,10:30 PM
+471,2026-12-30,Detroit,New Orleans,0,7:00 PM
+472,2026-12-30,Toronto,Washington,0,7:30 PM
+473,2026-12-30,Chicago,Boston,0,8:00 PM
+474,2026-12-30,Phoenix,Philadelphia,0,9:00 PM
+475,2026-12-30,Utah,New York,0,9:00 PM
+476,2026-12-30,Golden State,Houston,0,10:00 PM
+477,2026-12-31,Charlotte,San Antonio,0,1:00 PM
+478,2026-12-31,Atlanta,Milwaukee,0,3:00 PM
+479,2026-12-31,Cleveland,LA Clippers,0,3:00 PM
+480,2026-12-31,Indiana,Orlando,0,3:00 PM
+481,2026-12-31,Minnesota,Denver,0,4:00 PM
+482,2026-12-31,Sacramento,Brooklyn,0,6:00 PM
+483,2026-12-31,New Orleans,LA Lakers,0,8:00 PM
+484,2026-12-31,Oklahoma City,Miami,0,8:00 PM
+485,2026-12-31,Phoenix,New York,0,9:00 PM
+486,2027-01-01,Washington,San Antonio,0,5:00 PM
+487,2027-01-01,Detroit,Orlando,0,7:30 PM
+488,2027-01-01,Toronto,LA Clippers,0,7:30 PM
+489,2027-01-01,Milwaukee,Philadelphia,0,8:00 PM
+490,2027-01-01,Houston,Dallas,0,8:30 PM
+491,2027-01-01,Utah,Boston,0,9:30 PM
+492,2027-01-02,Charlotte,Cleveland,0,1:00 PM
+493,2027-01-02,Denver,New York,0,5:00 PM
+494,2027-01-02,Indiana,Minnesota,0,7:00 PM
+495,2027-01-02,New Orleans,Miami,0,7:00 PM
+496,2027-01-02,Atlanta,Dallas,0,7:30 PM
+497,2027-01-02,Chicago,LA Lakers,0,8:00 PM
+498,2027-01-02,Oklahoma City,Utah,0,8:00 PM
+499,2027-01-02,Golden State,Brooklyn,0,8:30 PM
+500,2027-01-02,Phoenix,Sacramento,0,9:00 PM
+501,2027-01-02,Portland,Boston,0,10:00 PM
+502,2027-01-03,Denver,Detroit,0,5:00 PM
+503,2027-01-03,Milwaukee,Charlotte,0,5:30 PM
+504,2027-01-03,Orlando,Memphis,0,6:00 PM
+505,2027-01-03,Toronto,LA Lakers,0,7:00 PM
+506,2027-01-03,Washington,LA Clippers,0,7:00 PM
+507,2027-01-03,Houston,Cleveland,0,7:00 PM
+508,2027-01-03,Minnesota,San Antonio,0,7:00 PM
+509,2027-01-03,Oklahoma City,Sacramento,0,8:00 PM
+510,2027-01-04,Indiana,Chicago,0,7:00 PM
+511,2027-01-04,Philadelphia,Atlanta,0,7:00 PM
+512,2027-01-04,New Orleans,Dallas,0,8:00 PM
+513,2027-01-04,Phoenix,Boston,0,9:00 PM
+514,2027-01-04,Utah,Brooklyn,0,9:00 PM
+515,2027-01-04,Portland,New York,0,10:00 PM
+516,2027-01-05,Charlotte,Atlanta,0,7:00 PM
+517,2027-01-05,Cleveland,Toronto,0,7:00 PM
+518,2027-01-05,Orlando,LA Clippers,0,7:00 PM
+519,2027-01-05,Washington,LA Lakers,0,7:00 PM
+520,2027-01-05,Miami,Memphis,0,7:30 PM
+521,2027-01-05,Chicago,Milwaukee,0,8:00 PM
+522,2027-01-05,Houston,Minnesota,0,8:00 PM
+523,2027-01-05,Denver,Phoenix,0,10:00 PM
+524,2027-01-05,Sacramento,Detroit,0,10:00 PM
+525,2027-01-06,Brooklyn,Utah,0,7:30 PM
+526,2027-01-06,Philadelphia,Oklahoma City,0,7:30 PM
+527,2027-01-06,New Orleans,Portland,0,8:00 PM
+528,2027-01-06,San Antonio,Indiana,0,8:00 PM
+529,2027-01-06,Golden State,New York,0,10:00 PM
+530,2027-01-07,Atlanta,Indiana,0,7:00 PM
+531,2027-01-07,Charlotte,Denver,0,7:00 PM
+532,2027-01-07,Orlando,Cleveland,0,7:00 PM
+533,2027-01-07,Washington,Oklahoma City,0,7:00 PM
+534,2027-01-07,Brooklyn,Miami,0,7:30 PM
+535,2027-01-07,Toronto,Minnesota,0,7:30 PM
+536,2027-01-07,Dallas,Portland,0,8:00 PM
+537,2027-01-07,Milwaukee,LA Clippers,0,8:00 PM
+538,2027-01-07,Houston,Memphis,0,8:30 PM
+539,2027-01-07,Golden State,Detroit,0,10:00 PM
+540,2027-01-07,LA Lakers,Boston,0,10:00 PM
+541,2027-01-07,Sacramento,Chicago,0,10:00 PM
+542,2027-01-08,Philadelphia,Miami,0,7:00 PM
+543,2027-01-08,Washington,Minnesota,0,7:00 PM
+544,2027-01-08,Toronto,Utah,0,7:30 PM
+545,2027-01-08,New Orleans,Orlando,0,8:00 PM
+546,2027-01-08,San Antonio,Memphis,0,8:00 PM
+547,2027-01-08,Dallas,Phoenix,0,9:30 PM
+548,2027-01-08,LA Lakers,Detroit,0,10:00 PM
+549,2027-01-08,Sacramento,New York,0,10:00 PM
+550,2027-01-09,Cleveland,Denver,0,5:00 PM
+551,2027-01-09,Brooklyn,Houston,0,6:00 PM
+552,2027-01-09,Indiana,Milwaukee,0,7:00 PM
+553,2027-01-09,Golden State,Chicago,0,8:30 PM
+554,2027-01-09,Portland,Charlotte,0,10:00 PM
+555,2027-01-09,LA Clippers,Boston,0,10:30 PM
+556,2027-01-10,Atlanta,San Antonio,0,3:00 PM
+557,2027-01-10,Detroit,Utah,0,6:00 PM
+558,2027-01-10,Miami,New Orleans,0,6:00 PM
+559,2027-01-10,Orlando,Oklahoma City,0,6:00 PM
+560,2027-01-10,Toronto,Philadelphia,0,6:00 PM
+561,2027-01-10,Memphis,Dallas,0,6:00 PM
+562,2027-01-10,Phoenix,Chicago,0,7:00 PM
+563,2027-01-10,Sacramento,Charlotte,0,9:00 PM
+564,2027-01-11,Indiana,Brooklyn,0,7:00 PM
+565,2027-01-11,Washington,Atlanta,0,7:00 PM
+566,2027-01-11,Boston,Houston,0,7:30 PM
+567,2027-01-11,New York,Denver,0,7:30 PM
+568,2027-01-11,Minnesota,Cleveland,0,8:00 PM
+569,2027-01-11,LA Clippers,LA Lakers,0,10:00 PM
+570,2027-01-12,Miami,Brooklyn,0,7:30 PM
+571,2027-01-12,Toronto,Detroit,0,7:30 PM
+572,2027-01-12,Philadelphia,Washington,0,8:00 PM
+573,2027-01-12,Memphis,Dallas,0,8:00 PM
+574,2027-01-12,Milwaukee,Denver,0,8:00 PM
+575,2027-01-12,Utah,Chicago,0,9:00 PM
+576,2027-01-12,Portland,Orlando,0,10:00 PM
+577,2027-01-12,Golden State,Sacramento,0,11:00 PM
+578,2027-01-13,Atlanta,Cleveland,0,7:00 PM
+579,2027-01-13,Boston,New York,0,7:00 PM
+580,2027-01-13,Indiana,Milwaukee,0,7:00 PM
+581,2027-01-13,Toronto,Phoenix,0,7:30 PM
+582,2027-01-13,Oklahoma City,Houston,0,9:30 PM
+583,2027-01-13,Golden State,Charlotte,0,10:00 PM
+584,2027-01-13,Portland,LA Lakers,0,10:00 PM
+75,2027-01-14,San Antonio,New Orleans,1,2:00 PM
+585,2027-01-14,Detroit,Dallas,0,7:00 PM
+586,2027-01-14,Philadelphia,Brooklyn,0,7:00 PM
+587,2027-01-14,New York,Miami,0,7:30 PM
+588,2027-01-14,Chicago,Minnesota,0,8:00 PM
+589,2027-01-14,Denver,Memphis,0,9:00 PM
+590,2027-01-14,Utah,Charlotte,0,9:00 PM
+591,2027-01-14,LA Lakers,Orlando,0,10:00 PM
+592,2027-01-14,Sacramento,LA Clippers,0,10:00 PM
+593,2027-01-15,Atlanta,Golden State,0,7:00 PM
+594,2027-01-15,Indiana,Phoenix,0,7:00 PM
+595,2027-01-15,Toronto,Miami,0,7:30 PM
+596,2027-01-15,Milwaukee,Cleveland,0,8:00 PM
+597,2027-01-15,Oklahoma City,Utah,0,8:00 PM
+598,2027-01-15,Houston,Washington,0,8:30 PM
+599,2027-01-15,Portland,Sacramento,0,10:00 PM
+600,2027-01-15,LA Clippers,Orlando,0,10:30 PM
+601,2027-01-16,Philadelphia,Minnesota,0,12:30 PM
+602,2027-01-16,Boston,Brooklyn,0,7:00 PM
+603,2027-01-16,New York,Dallas,0,7:30 PM
+604,2027-01-16,Memphis,Cleveland,0,8:00 PM
+605,2027-01-16,Houston,Detroit,0,8:30 PM
+606,2027-01-16,Denver,Charlotte,0,9:00 PM
+76,2027-01-17,New Orleans,San Antonio,1,10:30 AM
+607,2027-01-17,Washington,Indiana,0,1:00 PM
+608,2027-01-17,Chicago,Toronto,0,3:30 PM
+609,2027-01-17,Oklahoma City,Portland,0,3:30 PM
+610,2027-01-17,Utah,Sacramento,0,5:00 PM
+611,2027-01-17,Miami,Golden State,0,6:00 PM
+612,2027-01-17,Denver,Orlando,0,8:00 PM
+613,2027-01-17,LA Lakers,Milwaukee,0,9:00 PM
+77,2027-01-18,Cleveland,Detroit,0,12:00 PM
+78,2027-01-18,Atlanta,Philadelphia,0,2:30 PM
+79,2027-01-18,New York,Minnesota,0,5:00 PM
+80,2027-01-18,Memphis,Houston,0,7:30 PM
+614,2027-01-18,Washington,Boston,0,3:00 PM
+615,2027-01-18,Dallas,Oklahoma City,0,8:00 PM
+616,2027-01-18,LA Clippers,Phoenix,0,10:30 PM
+617,2027-01-19,Orlando,Golden State,0,7:00 PM
+618,2027-01-19,Philadelphia,Indiana,0,7:00 PM
+619,2027-01-19,Toronto,Chicago,0,7:00 PM
+620,2027-01-19,Miami,Portland,0,7:30 PM
+621,2027-01-19,Dallas,Charlotte,0,8:00 PM
+622,2027-01-19,Denver,Utah,0,10:00 PM
+623,2027-01-19,Sacramento,LA Lakers,0,10:00 PM
+624,2027-01-20,Atlanta,Portland,0,7:00 PM
+625,2027-01-20,Brooklyn,Chicago,0,7:00 PM
+626,2027-01-20,Boston,Indiana,0,7:30 PM
+627,2027-01-20,New York,Toronto,0,7:30 PM
+628,2027-01-20,Minnesota,Houston,0,8:00 PM
+629,2027-01-20,New Orleans,Oklahoma City,0,8:00 PM
+630,2027-01-20,Phoenix,Memphis,0,9:00 PM
+631,2027-01-20,Utah,LA Clippers,0,9:00 PM
+632,2027-01-20,San Antonio,Miami,0,9:30 PM
+633,2027-01-20,Sacramento,Milwaukee,0,10:00 PM
+634,2027-01-21,Boston,Philadelphia,0,7:30 PM
+635,2027-01-21,Brooklyn,Cleveland,0,7:30 PM
+636,2027-01-21,Denver,Washington,0,9:00 PM
+637,2027-01-21,Golden State,LA Lakers,0,10:00 PM
+638,2027-01-22,Atlanta,New York,0,7:00 PM
+639,2027-01-22,Charlotte,Houston,0,7:00 PM
+640,2027-01-22,Orlando,Portland,0,7:00 PM
+641,2027-01-22,Detroit,Indiana,0,7:30 PM
+642,2027-01-22,New Orleans,Dallas,0,8:00 PM
+643,2027-01-22,Oklahoma City,Memphis,0,8:00 PM
+644,2027-01-22,Phoenix,Utah,0,9:00 PM
+645,2027-01-22,San Antonio,Minnesota,0,9:30 PM
+646,2027-01-22,Golden State,Milwaukee,0,10:00 PM
+647,2027-01-22,LA Lakers,Sacramento,0,10:00 PM
+648,2027-01-22,LA Clippers,Washington,0,10:30 PM
+649,2027-01-23,Chicago,Philadelphia,0,5:00 PM
+650,2027-01-23,Brooklyn,Toronto,0,6:00 PM
+651,2027-01-23,Boston,Charlotte,0,7:00 PM
+652,2027-01-23,Miami,Atlanta,0,8:00 PM
+653,2027-01-23,Dallas,Cleveland,0,8:00 PM
+654,2027-01-23,Denver,Milwaukee,0,9:00 PM
+655,2027-01-24,San Antonio,Portland,0,3:30 PM
+656,2027-01-24,Phoenix,Utah,0,4:00 PM
+657,2027-01-24,LA Lakers,Washington,0,4:00 PM
+658,2027-01-24,Detroit,Minnesota,0,6:00 PM
+659,2027-01-24,Orlando,Houston,0,6:00 PM
+660,2027-01-24,New York,LA Clippers,0,7:00 PM
+661,2027-01-24,Golden State,Oklahoma City,0,8:30 PM
+662,2027-01-25,Boston,Toronto,0,7:00 PM
+663,2027-01-25,Charlotte,Orlando,0,7:00 PM
+664,2027-01-25,Philadelphia,LA Clippers,0,7:00 PM
+665,2027-01-25,Brooklyn,Miami,0,7:30 PM
+666,2027-01-25,Chicago,Dallas,0,8:00 PM
+667,2027-01-25,Memphis,Minnesota,0,8:00 PM
+668,2027-01-25,New Orleans,Cleveland,0,8:00 PM
+669,2027-01-25,Denver,Sacramento,0,9:30 PM
+670,2027-01-26,Detroit,Atlanta,0,7:00 PM
+671,2027-01-26,Indiana,Chicago,0,7:00 PM
+672,2027-01-26,New York,Phoenix,0,7:30 PM
+673,2027-01-26,San Antonio,Houston,0,8:00 PM
+674,2027-01-26,Utah,Milwaukee,0,9:00 PM
+675,2027-01-26,Portland,Washington,0,10:00 PM
+676,2027-01-26,LA Lakers,Oklahoma City,0,11:00 PM
+677,2027-01-27,Cleveland,Detroit,0,7:00 PM
+678,2027-01-27,Philadelphia,Sacramento,0,7:00 PM
+679,2027-01-27,Boston,LA Clippers,0,7:30 PM
+680,2027-01-27,Brooklyn,Phoenix,0,7:30 PM
+681,2027-01-27,Toronto,Dallas,0,7:30 PM
+682,2027-01-27,San Antonio,Charlotte,0,8:00 PM
+683,2027-01-27,Houston,New Orleans,0,8:30 PM
+684,2027-01-27,Minnesota,Denver,0,9:30 PM
+685,2027-01-27,Portland,Golden State,0,10:00 PM
+686,2027-01-28,Indiana,LA Lakers,0,7:00 PM
+687,2027-01-28,New York,Atlanta,0,7:00 PM
+688,2027-01-28,Orlando,Chicago,0,7:00 PM
+689,2027-01-28,Washington,Sacramento,0,7:00 PM
+690,2027-01-28,New Orleans,Philadelphia,0,8:00 PM
+691,2027-01-28,Oklahoma City,Memphis,0,8:00 PM
+692,2027-01-28,Utah,Golden State,0,9:00 PM
+693,2027-01-28,Milwaukee,Miami,0,9:30 PM
+694,2027-01-29,Toronto,Cleveland,0,7:00 PM
+695,2027-01-29,Boston,Phoenix,0,7:30 PM
+696,2027-01-29,Brooklyn,LA Clippers,0,7:30 PM
+697,2027-01-29,Dallas,Detroit,0,8:00 PM
+698,2027-01-29,Houston,Orlando,0,8:30 PM
+699,2027-01-29,Minnesota,Charlotte,0,9:30 PM
+700,2027-01-30,Miami,Philadelphia,0,12:30 PM
+701,2027-01-30,Oklahoma City,Denver,0,3:00 PM
+702,2027-01-30,Golden State,San Antonio,0,5:30 PM
+703,2027-01-30,Indiana,Washington,0,7:00 PM
+704,2027-01-30,Cleveland,New Orleans,0,7:30 PM
+705,2027-01-30,Milwaukee,Atlanta,0,8:00 PM
+706,2027-01-30,New York,LA Lakers,0,8:30 PM
+707,2027-01-30,Utah,Memphis,0,9:30 PM
+708,2027-01-31,Detroit,Sacramento,0,3:00 PM
+709,2027-01-31,Orlando,Brooklyn,0,6:00 PM
+710,2027-01-31,Toronto,Boston,0,6:00 PM
+711,2027-01-31,Minnesota,Phoenix,0,6:00 PM
+712,2027-01-31,Oklahoma City,Chicago,0,6:00 PM
+713,2027-01-31,Charlotte,LA Lakers,0,7:00 PM
+714,2027-01-31,Denver,Portland,0,8:00 PM
+715,2027-01-31,Dallas,Houston,0,8:30 PM
+716,2027-02-01,Atlanta,Washington,0,7:00 PM
+717,2027-02-01,Philadelphia,New Orleans,0,7:00 PM
+718,2027-02-01,Brooklyn,New York,0,7:30 PM
+719,2027-02-01,Indiana,Miami,0,7:30 PM
+720,2027-02-01,Milwaukee,Memphis,0,8:00 PM
+721,2027-02-01,Utah,Cleveland,0,9:00 PM
+722,2027-02-01,Golden State,San Antonio,0,10:00 PM
+723,2027-02-02,Detroit,Chicago,0,7:00 PM
+724,2027-02-02,Orlando,New Orleans,0,7:00 PM
+725,2027-02-02,Miami,Charlotte,0,7:30 PM
+726,2027-02-02,Boston,LA Lakers,0,8:00 PM
+727,2027-02-02,Dallas,Toronto,0,8:00 PM
+728,2027-02-02,Denver,Oklahoma City,0,9:00 PM
+729,2027-02-02,LA Clippers,San Antonio,0,10:30 PM
+730,2027-02-02,Portland,Minnesota,0,11:00 PM
+731,2027-02-03,Detroit,New York,0,7:00 PM
+732,2027-02-03,Indiana,Atlanta,0,7:00 PM
+733,2027-02-03,Memphis,Philadelphia,0,8:00 PM
+734,2027-02-03,Phoenix,Cleveland,0,9:00 PM
+735,2027-02-03,Houston,Utah,0,9:30 PM
+736,2027-02-03,LA Clippers,Golden State,0,10:30 PM
+737,2027-02-04,Washington,New Orleans,0,7:00 PM
+738,2027-02-04,Brooklyn,LA Lakers,0,7:30 PM
+739,2027-02-04,Charlotte,Boston,0,7:30 PM
+740,2027-02-04,Miami,Milwaukee,0,7:30 PM
+741,2027-02-04,New York,Toronto,0,7:30 PM
+742,2027-02-04,Chicago,Oklahoma City,0,8:00 PM
+743,2027-02-04,San Antonio,Orlando,0,8:00 PM
+744,2027-02-04,Denver,Dallas,0,10:00 PM
+745,2027-02-04,Portland,Cleveland,0,10:00 PM
+746,2027-02-04,Sacramento,Minnesota,0,10:00 PM
+747,2027-02-05,Atlanta,Boston,0,7:00 PM
+748,2027-02-05,Charlotte,Golden State,0,7:00 PM
+749,2027-02-05,Philadelphia,Detroit,0,7:00 PM
+750,2027-02-05,Denver,LA Clippers,0,9:00 PM
+751,2027-02-05,Phoenix,Houston,0,9:00 PM
+752,2027-02-05,Oklahoma City,Indiana,0,9:30 PM
+753,2027-02-06,Dallas,Utah,0,3:00 PM
+754,2027-02-06,Minnesota,Miami,0,3:00 PM
+755,2027-02-06,Memphis,Portland,0,5:30 PM
+756,2027-02-06,Brooklyn,Washington,0,6:00 PM
+757,2027-02-06,Cleveland,Orlando,0,7:30 PM
+758,2027-02-06,Toronto,Milwaukee,0,7:30 PM
+759,2027-02-06,Chicago,New Orleans,0,8:00 PM
+760,2027-02-06,San Antonio,LA Lakers,0,8:30 PM
+761,2027-02-06,Sacramento,Phoenix,0,10:00 PM
+762,2027-02-07,Atlanta,Denver,0,3:00 PM
+763,2027-02-07,Detroit,Golden State,0,3:00 PM
+764,2027-02-07,Minnesota,Utah,0,3:30 PM
+765,2027-02-07,Dallas,LA Clippers,0,4:30 PM
+766,2027-02-07,Toronto,Charlotte,0,6:00 PM
+767,2027-02-07,Philadelphia,Boston,0,7:00 PM
+768,2027-02-07,Oklahoma City,New York,0,9:30 PM
+769,2027-02-07,Sacramento,Houston,0,10:30 PM
+770,2027-02-08,Atlanta,Miami,0,7:00 PM
+771,2027-02-08,Indiana,New Orleans,0,7:00 PM
+772,2027-02-08,Philadelphia,Brooklyn,0,7:00 PM
+773,2027-02-08,Washington,Chicago,0,7:00 PM
+774,2027-02-08,Memphis,Portland,0,8:00 PM
+775,2027-02-08,Milwaukee,Orlando,0,8:00 PM
+776,2027-02-08,Phoenix,LA Lakers,0,9:30 PM
+777,2027-02-09,Cleveland,Toronto,0,7:00 PM
+778,2027-02-09,Boston,Denver,0,7:30 PM
+779,2027-02-09,Brooklyn,Minnesota,0,7:30 PM
+780,2027-02-09,New York,Charlotte,0,7:30 PM
+781,2027-02-09,Chicago,Golden State,0,8:00 PM
+782,2027-02-09,Dallas,San Antonio,0,8:00 PM
+783,2027-02-09,Milwaukee,Sacramento,0,8:00 PM
+784,2027-02-09,Oklahoma City,Portland,0,8:00 PM
+785,2027-02-09,Utah,Houston,0,10:00 PM
+786,2027-02-09,LA Clippers,Detroit,0,10:30 PM
+787,2027-02-10,Atlanta,New Orleans,0,7:00 PM
+788,2027-02-10,Indiana,Cleveland,0,7:00 PM
+789,2027-02-10,Washington,Miami,0,7:00 PM
+790,2027-02-10,Boston,Golden State,0,7:30 PM
+791,2027-02-10,Memphis,Orlando,0,8:00 PM
+792,2027-02-10,Phoenix,Detroit,0,9:00 PM
+793,2027-02-10,LA Lakers,LA Clippers,0,10:00 PM
+794,2027-02-11,Charlotte,Milwaukee,0,7:00 PM
+795,2027-02-11,Indiana,Utah,0,7:00 PM
+796,2027-02-11,Philadelphia,New York,0,7:00 PM
+797,2027-02-11,Dallas,Portland,0,8:00 PM
+798,2027-02-11,Houston,Sacramento,0,8:30 PM
+799,2027-02-11,Denver,Chicago,0,9:00 PM
+800,2027-02-11,Oklahoma City,San Antonio,0,9:30 PM
+801,2027-02-12,Atlanta,Phoenix,0,7:00 PM
+802,2027-02-12,Orlando,Miami,0,7:00 PM
+803,2027-02-12,Washington,Brooklyn,0,7:00 PM
+804,2027-02-12,Toronto,Cleveland,0,7:30 PM
+805,2027-02-12,Boston,Minnesota,0,8:00 PM
+806,2027-02-12,Memphis,LA Clippers,0,8:00 PM
+807,2027-02-12,New Orleans,Houston,0,8:00 PM
+808,2027-02-12,LA Lakers,Denver,0,10:30 PM
+809,2027-02-13,Indiana,Sacramento,0,2:00 PM
+810,2027-02-13,Charlotte,Dallas,0,3:00 PM
+811,2027-02-13,Portland,Detroit,0,3:30 PM
+812,2027-02-13,Oklahoma City,Philadelphia,0,5:30 PM
+813,2027-02-13,Orlando,San Antonio,0,7:00 PM
+814,2027-02-13,Washington,Milwaukee,0,7:00 PM
+815,2027-02-13,New York,Golden State,0,8:30 PM
+816,2027-02-14,Atlanta,Sacramento,0,1:00 PM
+817,2027-02-14,Boston,Toronto,0,1:00 PM
+818,2027-02-14,Cleveland,Phoenix,0,1:00 PM
+819,2027-02-14,Miami,Brooklyn,0,1:00 PM
+820,2027-02-14,Houston,Denver,0,2:00 PM
+821,2027-02-14,New Orleans,LA Clippers,0,2:00 PM
+822,2027-02-14,Portland,Chicago,0,3:30 PM
+81,2027-02-15,Charlotte,Minnesota,0,12:00 PM
+82,2027-02-15,Dallas,Philadelphia,0,2:30 PM
+83,2027-02-15,Miami,San Antonio,0,5:00 PM
+84,2027-02-15,Golden State,Indiana,0,7:30 PM
+823,2027-02-15,Washington,Phoenix,0,7:00 PM
+824,2027-02-15,Memphis,New York,0,8:00 PM
+825,2027-02-15,Oklahoma City,Orlando,0,8:00 PM
+826,2027-02-15,Utah,Detroit,0,9:00 PM
+827,2027-02-16,Cleveland,Milwaukee,0,7:00 PM
+828,2027-02-16,Atlanta,Toronto,0,8:00 PM
+829,2027-02-16,LA Lakers,Chicago,0,10:00 PM
+830,2027-02-16,Portland,New Orleans,0,10:00 PM
+831,2027-02-16,LA Clippers,Houston,0,11:00 PM
+832,2027-02-17,Charlotte,Toronto,0,7:00 PM
+833,2027-02-17,Cleveland,Milwaukee,0,7:00 PM
+834,2027-02-17,Detroit,New York,0,7:00 PM
+835,2027-02-17,Orlando,Dallas,0,7:00 PM
+836,2027-02-17,Philadelphia,Phoenix,0,7:00 PM
+837,2027-02-17,Washington,Miami,0,7:00 PM
+838,2027-02-17,Brooklyn,Atlanta,0,7:30 PM
+839,2027-02-17,Memphis,San Antonio,0,8:00 PM
+840,2027-02-17,Denver,Utah,0,9:00 PM
+841,2027-02-17,Oklahoma City,Boston,0,9:30 PM
+842,2027-02-17,Golden State,New Orleans,0,10:00 PM
+843,2027-02-17,Sacramento,Indiana,0,10:00 PM
+844,2027-02-17,LA Clippers,Chicago,0,10:30 PM
+845,2027-02-18,Minnesota,San Antonio,0,7:30 PM
+846,2027-02-18,Memphis,Boston,0,8:00 PM
+847,2027-02-18,LA Lakers,Houston,0,10:00 PM
+848,2027-02-18,Portland,Indiana,0,10:00 PM
+849,2027-02-25,Cleveland,Sacramento,0,7:00 PM
+850,2027-02-25,Detroit,Miami,0,7:00 PM
+851,2027-02-25,Orlando,Charlotte,0,7:00 PM
+852,2027-02-25,Brooklyn,Philadelphia,0,7:30 PM
+853,2027-02-25,New York,Oklahoma City,0,7:30 PM
+854,2027-02-25,Chicago,Atlanta,0,8:00 PM
+855,2027-02-25,Milwaukee,Washington,0,8:00 PM
+856,2027-02-25,New Orleans,Phoenix,0,8:00 PM
+857,2027-02-25,Golden State,Dallas,0,10:00 PM
+858,2027-02-25,LA Clippers,Utah,0,10:30 PM
+859,2027-02-26,Boston,Cleveland,0,7:30 PM
+860,2027-02-26,Toronto,Atlanta,0,7:30 PM
+861,2027-02-26,Minnesota,Indiana,0,8:00 PM
+862,2027-02-26,San Antonio,Memphis,0,8:00 PM
+863,2027-02-26,Houston,Charlotte,0,8:30 PM
+864,2027-02-26,Denver,LA Lakers,0,10:00 PM
+865,2027-02-26,Portland,Dallas,0,10:00 PM
+866,2027-02-27,Utah,Washington,0,3:00 PM
+867,2027-02-27,Detroit,Oklahoma City,0,5:30 PM
+868,2027-02-27,Chicago,Brooklyn,0,8:00 PM
+869,2027-02-27,Memphis,Sacramento,0,8:00 PM
+870,2027-02-27,New York,Philadelphia,0,8:30 PM
+871,2027-02-27,Phoenix,New Orleans,0,9:00 PM
+872,2027-02-28,San Antonio,Denver,0,1:00 PM
+873,2027-02-28,Dallas,LA Lakers,0,3:30 PM
+874,2027-02-28,Indiana,Toronto,0,4:00 PM
+875,2027-02-28,Orlando,Atlanta,0,4:30 PM
+876,2027-02-28,Charlotte,Sacramento,0,7:00 PM
+877,2027-02-28,Minnesota,Boston,0,7:00 PM
+878,2027-02-28,New York,Milwaukee,0,7:30 PM
+879,2027-02-28,Houston,Miami,0,9:30 PM
+880,2027-02-28,LA Clippers,Portland,0,10:30 PM
+881,2027-03-01,Cleveland,Philadelphia,0,7:00 PM
+882,2027-03-01,Detroit,Chicago,0,7:00 PM
+883,2027-03-01,New Orleans,Utah,0,8:00 PM
+884,2027-03-01,Houston,Golden State,0,8:30 PM
+885,2027-03-01,Denver,Brooklyn,0,9:00 PM
+886,2027-03-01,Phoenix,Washington,0,9:30 PM
+887,2027-03-02,Indiana,Boston,0,7:00 PM
+888,2027-03-02,Orlando,LA Lakers,0,7:00 PM
+889,2027-03-02,Miami,Toronto,0,7:30 PM
+890,2027-03-02,New York,Memphis,0,7:30 PM
+891,2027-03-02,Dallas,Golden State,0,8:00 PM
+892,2027-03-02,Milwaukee,Detroit,0,8:00 PM
+893,2027-03-02,Oklahoma City,Minnesota,0,8:00 PM
+894,2027-03-02,Sacramento,Washington,0,10:00 PM
+895,2027-03-02,Portland,LA Clippers,0,11:00 PM
+896,2027-03-03,Atlanta,Chicago,0,7:00 PM
+897,2027-03-03,Philadelphia,Charlotte,0,7:00 PM
+898,2027-03-03,Miami,Toronto,0,7:30 PM
+899,2027-03-03,Milwaukee,Utah,0,8:00 PM
+900,2027-03-03,Houston,New Orleans,0,8:30 PM
+901,2027-03-03,Phoenix,Brooklyn,0,9:00 PM
+902,2027-03-03,Denver,San Antonio,0,10:00 PM
+903,2027-03-04,Cleveland,Portland,0,7:00 PM
+904,2027-03-04,Orlando,Indiana,0,7:00 PM
+905,2027-03-04,Philadelphia,LA Lakers,0,7:00 PM
+906,2027-03-04,Atlanta,Memphis,0,7:30 PM
+907,2027-03-04,Dallas,New York,0,9:30 PM
+908,2027-03-04,Golden State,Washington,0,10:00 PM
+909,2027-03-04,Sacramento,Oklahoma City,0,10:00 PM
+910,2027-03-04,LA Clippers,Brooklyn,0,10:30 PM
+911,2027-03-05,Detroit,Boston,0,7:00 PM
+912,2027-03-05,Orlando,Utah,0,7:00 PM
+913,2027-03-05,Toronto,Portland,0,7:30 PM
+914,2027-03-05,New Orleans,Milwaukee,0,8:00 PM
+915,2027-03-05,Phoenix,Minnesota,0,9:00 PM
+916,2027-03-05,Houston,San Antonio,0,9:30 PM
+917,2027-03-06,Miami,Indiana,0,3:00 PM
+918,2027-03-06,Chicago,Charlotte,0,5:00 PM
+919,2027-03-06,Cleveland,Atlanta,0,5:30 PM
+920,2027-03-06,Washington,Utah,0,7:00 PM
+921,2027-03-06,Memphis,New Orleans,0,8:00 PM
+922,2027-03-06,LA Lakers,Oklahoma City,0,8:30 PM
+923,2027-03-06,Sacramento,LA Clippers,0,10:00 PM
+924,2027-03-07,Boston,Philadelphia,0,1:00 PM
+925,2027-03-07,Denver,Minnesota,0,3:30 PM
+926,2027-03-07,Chicago,Portland,0,5:00 PM
+927,2027-03-07,San Antonio,New York,0,7:30 PM
+928,2027-03-07,Golden State,Houston,0,10:00 PM
+929,2027-03-07,LA Lakers,Brooklyn,0,10:30 PM
+930,2027-03-08,Indiana,Charlotte,0,7:00 PM
+931,2027-03-08,Philadelphia,Utah,0,7:00 PM
+932,2027-03-08,Miami,Phoenix,0,7:30 PM
+933,2027-03-08,Memphis,Atlanta,0,8:00 PM
+934,2027-03-08,Minnesota,New Orleans,0,8:00 PM
+935,2027-03-08,Oklahoma City,Dallas,0,9:30 PM
+936,2027-03-08,Sacramento,Denver,0,10:00 PM
+937,2027-03-08,LA Clippers,Houston,0,10:30 PM
+938,2027-03-09,Orlando,Phoenix,0,7:00 PM
+939,2027-03-09,Brooklyn,Milwaukee,0,7:30 PM
+940,2027-03-09,Detroit,Cleveland,0,8:00 PM
+941,2027-03-09,Chicago,Boston,0,8:00 PM
+942,2027-03-09,Dallas,Memphis,0,8:00 PM
+943,2027-03-09,San Antonio,Washington,0,8:00 PM
+944,2027-03-09,Golden State,Portland,0,11:00 PM
+945,2027-03-10,Charlotte,New Orleans,0,7:00 PM
+946,2027-03-10,Miami,Orlando,0,7:00 PM
+947,2027-03-10,Toronto,Oklahoma City,0,7:30 PM
+948,2027-03-10,Utah,Houston,0,9:00 PM
+949,2027-03-10,Minnesota,Atlanta,0,9:30 PM
+950,2027-03-10,Portland,Denver,0,10:00 PM
+951,2027-03-10,Sacramento,Golden State,0,10:00 PM
+952,2027-03-10,LA Clippers,New York,0,10:30 PM
+953,2027-03-11,Charlotte,Indiana,0,7:00 PM
+954,2027-03-11,Detroit,Milwaukee,0,7:00 PM
+955,2027-03-11,Boston,Memphis,0,7:30 PM
+956,2027-03-11,San Antonio,Philadelphia,0,7:30 PM
+957,2027-03-11,Atlanta,Brooklyn,0,8:00 PM
+958,2027-03-11,Chicago,Phoenix,0,8:00 PM
+959,2027-03-11,Dallas,Washington,0,8:00 PM
+960,2027-03-11,LA Lakers,New York,0,10:00 PM
+961,2027-03-11,LA Clippers,Cleveland,0,10:30 PM
+962,2027-03-12,Boston,Oklahoma City,0,7:30 PM
+963,2027-03-12,Milwaukee,Miami,0,8:00 PM
+964,2027-03-12,New Orleans,Toronto,0,8:00 PM
+965,2027-03-12,Utah,Sacramento,0,9:30 PM
+966,2027-03-12,Denver,Golden State,0,10:00 PM
+967,2027-03-12,LA Lakers,Cleveland,0,10:00 PM
+968,2027-03-13,Atlanta,Orlando,0,3:00 PM
+969,2027-03-13,Detroit,Brooklyn,0,3:00 PM
+970,2027-03-13,Houston,Indiana,0,5:30 PM
+971,2027-03-13,Charlotte,Phoenix,0,6:00 PM
+972,2027-03-13,Chicago,Memphis,0,8:00 PM
+973,2027-03-13,Dallas,New Orleans,0,8:00 PM
+974,2027-03-13,Minnesota,Philadelphia,0,8:30 PM
+975,2027-03-13,Portland,LA Clippers,0,10:30 PM
+976,2027-03-14,New York,Boston,0,12:00 PM
+977,2027-03-14,Oklahoma City,San Antonio,0,2:30 PM
+978,2027-03-14,Toronto,Detroit,0,5:00 PM
+979,2027-03-14,Sacramento,Cleveland,0,6:00 PM
+980,2027-03-14,Denver,Miami,0,7:30 PM
+981,2027-03-14,Minnesota,Washington,0,8:00 PM
+982,2027-03-14,LA Lakers,Golden State,0,10:00 PM
+983,2027-03-15,Philadelphia,Toronto,0,7:00 PM
+984,2027-03-15,Brooklyn,Indiana,0,7:30 PM
+985,2027-03-15,Chicago,Orlando,0,8:00 PM
+986,2027-03-15,Memphis,Phoenix,0,8:00 PM
+987,2027-03-15,Dallas,Atlanta,0,9:30 PM
+988,2027-03-16,Washington,New York,0,7:00 PM
+989,2027-03-16,Boston,Sacramento,0,7:30 PM
+990,2027-03-16,Indiana,Detroit,0,8:00 PM
+991,2027-03-16,Milwaukee,Orlando,0,8:00 PM
+992,2027-03-16,New Orleans,Minnesota,0,8:00 PM
+993,2027-03-16,Oklahoma City,Charlotte,0,8:00 PM
+994,2027-03-16,Houston,San Antonio,0,8:30 PM
+995,2027-03-16,Golden State,Cleveland,0,10:00 PM
+996,2027-03-16,Portland,LA Lakers,0,10:00 PM
+997,2027-03-16,LA Clippers,Denver,0,11:00 PM
+998,2027-03-17,Philadelphia,Chicago,0,7:00 PM
+999,2027-03-17,New York,Sacramento,0,7:30 PM
+1000,2027-03-17,Oklahoma City,Dallas,0,7:30 PM
+1001,2027-03-17,Houston,Brooklyn,0,8:30 PM
+1002,2027-03-17,Utah,Atlanta,0,9:00 PM
+1003,2027-03-17,Golden State,Memphis,0,10:00 PM
+1004,2027-03-17,LA Lakers,Phoenix,0,10:00 PM
+1005,2027-03-17,Portland,Miami,0,10:00 PM
+1006,2027-03-18,Indiana,Toronto,0,7:00 PM
+1007,2027-03-18,Washington,Philadelphia,0,7:00 PM
+1008,2027-03-18,Boston,Orlando,0,7:30 PM
+1009,2027-03-18,Milwaukee,Detroit,0,8:00 PM
+1010,2027-03-18,New Orleans,Charlotte,0,8:00 PM
+1011,2027-03-18,San Antonio,Brooklyn,0,8:00 PM
+1012,2027-03-18,Denver,Cleveland,0,9:00 PM
+1013,2027-03-18,Utah,Minnesota,0,9:00 PM
+1014,2027-03-18,LA Clippers,Memphis,0,10:30 PM
+1015,2027-03-19,Toronto,Sacramento,0,7:30 PM
+1016,2027-03-19,New Orleans,Houston,0,8:00 PM
+1017,2027-03-19,San Antonio,Dallas,0,8:00 PM
+1018,2027-03-19,Golden State,Portland,0,10:00 PM
+1019,2027-03-19,LA Lakers,Atlanta,0,10:00 PM
+1020,2027-03-19,Phoenix,Miami,0,10:30 PM
+1021,2027-03-20,New York,Washington,0,1:00 PM
+1022,2027-03-20,Orlando,Denver,0,7:00 PM
+1023,2027-03-20,Cleveland,Chicago,0,7:30 PM
+1024,2027-03-20,Detroit,Charlotte,0,8:00 PM
+1025,2027-03-20,Memphis,Oklahoma City,0,8:00 PM
+1026,2027-03-20,Milwaukee,Indiana,0,8:00 PM
+1027,2027-03-20,LA Clippers,Atlanta,0,10:30 PM
+1028,2027-03-21,Boston,New Orleans,0,3:00 PM
+1029,2027-03-21,Brooklyn,Sacramento,0,3:00 PM
+1030,2027-03-21,Utah,Toronto,0,5:00 PM
+1031,2027-03-21,Phoenix,Portland,0,5:00 PM
+1032,2027-03-21,Miami,Denver,0,6:00 PM
+1033,2027-03-21,Philadelphia,San Antonio,0,7:30 PM
+1034,2027-03-21,LA Lakers,Dallas,0,10:00 PM
+1035,2027-03-22,Cleveland,Houston,0,7:00 PM
+1036,2027-03-22,Orlando,Indiana,0,7:00 PM
+1037,2027-03-22,Chicago,Sacramento,0,8:00 PM
+1038,2027-03-22,Memphis,Charlotte,0,8:00 PM
+1039,2027-03-22,Milwaukee,Washington,0,8:00 PM
+1040,2027-03-22,Minnesota,Detroit,0,9:30 PM
+1041,2027-03-22,Golden State,Atlanta,0,10:00 PM
+1042,2027-03-22,LA Clippers,Dallas,0,10:30 PM
+1043,2027-03-23,Brooklyn,Boston,0,7:30 PM
+1044,2027-03-23,New York,New Orleans,0,7:30 PM
+1045,2027-03-23,Miami,LA Lakers,0,8:00 PM
+1046,2027-03-23,Utah,Philadelphia,0,9:00 PM
+1047,2027-03-23,Portland,Toronto,0,10:00 PM
+1048,2027-03-23,Phoenix,Oklahoma City,0,11:00 PM
+1049,2027-03-24,Charlotte,Detroit,0,7:00 PM
+1050,2027-03-24,Indiana,Memphis,0,7:00 PM
+1051,2027-03-24,Washington,Denver,0,7:00 PM
+1052,2027-03-24,Boston,San Antonio,0,7:30 PM
+1053,2027-03-24,New York,Houston,0,7:30 PM
+1054,2027-03-24,Chicago,Orlando,0,8:00 PM
+1055,2027-03-24,Minnesota,Dallas,0,8:00 PM
+1056,2027-03-24,Golden State,Philadelphia,0,10:00 PM
+1057,2027-03-24,Phoenix,Oklahoma City,0,10:00 PM
+1058,2027-03-24,Sacramento,Atlanta,0,10:00 PM
+1059,2027-03-24,LA Clippers,Milwaukee,0,10:30 PM
+1060,2027-03-25,Cleveland,LA Lakers,0,7:00 PM
+1061,2027-03-25,Detroit,Houston,0,7:00 PM
+1062,2027-03-25,Indiana,San Antonio,0,7:00 PM
+1063,2027-03-25,Brooklyn,Denver,0,7:30 PM
+1064,2027-03-25,Miami,Utah,0,7:30 PM
+1065,2027-03-25,Memphis,Chicago,0,8:00 PM
+1066,2027-03-25,Golden State,Toronto,0,10:00 PM
+1067,2027-03-26,Charlotte,New York,0,7:00 PM
+1068,2027-03-26,Dallas,New Orleans,0,8:00 PM
+1069,2027-03-26,Minnesota,Orlando,0,8:00 PM
+1070,2027-03-26,Oklahoma City,LA Clippers,0,8:00 PM
+1071,2027-03-26,Phoenix,Milwaukee,0,10:00 PM
+1072,2027-03-26,Portland,Philadelphia,0,10:00 PM
+1073,2027-03-27,Detroit,San Antonio,0,3:00 PM
+1074,2027-03-27,Atlanta,Utah,0,7:00 PM
+1075,2027-03-27,Washington,Golden State,0,7:00 PM
+1076,2027-03-27,Miami,Boston,0,8:00 PM
+1077,2027-03-27,Chicago,LA Clippers,0,8:00 PM
+1078,2027-03-27,Portland,Milwaukee,0,10:00 PM
+1079,2027-03-27,Sacramento,Toronto,0,10:00 PM
+1080,2027-03-28,Orlando,New York,0,12:30 PM
+1081,2027-03-28,Brooklyn,Memphis,0,3:00 PM
+1082,2027-03-28,Houston,LA Lakers,0,3:00 PM
+1083,2027-03-28,Charlotte,Utah,0,6:00 PM
+1084,2027-03-28,Washington,Dallas,0,6:00 PM
+1085,2027-03-28,New Orleans,Boston,0,7:00 PM
+1086,2027-03-28,Minnesota,Oklahoma City,0,7:30 PM
+1087,2027-03-28,Phoenix,Toronto,0,9:00 PM
+1088,2027-03-28,Denver,Philadelphia,0,10:00 PM
+1089,2027-03-29,Atlanta,Minnesota,0,7:00 PM
+1090,2027-03-29,Cleveland,Miami,0,7:00 PM
+1091,2027-03-29,Detroit,LA Clippers,0,7:00 PM
+1092,2027-03-29,Brooklyn,Golden State,0,7:30 PM
+1093,2027-03-29,Chicago,Indiana,0,8:00 PM
+1094,2027-03-29,Milwaukee,Dallas,0,8:00 PM
+1095,2027-03-29,San Antonio,Phoenix,0,9:30 PM
+1096,2027-03-29,Sacramento,Denver,0,10:00 PM
+1097,2027-03-30,Charlotte,Miami,0,7:00 PM
+1098,2027-03-30,Indiana,Boston,0,8:00 PM
+1099,2027-03-30,Orlando,New York,0,8:00 PM
+1100,2027-03-30,Memphis,LA Lakers,0,8:00 PM
+1101,2027-03-30,Utah,Oklahoma City,0,9:00 PM
+1102,2027-03-30,Portland,Houston,0,11:00 PM
+1103,2027-03-31,Atlanta,LA Clippers,0,7:00 PM
+1104,2027-03-31,Detroit,Toronto,0,7:00 PM
+1105,2027-03-31,Philadelphia,Golden State,0,7:00 PM
+1106,2027-03-31,Washington,Chicago,0,7:00 PM
+1107,2027-03-31,Brooklyn,Cleveland,0,7:30 PM
+1108,2027-03-31,Milwaukee,New Orleans,0,8:00 PM
+1109,2027-03-31,Minnesota,Sacramento,0,8:00 PM
+1110,2027-03-31,San Antonio,Phoenix,0,8:00 PM
+1111,2027-03-31,Dallas,Denver,0,9:30 PM
+1112,2027-03-31,Portland,Houston,0,10:00 PM
+1113,2027-04-01,Cleveland,Boston,0,7:00 PM
+1114,2027-04-01,Indiana,Orlando,0,7:00 PM
+1115,2027-04-01,New York,Charlotte,0,7:30 PM
+1116,2027-04-01,Oklahoma City,LA Lakers,0,9:30 PM
+1117,2027-04-02,Washington,Philadelphia,0,7:00 PM
+1118,2027-04-02,Boston,Miami,0,7:30 PM
+1119,2027-04-02,Brooklyn,New York,0,7:30 PM
+1120,2027-04-02,Minnesota,Golden State,0,7:30 PM
+1121,2027-04-02,Chicago,Detroit,0,8:00 PM
+1122,2027-04-02,Dallas,Sacramento,0,8:00 PM
+1123,2027-04-02,Milwaukee,Charlotte,0,8:00 PM
+1124,2027-04-02,Toronto,Atlanta,0,8:30 PM
+1125,2027-04-02,Houston,Memphis,0,8:30 PM
+1126,2027-04-02,Phoenix,Denver,0,10:00 PM
+1127,2027-04-02,Portland,Utah,0,10:00 PM
+1128,2027-04-02,LA Clippers,San Antonio,0,10:30 PM
+1129,2027-04-03,Oklahoma City,New Orleans,0,5:00 PM
+1130,2027-04-03,Orlando,Washington,0,7:00 PM
+1131,2027-04-04,Philadelphia,Atlanta,0,1:00 PM
+1132,2027-04-04,Milwaukee,Brooklyn,0,2:00 PM
+1133,2027-04-04,Cleveland,Charlotte,0,3:00 PM
+1134,2027-04-04,Detroit,Miami,0,3:00 PM
+1135,2027-04-04,Dallas,Minnesota,0,3:00 PM
+1136,2027-04-04,Toronto,Indiana,0,3:30 PM
+1137,2027-04-04,Houston,Chicago,0,4:00 PM
+1138,2027-04-04,LA Clippers,Phoenix,0,4:30 PM
+1139,2027-04-04,Denver,Memphis,0,5:00 PM
+1140,2027-04-04,Utah,Portland,0,5:00 PM
+1141,2027-04-04,Sacramento,Golden State,0,6:00 PM
+1142,2027-04-04,New York,Boston,0,7:30 PM
+1143,2027-04-04,LA Lakers,San Antonio,0,10:00 PM
+1144,2027-04-05,Cleveland,Brooklyn,0,7:00 PM
+1145,2027-04-05,Orlando,Miami,0,7:00 PM
+1146,2027-04-05,New Orleans,Washington,0,8:00 PM
+1147,2027-04-06,Charlotte,Indiana,0,7:00 PM
+1148,2027-04-06,Toronto,Philadelphia,0,7:30 PM
+1149,2027-04-06,Atlanta,New York,0,8:00 PM
+1150,2027-04-06,Memphis,Detroit,0,8:00 PM
+1151,2027-04-06,Milwaukee,Chicago,0,8:00 PM
+1152,2027-04-06,San Antonio,Sacramento,0,8:00 PM
+1153,2027-04-06,Denver,New Orleans,0,9:00 PM
+1154,2027-04-06,Utah,Oklahoma City,0,9:00 PM
+1155,2027-04-06,LA Lakers,Dallas,0,10:00 PM
+1156,2027-04-06,LA Clippers,Minnesota,0,10:30 PM
+1157,2027-04-06,Golden State,Phoenix,0,11:00 PM
+1158,2027-04-07,Detroit,Indiana,0,7:00 PM
+1159,2027-04-07,Orlando,Boston,0,7:00 PM
+1160,2027-04-07,Toronto,Brooklyn,0,7:30 PM
+1161,2027-04-07,San Antonio,Cleveland,0,7:30 PM
+1162,2027-04-07,Chicago,Charlotte,0,8:00 PM
+1163,2027-04-07,Memphis,Washington,0,8:00 PM
+1164,2027-04-07,Houston,Sacramento,0,8:30 PM
+1165,2027-04-07,LA Lakers,Minnesota,0,10:00 PM
+1166,2027-04-07,Portland,Dallas,0,10:00 PM
+1167,2027-04-08,Miami,Philadelphia,0,7:00 PM
+1168,2027-04-08,Milwaukee,New York,0,8:00 PM
+1169,2027-04-08,Denver,LA Clippers,0,9:00 PM
+1170,2027-04-08,Utah,New Orleans,0,9:00 PM
+1171,2027-04-08,Oklahoma City,Golden State,0,9:30 PM
+1172,2027-04-09,Atlanta,Boston,0,7:00 PM
+1173,2027-04-09,Charlotte,Brooklyn,0,7:00 PM
+1174,2027-04-09,Indiana,Cleveland,0,7:00 PM
+1175,2027-04-09,New York,Detroit,0,7:00 PM
+1176,2027-04-09,Orlando,Toronto,0,7:00 PM
+1177,2027-04-09,Miami,Washington,0,8:00 PM
+1178,2027-04-09,Chicago,Milwaukee,0,8:00 PM
+1179,2027-04-09,Oklahoma City,Golden State,0,8:00 PM
+1180,2027-04-09,Houston,Portland,0,8:30 PM
+1181,2027-04-09,San Antonio,Denver,0,9:30 PM
+1182,2027-04-09,Utah,LA Clippers,0,9:30 PM
+1183,2027-04-09,LA Lakers,Minnesota,0,10:00 PM
+1184,2027-04-09,Phoenix,Memphis,0,10:00 PM
+1185,2027-04-09,Sacramento,Dallas,0,10:00 PM
+1186,2027-04-11,Boston,Milwaukee,0,6:00 PM
+1187,2027-04-11,Brooklyn,Toronto,0,6:00 PM
+1188,2027-04-11,Cleveland,Atlanta,0,6:00 PM
+1189,2027-04-11,Miami,Orlando,0,6:00 PM
+1190,2027-04-11,New York,Indiana,0,6:00 PM
+1191,2027-04-11,Philadelphia,Charlotte,0,6:00 PM
+1192,2027-04-11,Washington,Detroit,0,6:00 PM
+1193,2027-04-11,New Orleans,Chicago,0,6:00 PM
+1194,2027-04-11,Dallas,Memphis,0,8:30 PM
+1195,2027-04-11,Minnesota,Houston,0,8:30 PM
+1196,2027-04-11,San Antonio,Portland,0,8:30 PM
+1197,2027-04-11,Denver,Oklahoma City,0,8:30 PM
+1198,2027-04-11,Golden State,Utah,0,8:30 PM
+1199,2027-04-11,LA Clippers,Sacramento,0,8:30 PM
+1200,2027-04-11,LA Lakers,Phoenix,0,8:30 PM

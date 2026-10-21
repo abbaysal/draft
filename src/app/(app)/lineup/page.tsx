@@ -4,6 +4,10 @@ import { CAT_BY_KEY } from "@/lib/categories";
 import { weekRange } from "@/lib/engine/schedule";
 import { matchupPeriods, parseSchedule, planWeek, type LineupOverrides } from "@/lib/engine/lineup";
 import { currentPeriod, useMatchupSchedule } from "@/client/matchups";
+import { todayET, useMatchupSync, usePlanOptions } from "@/client/matchup-sync";
+import { YahooSyncPanel } from "@/components/lineup/yahoo-sync-panel";
+import { TodayCard } from "@/components/lineup/today-card";
+import { CoachPanel } from "@/components/lineup/coach-panel";
 import { useEngineContext } from "@/client/analysis";
 import { useActiveSession } from "@/client/store";
 import { Badge, Button, cn, Panel, ProbBar, Spinner } from "@/components/ui";
@@ -25,18 +29,21 @@ export default function LineupPage() {
   const [text, setText] = useState("");
   const [week, setWeek] = useState(() => currentPeriod(21));
 
+  const today = todayET();
+  const { sync, save: saveSync } = useMatchupSync();
+  const planOpts = usePlanOptions(sync, week);
   const [overrides, setOverrides] = useState<Record<number, LineupOverrides>>({});
   const ov = overrides[week];
   const optimal = useMemo(() => {
     const opp = opponents[week - 1];
     if (!ctx || opp == null || opp < 0) return null;
-    return planWeek(ctx, week, opp);
-  }, [ctx, opponents, week]);
+    return planWeek(ctx, week, opp, planOpts);
+  }, [ctx, opponents, week, planOpts]);
   const plan = useMemo(() => {
     const opp = opponents[week - 1];
     if (!ctx || !optimal || !ov || !Object.keys(ov).length) return optimal;
-    return planWeek(ctx, week, opp, { overrides: ov });
-  }, [ctx, opponents, week, optimal, ov]);
+    return planWeek(ctx, week, opp, { ...planOpts, overrides: ov });
+  }, [ctx, opponents, week, optimal, ov, planOpts]);
   /** Lineup analyzer: clicking a game day flips start ↔ sit for that player. */
   const toggleCell = (date: string, id: string, started: boolean) => {
     const day = { ...(ov?.[date] ?? {}) };
@@ -51,11 +58,14 @@ export default function LineupPage() {
   const nOverrides = ov ? Object.values(ov).reduce((a, d) => a + Object.keys(d).length, 0) : 0;
   const season = useMemo(() => {
     if (!ctx) return [];
-    return opponents.map((opp, i) => (opp >= 0 ? { week: i + 1, opp, plan: planWeek(ctx, i + 1, opp, { pickups: false }) } : null)).filter(Boolean) as { week: number; opp: number; plan: ReturnType<typeof planWeek> }[];
-  }, [ctx, opponents]);
+    // Your synced Yahoo roster is the best guess for future weeks too.
+    return opponents
+      .map((opp, i) => (opp >= 0 ? { week: i + 1, opp, plan: planWeek(ctx, i + 1, opp, i + 1 === week ? { ...planOpts, pickups: false } : { pickups: false, rosters: sync ? { mine: sync.mine } : null }) } : null))
+      .filter(Boolean) as { week: number; opp: number; plan: ReturnType<typeof planWeek> }[];
+  }, [ctx, opponents, week, planOpts, sync]);
 
   if (!ctx || !session) return <Spinner />;
-  const myCount = ctx.rosters[ctx.myIndex].length;
+  const myCount = sync?.week === week ? sync.mine.length : ctx.rosters[ctx.myIndex].length;
   const saveSchedule = () => {
     const parsed = parseSchedule(text);
     if (!parsed.length) return;
@@ -94,7 +104,12 @@ export default function LineupPage() {
           </Button>
         </Panel>
       )}
-      {myCount < ctx.starters && <Panel><div className="text-sm text-yellow-300">Your roster on the draft board has {myCount} players — enter the full draft (all teams) so lineups and matchups are accurate.</div></Panel>}
+      <div className="grid gap-3 xl:grid-cols-2">
+        <YahooSyncPanel ctx={ctx} sync={sync} onSave={saveSync} week={week} />
+        {plan && plan.daily.length > 0 && today >= plan.dates.start && today <= plan.dates.end && <TodayCard ctx={ctx} plan={plan} today={today} />}
+      </div>
+      {myCount < ctx.starters && <Panel><div className="text-sm text-yellow-300">Your roster has {myCount} players — sync from Yahoo (above) or enter the full draft so lineups and matchups are accurate.</div></Panel>}
+      {plan && <CoachPanel ctx={ctx} plan={plan} opts={planOpts} sync={sync?.week === week ? sync : null} today={today} onApply={(o) => setOverrides({ ...overrides, [week]: o })} />}
       {!plan ? (
         <Panel><div className="text-sm text-mute">No opponent resolved for week {week}. Edit the schedule so team names match the league settings.</div></Panel>
       ) : (
@@ -128,7 +143,9 @@ export default function LineupPage() {
                 })}
               </tbody>
             </table>
-            <div className="mt-2 text-[10px] text-dim">Weekly totals with projected games for this week. SWING = categories between 30% and 70% — where lineup and pickup decisions matter most.</div>
+            <div className="mt-2 text-[10px] text-dim">
+              {plan.remaining.actualUsed ? `Projected final totals = Yahoo totals so far + projected games from ${plan.remaining.fromDate} (${plan.remaining.me} starts left for you, ${plan.remaining.opp} for them).` : "Projected weekly totals."} SWING = categories between 30% and 70% — where lineup and pickup decisions matter most.
+            </div>
             {plan.notes.map((n) => <div key={n} className="mt-1 text-[11px] text-yellow-300">{n}</div>)}
           </Panel>
           <Panel title="Recommended lineup (this matchup)" bodyClass="p-0">
@@ -148,20 +165,21 @@ export default function LineupPage() {
             </table>
             <div className="px-2 py-1.5 text-[10px] text-dim">Slots = best lineup for the whole matchup. In a daily league use the day-by-day plan below: it re-slots every game day. Impact = expected categories won added this week, so it favours swing categories over ones you already win or lose.</div>
           </Panel>
-          <Panel title="Waiver pickups for this matchup" bodyClass="p-0">
-            <table className="w-full text-xs">
-              <thead className="text-[10px] text-dim uppercase"><tr><th className="px-2 py-1 text-left">Free agent</th><th className="px-2 text-right">Impact</th><th className="px-2 text-right">vs worst rostered</th></tr></thead>
+          <Panel title="Streaming: best adds for the rest of this matchup" bodyClass="p-0">
+            <table className="w-full text-xs" data-testid="streaming">
+              <thead className="text-[10px] text-dim uppercase"><tr><th className="px-2 py-1 text-left">Add</th><th className="text-left">Games left</th><th className="text-left">Drop</th><th className="px-2 text-right" title="Expected categories gained this week from the games he would actually start">Gain</th></tr></thead>
               <tbody>
                 {plan.pickups.map((p) => (
                   <tr key={p.id} className="border-t border-line/50">
                     <td className="px-2 py-1"><PlayerLink p={ctx.byId.get(p.id)!} /></td>
-                    <td className="num px-2 text-right">+{p.score.toFixed(2)}</td>
+                    <td className="text-mute">{(p.days ?? []).map((d) => DOW[new Date(d + "T12:00:00Z").getUTCDay()]).join(" ") || "—"}</td>
+                    <td className="text-mute">{p.replaces ? ctx.byId.get(p.replaces)?.name : "—"}</td>
                     <td className={cn("num px-2 text-right", p.gain > 0 ? "text-good" : "text-dim")}>{p.gain > 0 ? "+" : ""}{p.gain.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="px-2 py-1.5 text-[10px] text-dim">Free agents = players not on the draft board. Positive “vs worst rostered” means he would help this week more than {plan.pickups[0]?.replaces ? ctx.byId.get(plan.pickups[0].replaces)?.name : "your weakest player"}.</div>
+            <div className="px-2 py-1.5 text-[10px] text-dim">Schedule-aware: counts only the games he would actually start on the remaining days (open slots or beating a starter), minus the dropped player&apos;s lost starts. Free agents = players on no roster (draft board / Yahoo sync).</div>
           </Panel>
         </div>
       )}
@@ -189,8 +207,8 @@ export default function LineupPage() {
               <tr>
                 <th className="px-2 py-1 text-left">Player</th>
                 {plan.daily.map((d) => (
-                  <th key={d.date} className="px-1 text-center">
-                    {DOW[new Date(d.date + "T12:00:00Z").getUTCDay()]} {md(d.date)}
+                  <th key={d.date} className={cn("px-1 text-center", d.date === today && "text-accent")}>
+                    {d.date === today ? "Today" : DOW[new Date(d.date + "T12:00:00Z").getUTCDay()]} {md(d.date)}
                   </th>
                 ))}
               </tr>
@@ -202,15 +220,17 @@ export default function LineupPage() {
                   {plan.daily.map((d) => {
                     const st = d.starters.find((x) => x.id === r.id);
                     const sit = d.sit.includes(r.id);
+                    const prot = d.protect?.includes(r.id);
+                    const out = d.out?.includes(r.id);
                     const forced = ov?.[d.date]?.[r.id];
                     return (
                       <td
                         key={d.date}
                         onClick={st || sit ? () => toggleCell(d.date, r.id, !!st) : undefined}
-                        title={st || sit ? (st ? "Click to sit him this day" : "Click to start him this day") : undefined}
-                        className={cn("px-1 text-center font-semibold", (st || sit) && "cursor-pointer hover:bg-panel2", st ? "text-accent" : sit ? "bg-red-500/10 text-bad" : "text-dim/40", forced && "ring-1 ring-inset ring-sky-400")}
+                        title={out ? "Reported out" : prot ? "Benched on purpose: expected to cost more (FG%/FT%/TO) than he adds — click to start anyway" : st || sit ? (st ? "Click to sit him this day" : "Click to start him this day") : undefined}
+                        className={cn("px-1 text-center font-semibold", (st || sit) && "cursor-pointer hover:bg-panel2", d.date === today && "bg-accent/5", st ? "text-accent" : out ? "text-bad" : prot ? "bg-yellow-500/10 text-warn" : sit ? "bg-red-500/10 text-bad" : "text-dim/40", forced && "ring-1 ring-inset ring-sky-400")}
                       >
-                        {st ? st.slot : sit ? "BN" : "·"}
+                        {st ? st.slot : out ? "OUT" : prot ? "BN*" : sit ? "BN" : "·"}
                       </td>
                     );
                   })}
@@ -224,7 +244,7 @@ export default function LineupPage() {
               </tr>
             </tbody>
           </table>
-          <div className="px-2 py-1.5 text-[10px] text-dim">Slot = where to put him that day · BN (red) = has a game but sits · “·” = no NBA game. Lineup analyzer: click any game day to start/sit a player your way — the matchup is re-projected and compared with the recommended lineup (blue outline = your change). Uses the official 2026-27 NBA schedule; re-check injuries before lock.</div>
+          <div className="px-2 py-1.5 text-[10px] text-dim">Slot = where to put him that day · BN (red) = has a game but no slot fits · BN* (amber) = benched on purpose (his game is expected to hurt FG%/FT%/TO more than it helps) · OUT = reported out · “·” = no NBA game.{plan.remaining.fromDate ? ` Days before ${plan.remaining.fromDate} are already in the Yahoo totals.` : ""} Lineup analyzer: click any game day to start/sit a player your way — the matchup is re-projected and compared with the recommended lineup (blue outline = your change). Uses the official 2026-27 NBA schedule; re-check injuries before lock.</div>
         </Panel>
       )}
       <Panel title="Season outlook (regular season)" bodyClass="p-0">

@@ -7,6 +7,7 @@ import { findTrades, powerRankings, waiverMoves, type TradeIdea } from "@/lib/en
 import { recentForm } from "@/lib/live/form";
 import { useEngineContext } from "@/client/analysis";
 import { currentPeriod, useMatchupSchedule } from "@/client/matchups";
+import { useMatchupSync, usePlanOptions } from "@/client/matchup-sync";
 import { useDataset, useStore } from "@/client/store";
 import { Badge, Button, cn, Panel, ProbBar, Spinner, Stat } from "@/components/ui";
 import { PlayerLink } from "@/components/player";
@@ -22,10 +23,12 @@ export function SeasonHome() {
   const period = currentPeriod(opponents.length || 21);
   const [trades, setTrades] = useState<TradeIdea[] | null>(null);
 
+  const { sync } = useMatchupSync();
+  const planOpts = usePlanOptions(sync, period);
   const week = useMemo(() => {
     const opp = opponents[period - 1];
-    return ctx && opp != null && opp >= 0 ? planWeek(ctx, period, opp, { pickups: false }) : null;
-  }, [ctx, opponents, period]);
+    return ctx && opp != null && opp >= 0 ? planWeek(ctx, period, opp, { ...planOpts, pickups: false }) : null;
+  }, [ctx, opponents, period, planOpts]);
   const upcoming = useMemo(
     () => (ctx ? opponents.map((opp, i) => ({ period: i + 1, opp })).filter((x) => x.period >= period && x.opp >= 0).slice(0, 6).map((x) => ({ ...x, plan: planWeek(ctx, x.period, x.opp, { pickups: false }) })) : []),
     [ctx, opponents, period],

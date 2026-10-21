@@ -9,6 +9,8 @@ export interface ScheduleGame {
   date: string; // YYYY-MM-DD (US Eastern date)
   home: string;
   away: string;
+  /** Tip-off, US Eastern ("7:30 PM"), when known. */
+  time?: string;
 }
 
 export const SEASON_START = "2026-10-20";
@@ -52,6 +54,8 @@ export interface ScheduleModel {
   dailyGameCounts(week: number): { date: string; games: number }[];
   /** Dates (YYYY-MM-DD) on which an NBA team plays in a fantasy week; empty in uniform mode. */
   gameDates(team: string, week: number): string[];
+  /** The team's game on a date (opponent, home/away, ET tip-off), if any. */
+  gameOn(team: string, date: string): { opp: string; home: boolean; time?: string } | null;
   teams(): string[];
 }
 
@@ -61,7 +65,10 @@ export function buildScheduleModel(games: ScheduleGame[] | null | undefined): Sc
   const datesByTeam = new Map<string, string[]>();
   const byDate = new Map<string, number>();
   const teams = new Set<string>();
+  const gameIndex = new Map<string, ScheduleGame>();
   for (const g of games) {
+    gameIndex.set(`${g.home}|${g.date}`, g);
+    gameIndex.set(`${g.away}|${g.date}`, g);
     const w = fantasyWeek(g.date);
     for (const t of [g.home, g.away]) {
       teams.add(t);
@@ -97,6 +104,10 @@ export function buildScheduleModel(games: ScheduleGame[] | null | undefined): Sc
       return out;
     },
     gameDates: (team, week) => (datesByTeam.get(team) ?? []).filter((d) => fantasyWeek(d) === week),
+    gameOn: (team, date) => {
+      const g = gameIndex.get(`${team}|${date}`);
+      return g ? { opp: g.home === team ? g.away : g.home, home: g.home === team, time: g.time } : null;
+    },
     teams: () => [...teams].sort(),
   };
   return model;
@@ -121,6 +132,7 @@ export function uniformSchedule(): ScheduleModel {
       return out;
     },
     gameDates: () => [],
+    gameOn: () => null,
     teams: () => [],
   };
   return model;

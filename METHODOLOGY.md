@@ -115,3 +115,13 @@ Rest-of-season projections shrink the preseason WarRoom model toward 2026-27 act
 - Recent form ("hot free agents") values a player's last-14-days per-game line with the same z-score baseline as the projections.
 
 Both adjustments can be switched off on the Data page. Projections stay labelled as model estimates.
+
+## Daily lineup optimizer (live matchup)
+
+- **State:** Yahoo week-to-date totals (pasted) are fixed offsets in the team aggregates. FG%/FT% are offset by makes and attempts, so team percentages stay volume-weighted. Only games from the snapshot date on are projected.
+- **Per-game impact:** `Σ_c ∂P(win_c)/∂mean_c × contribution_c` at the current state. Swing categories dominate. A player whose game lowers expected categories won (usually through FG%, FT% or turnovers in a matchup where the counting categories are already decided) is benched (BN*).
+- **Daily slots:** players with a game that day are ordered by impact and added greedily while a positional matching exists. Feasible lineups form a transversal matroid, so the greedy order gives the maximum-impact lineup for the day.
+- **Opponent:** assumed to start every available player who fits, ordered by how much he hurts you (conservative).
+- **Unavailable:** Yahoo "O" flags bench the player on the snapshot day; INJ/IL/SUSP and live injury reports remove him for the week.
+- **Streaming:** for each free agent and each of the two lowest-value drops, re-run the daily plan and sum the impact of the games actually started, minus the baseline.
+- **AI coach:** Claude (`claude-opus-5-5`, structured output, server-side refusal fallback) receives the engine's fact sheet only. Its suggested start/sit changes are applied as overrides and re-scored by the engine, never trusted blindly.

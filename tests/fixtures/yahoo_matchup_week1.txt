@@ -1,0 +1,74 @@
+Week 1
+Live	Totals	Tue 10/20	Wed 10/21	Thu 10/22	Fri 10/23	Sat 10/24	Sun 10/25
+İlker & Ahmet
+İlker
+Ahmet Baran
+0-0-0 | 3rd
+Compare Managers
+3
+vs
+5
+Kadıköy UNO’s
+Burak Talha
+0-0-0 | 6th
+30	Remaining	5/35	Games Played	3/23	Remaining	20
+Team	FGM/A*	FG%	FTM/A*	FT%	3PTM	PTS	REB	AST	ST	BLK	TO
+İlker & Ahmet	27/63	.429	8/11	.727	8	70	23	10	7	7	5	3
+Kadıköy UNO’s	25/44	.568	12/15	.800	9	71	20	16	7	1	7	5
+*Non-scoring stats
+Player	FG%	FT%	3PTM	PTS	REB	AST	ST	BLK	TO	Pos	Player	FG%	FT%	3PTM	PTS	REB	AST	ST	BLK	TO
+Shai Gilgeous-Alexander
+OKC - PG	.481	.750	3	32	6	4	3	3	2	PG	Anthony Edwards
+MIN - PG,SG
+7:30 pm @ MIA	-	-	-	-	-	-	-	-	-
+Kawhi Leonard
+TOR - SG,SF,PF
+7:30 pm vs CHI	-	-	-	-	-	-	-	-	-	SG	James Harden
+CLE - PG,SG	-	-	-	-	-	-	-	-	-
+Desmond Bane
+ORL - SG,SF
+7:00 pm vs ATL	-	-	-	-	-	-	-	-	-	G	Jaylen Brown
+PHI - SG,SF,PF	-	-	-	-	-	-	-	-	-
+Kon Knueppel O
+CHA - SG,SF
+7:30 pm @ BKN	-	-	-	-	-	-	-	-	-	SF	Paul George
+BOS - SF,PF	-	-	-	-	-	-	-	-	-
+Bam Adebayo
+MIA - PF,C
+7:30 pm vs MIN	-	-	-	-	-	-	-	-	-	PF	Anthony Davis
+WAS - PF,C
+7:00 pm vs MIL	-	-	-	-	-	-	-	-	-
+Josh Hart
+NYK - SG,SF	.500	.667	2	14	7	3	1	1	2	F	Cameron Boozer
+MEM - PF
+8:00 pm vs UTA	-	-	-	-	-	-	-	-	-
+Myles Turner
+MIL - C
+7:00 pm @ WAS	-	-	-	-	-	-	-	-	-	C	Ivica Zubac
+IND - C
+8:00 pm @ NOP	-	-	-	-	-	-	-	-	-
+VJ Edgecombe
+PHI - PG,SG	.400	.500	0	9	4	1	1	0	1	Util	De'Aaron Fox
+SAS - PG	-	-	-	-	-	-	-	-	-
+Miles Bridges
+PHX - PF
+10:00 pm @ POR	-	-	-	-	-	-	-	-	-	Util	Brandon Ingram O
+LAC - SG,SF,PF
+10:30 pm vs SAC	-	-	-	-	-	-	-	-	-
+Nikola Vučević
+ORL - C
+7:00 pm vs ATL	-	-	-	-	-	-	-	-	-	Util	Coby White O
+CHA - PG,SG
+7:30 pm @ BKN	-	-	-	-	-	-	-	-	-
+Devin Vassell
+SAS - SG,SF	.250	1.000	1	7	3	1	0	0	0	BN	Quentin Grimes
+LAL - SG,SF
+10:00 pm vs GSW	-	-	-	-	-	-	-	-	-
+Julian Champagnie
+SAS - SF,PF	.375	-	2	8	3	1	2	3	0	BN	Draymond Green
+GSW - PF,C
+10:00 pm @ LAL	-	-	-	-	-	-	-	-	-
+DeMar DeRozan
+DEN - SF,PF	-	-	-	-	-	-	-	-	-	BN	P.J. Washington
+DAL - PF,C
+8:30 pm @ HOU	-	-	-	-	-	-	-	-	-

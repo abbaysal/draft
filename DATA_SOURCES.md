@@ -69,3 +69,10 @@ Fetched by the server (the deployed app; browsers would be blocked by CORS) and 
 - **Playoff history:** `data/raw/nbabench_2023-24_postseason_per_game.jsonl` and `nbabench_2024-25_postseason_per_game.jsonl` from willccbb/nbabench-data (`data/{2024,2025}/postseason.jsonl`; sha256 in MANIFEST.json). Per-game, percentages only, matched by ESPN id (name fallback): 180 players (2023-24) and 202 players (2024-25). Shown on player profiles only; not used in projections.
 - **Derived metrics** (`src/lib/engine/profile.ts`, no new assumptions): TS%, eFG%, 3P%, 3PA rate, FT rate, usage proxy per 36, AST/TO, stocks, per-36 projection, category ranks, archetype, per-season fantasy value under the league baseline (trend), durability, and similar players.
 - Projections are unchanged by these additions (verified: 0 projection differences after the rebuild).
+
+## Yahoo league observations (2026-10-21)
+
+- `data/research/yahoo_eligibility_2026-27.csv`: Yahoo position eligibility for the 26 players on the two week-1 matchup rosters, observed on the league's matchup page. Applied as platform eligibility (`eligSource: imported`).
+- `offseason_moves_2026.csv`: Miles Bridges → PHX, Nikola Vučević → ORL and DeMar DeRozan → DEN, as shown on Yahoo rosters. Each changes that player's NBA game days.
+- **Tip-off times:** the `time_et` column of the NBA schedule CSV comes from the official schedule PDF, carried into the bundled schedule.
+- **Yahoo paste sync:** players, teams, positions, flags and totals parsed from page text the manager pastes. Team and position fixes go into the local metadata layer.

@@ -28,7 +28,7 @@ export interface LiveFeed {
   generatedAt: string;
   season: string;
   sources: { id: string; name: string; url: string; ok: boolean; error?: string; count: number }[];
-  schedule: { date: string; home: string; away: string }[] | null;
+  schedule: { date: string; home: string; away: string; time?: string }[] | null;
   teamGames: Record<string, number>;
   stats: LivePlayerStats[];
   injuries: LiveInjury[];

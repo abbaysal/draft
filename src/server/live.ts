@@ -99,7 +99,7 @@ export async function buildFeed(): Promise<LiveFeed> {
     season: SEASON,
     sources,
     // Use the live schedule only when it covers the full season (it then includes NBA Cup knockout games).
-    schedule: games.length >= 1150 ? games.map(({ date, home, away }) => ({ date, home, away })) : null,
+    schedule: games.length >= 1150 ? games.map(({ date, home, away, time }) => ({ date, home, away, time })) : null,
     teamGames,
     stats: aggregateBoxscores(ok),
     injuries,

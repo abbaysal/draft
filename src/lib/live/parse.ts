@@ -77,7 +77,10 @@ export function parseNbaSchedule(json: unknown): LiveGame[] {
       const home = String(obj(o.homeTeam).teamTricode ?? "");
       const away = String(obj(o.awayTeam).teamTricode ?? "");
       if (!home || !away) continue;
-      out.push({ gameId, date, home, away, status: num(o.gameStatus) });
+      // gameDateTimeEst is Eastern wall-clock time labelled "Z" by the feed.
+      const tm = String(o.gameDateTimeEst ?? "").match(/T(\d{2}):(\d{2})/);
+      const time = tm ? `${((+tm[1] + 11) % 12) + 1}:${tm[2]} ${+tm[1] >= 12 ? "PM" : "AM"}` : undefined;
+      out.push({ gameId, date, home, away, status: num(o.gameStatus), ...(time && tm![1] !== "00" ? { time } : {}) });
     }
   }
   return out;

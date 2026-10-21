@@ -6,11 +6,22 @@
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { importSchedule } from "../src/lib/import/csv";
+import { importSchedule, teamAbbr } from "../src/lib/import/csv";
 
 const ROOT = join(__dirname, "..");
 const res = importSchedule(readFileSync(join(ROOT, "data/research/nba_schedule_2026-27.csv"), "utf8"));
 const errors = res.issues.filter((i) => i.level === "error");
 if (errors.length) throw new Error(`Schedule has ${errors.length} unparseable rows, e.g. ${errors[0].message}`);
-writeFileSync(join(ROOT, "src/data/schedule.generated.json"), JSON.stringify(res.rows));
-console.log(`schedule: ${res.rows.length} games written`);
+// Tip-off times (ET) from the time_et column, keyed by date|home|away.
+const times = new Map<string, string>();
+const lines = readFileSync(join(ROOT, "data/research/nba_schedule_2026-27.csv"), "utf8").trim().split("\n");
+const head = lines[0].split(",");
+for (const l of lines.slice(1)) {
+  const c = Object.fromEntries(l.split(",").map((v, i) => [head[i], v]));
+  const home = teamAbbr(c.home);
+  const away = teamAbbr(c.away);
+  if (home && away && c.time_et) times.set(`${c.date}|${home}|${away}`, c.time_et);
+}
+const rows = res.rows.map((g) => ({ ...g, ...(times.get(`${g.date}|${g.home}|${g.away}`) ? { time: times.get(`${g.date}|${g.home}|${g.away}`) } : {}) }));
+writeFileSync(join(ROOT, "src/data/schedule.generated.json"), JSON.stringify(rows));
+console.log(`schedule: ${rows.length} games written (${times.size} with tip-off times)`);

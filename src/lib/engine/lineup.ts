@@ -46,6 +46,39 @@ export interface DayPlan {
   starters: { id: string; slot: LineupSlot }[];
   /** Players with a game who do not fit in a starting slot that day (or were benched by override). */
   sit: string[];
+  /** Subset of `sit` benched on purpose: their game is expected to cost categories (e.g. FG%/TO). */
+  protect?: string[];
+  /** Players with a game that day who are unavailable (injured / reported out). */
+  out?: string[];
+}
+
+/** Category totals already played this matchup (e.g. pasted from Yahoo). */
+export interface WeekActual {
+  fgm: number;
+  fga: number;
+  ftm: number;
+  fta: number;
+  fg3m: number;
+  pts: number;
+  reb: number;
+  ast: number;
+  stl: number;
+  blk: number;
+  tov: number;
+}
+
+export interface PlanOptions {
+  pickups?: boolean;
+  overrides?: LineupOverrides;
+  /** Plan only games on or after this date (US Eastern YYYY-MM-DD); earlier days are covered by `actual`. */
+  fromDate?: string;
+  actual?: { me: WeekActual; opp: WeekActual } | null;
+  /** Real rosters (e.g. from Yahoo) replacing the draft-board rosters for this matchup. */
+  rosters?: { mine?: string[]; opp?: string[] } | null;
+  /** Player id → unavailable on these dates ("all" = whole period). */
+  unavailable?: Record<string, string[] | "all">;
+  /** Bench players whose game is expected to cost categories (default true). */
+  protect?: boolean;
 }
 
 /** Manual start/sit decisions: date → player id → decision (the lineup analyzer). */
@@ -62,7 +95,9 @@ export interface WeekPlan {
   lineup: LineupRow[];
   /** Day-by-day start/sit (empty without a real schedule). */
   daily: DayPlan[];
-  pickups: { id: string; score: number; replaces: string | null; gain: number }[];
+  pickups: { id: string; score: number; replaces: string | null; gain: number; days?: string[] }[];
+  /** Scheduled starts left in the period for each side (daily plan) and whether actual totals were used. */
+  remaining: { me: number; opp: number; fromDate: string | null; actualUsed: boolean };
   notes: string[];
 }
 
@@ -140,28 +175,49 @@ function fillSlots(ctx: AnalysisContext, slots: LineupSlot[], ordered: string[])
   return out;
 }
 
+/** Game dates of a player in the period, from `fromDate`, excluding dates he is unavailable. */
+type DatesOf = (id: string) => string[];
+
 /** Day-by-day start/sit for one roster; returns the plan and started games per player. */
-function dailyPlan(ctx: AnalysisContext, ids: string[], weeks: number[], perGame: Map<string, number>, slots: LineupSlot[], overrides: LineupOverrides = {}) {
+function dailyPlan(ctx: AnalysisContext, ids: string[], datesOf: DatesOf, perGame: Map<string, number>, slots: LineupSlot[], opts: { overrides?: LineupOverrides; protect?: boolean; outOn?: (id: string, d: string) => boolean; teamDates?: (team: string) => string[] } = {}) {
   const dates = new Map<string, string[]>();
-  for (const id of ids) {
-    const team = ctx.byId.get(id)!.team;
-    for (const w of weeks) for (const d of ctx.schedule.gameDates(team, w)) dates.set(d, [...(dates.get(d) ?? []), id]);
+  for (const id of ids) for (const d of datesOf(id)) dates.set(d, [...(dates.get(d) ?? []), id]);
+  const outDays = new Map<string, string[]>();
+  if (opts.outOn && opts.teamDates) {
+    for (const id of ids) {
+      const team = ctx.byId.get(id)?.team;
+      if (!team) continue;
+      for (const d of opts.teamDates(team)) if (opts.outOn(id, d)) outDays.set(d, [...(outDays.get(d) ?? []), id]);
+    }
   }
   const starts = new Map<string, number>();
   const days: DayPlan[] = [];
-  for (const date of [...dates.keys()].sort()) {
-    const o = overrides[date] ?? {};
+  for (const date of [...new Set([...dates.keys(), ...outDays.keys()])].sort()) {
+    const o = opts.overrides?.[date] ?? {};
     const rank = (id: string) => (o[id] === "start" ? 1e6 : 0) + (perGame.get(id) ?? 0);
-    const playing = dates.get(date)!.sort((a, b) => rank(b) - rank(a));
-    const starters = fillSlots(ctx, slots, playing.filter((id) => o[id] !== "sit"));
+    const playing = (dates.get(date) ?? []).sort((a, b) => rank(b) - rank(a));
+    // Protect: a game with negative expected impact (hurts FG%/FT%/TO more than it adds) is benched.
+    const protect = opts.protect ? playing.filter((id) => o[id] !== "start" && (perGame.get(id) ?? 0) < 0) : [];
+    const starters = fillSlots(ctx, slots, playing.filter((id) => o[id] !== "sit" && !protect.includes(id)));
     const on = new Set(starters.map((s) => s.id));
     for (const s of starters) starts.set(s.id, (starts.get(s.id) ?? 0) + 1);
-    days.push({ date, starters, sit: playing.filter((id) => !on.has(id)) });
+    days.push({ date, starters, sit: playing.filter((id) => !on.has(id)), protect, out: outDays.get(date) ?? [] });
   }
   return { days, starts };
 }
 
-export function planWeek(ctx: AnalysisContext, period: number | number[], opponent: number, opts: { pickups?: boolean; overrides?: LineupOverrides } = {}): WeekPlan {
+function addActual(agg: Agg, a: WeekActual | undefined): Agg {
+  if (!a) return agg;
+  const vals: Record<string, number> = { pts: a.pts, fg3m: a.fg3m, reb: a.reb, ast: a.ast, stl: a.stl, blk: a.blk, tov: a.tov };
+  COUNTING_KEYS.forEach((k, c) => (agg[c * 3] += vals[k] ?? 0));
+  agg[PCT_INDEX.fgPct] += a.fgm;
+  agg[PCT_INDEX.fgPct + 1] += a.fga;
+  agg[PCT_INDEX.ftPct] += a.ftm;
+  agg[PCT_INDEX.ftPct + 1] += a.fta;
+  return agg;
+}
+
+export function planWeek(ctx: AnalysisContext, period: number | number[], opponent: number, opts: PlanOptions = {}): WeekPlan {
   const periods = matchupPeriods();
   const weeks = Array.isArray(period) ? period : (periods[period - 1] ?? [period]);
   const periodNo = Array.isArray(period) ? periods.findIndex((p) => p[0] === period[0]) + 1 : period;
@@ -169,19 +225,43 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
   const real = ctx.schedule.source === "imported";
   const daily = real && ctx.settings.lineupMode === "daily";
   const slots = startingSlots(ctx.settings);
-  const games = (_id: string, team: string) => periodGames(ctx, team, weeks);
+  const from = opts.fromDate ?? null;
+  const first = weekRange(weeks[0]);
+  const last = weekRange(weeks[weeks.length - 1]);
+  const effFrom = from && from > first.start ? from : null;
 
-  const injuredOf = (ids: string[]) => ids.filter((id) => OUT.has(ctx.byId.get(id)?.availability?.status ?? "")).slice(0, ctx.settings.slots.IL);
-  const mine = ctx.rosters[ctx.myIndex];
-  const theirs = ctx.rosters[opponent] ?? [];
+  // Team game dates in this period (from `fromDate`).
+  const teamDates = new Map<string, string[]>();
+  const datesOfTeam = (team: string) => {
+    let d = teamDates.get(team);
+    if (!d) {
+      d = weeks.flatMap((w) => ctx.schedule.gameDates(team, w)).filter((x) => !effFrom || x >= effFrom);
+      teamDates.set(team, d);
+    }
+    return d;
+  };
+  const unavailable = opts.unavailable ?? {};
+  const outOn = (id: string, d: string) => {
+    const u = unavailable[id];
+    return u === "all" || (Array.isArray(u) && u.includes(d));
+  };
+  const datesOf: DatesOf = (id) => datesOfTeam(ctx.byId.get(id)!.team).filter((d) => !outOn(id, d));
+  // Remaining fraction of the period for the uniform (no schedule) model.
+  const totalDays = weeks.reduce((a, w) => a + weekRange(w).days, 0);
+  const leftDays = effFrom ? Math.max(0, (Date.parse(last.end) - Date.parse(effFrom)) / 864e5 + 1) : totalDays;
+  const games = (id: string, team: string) => (real ? datesOf(id).length : periodGames(ctx, team, weeks) * (leftDays / totalDays) * (unavailable[id] === "all" ? 0 : 1));
+
+  const injuredOf = (ids: string[]) => ids.filter((id) => OUT.has(ctx.byId.get(id)?.availability?.status ?? "") || unavailable[id] === "all").slice(0, ctx.settings.slots.IL);
+  const mine = (opts.rosters?.mine ?? ctx.rosters[ctx.myIndex]).filter((id) => ctx.byId.has(id));
+  const theirs = (opts.rosters?.opp ?? ctx.rosters[opponent] ?? []).filter((id) => ctx.byId.has(id));
   const injured = injuredOf(mine);
   const active = mine.filter((id) => !injured.includes(id));
   const oppInjured = injuredOf(theirs);
   const oppActive = theirs.filter((id) => !oppInjured.includes(id));
 
-  // Preliminary projection (default usage) → category gradients.
-  const opp0 = rosterAgg(ctx, oppActive, games, usageFor(ctx, oppActive));
-  const me0 = rosterAgg(ctx, active, games, usageFor(ctx, active));
+  // Preliminary projection (default usage) plus games already played → category gradients.
+  const opp0 = addActual(rosterAgg(ctx, oppActive, games, usageFor(ctx, oppActive)), opts.actual?.opp);
+  const me0 = addActual(rosterAgg(ctx, active, games, usageFor(ctx, active)), opts.actual?.me);
   const grad: Record<string, number> = {};
   for (const c of ctx.cats) grad[c] = catWinGradient(me0, opp0, c);
 
@@ -191,6 +271,7 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
       return { id, score: matchupScore(ctx, id, games(id, p.team), me0, grad), perGame: matchupScore(ctx, id, 1, me0, grad) };
     })
     .sort((a, b) => b.score - a.score);
+  const perGame = new Map(scored.map((s) => [s.id, s.perGame]));
 
   // Base (weekly) lineup: best feasible starters for the whole period.
   const base = fillSlots(ctx, slots, scored.map((s) => s.id));
@@ -201,18 +282,21 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
   let opp: Agg;
   let days: DayPlan[] = [];
   let starts = new Map<string, number>();
+  let oppStarts = 0;
+  const protect = opts.protect !== false;
   if (daily) {
-    const mp = dailyPlan(ctx, active, weeks, new Map(scored.map((s) => [s.id, s.perGame])), slots, opts.overrides);
+    const mp = dailyPlan(ctx, active, datesOf, perGame, slots, { overrides: opts.overrides, protect, outOn, teamDates: datesOfTeam });
     days = mp.days;
     starts = mp.starts;
     // Opponent starts whoever hurts us most each day (their best players for this matchup).
     const oppPer = new Map(oppActive.map((id) => [id, matchupScore(ctx, id, 1, opp0, grad, -1)]));
-    const op = dailyPlan(ctx, oppActive, weeks, oppPer, slots);
-    me = rosterAgg(ctx, active, (id) => mp.starts.get(id) ?? 0);
-    opp = rosterAgg(ctx, oppActive, (id) => op.starts.get(id) ?? 0);
+    const op = dailyPlan(ctx, oppActive, datesOf, oppPer, slots);
+    oppStarts = [...op.starts.values()].reduce((a, b) => a + b, 0);
+    me = addActual(rosterAgg(ctx, active, (id) => mp.starts.get(id) ?? 0), opts.actual?.me);
+    opp = addActual(rosterAgg(ctx, oppActive, (id) => op.starts.get(id) ?? 0), opts.actual?.opp);
   } else {
     const bench = ctx.settings.lineupMode === "daily" ? ctx.settings.benchUtilization : 0;
-    me = rosterAgg(ctx, active, games, active.map((id) => (baseIds.has(id) ? 1 : bench)));
+    me = addActual(rosterAgg(ctx, active, games, active.map((id) => (baseIds.has(id) ? 1 : bench))), opts.actual?.me);
     opp = opp0;
   }
 
@@ -231,26 +315,49 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
     ...injured.map((id) => row(id, "IL")),
   ];
   if (base.length < slots.length) notes.push(`Only ${base.length}/${slots.length} starting slots can be filled with eligible healthy players.`);
-  const lost = days.reduce((a, d) => a + d.sit.filter((id) => opts.overrides?.[d.date]?.[id] !== "sit").length, 0);
+  const lost = days.reduce((a, d) => a + d.sit.filter((id) => opts.overrides?.[d.date]?.[id] !== "sit" && !d.protect?.includes(id)).length, 0);
   if (lost > 0) notes.push(`${lost} player-game(s) this period don't fit in a starting slot (crowded days) — consider streaming a player whose games fall on light days.`);
+  const protectedGames = days.reduce((a, d) => a + (d.protect?.length ?? 0), 0);
+  if (protectedGames > 0) notes.push(`${protectedGames} game(s) benched on purpose: those players are expected to cost more in FG%/FT%/TO than they add in this matchup.`);
 
   const ps = catProbs(me, opp, ctx.cats);
   const categories: CategoryLine[] = ctx.cats.map((c, i) => ({ cat: c, mine: catDist(me, c).mean, theirs: catDist(opp, c).mean, pWin: ps[i], swing: ps[i] > 0.3 && ps[i] < 0.7 }));
 
-  // Pickups: undrafted players who help this matchup more than the weakest active player.
-  const worst = scored.length ? scored[scored.length - 1] : null;
-  const pickups = (opts.pickups === false ? [] : ctx.available)
-    .filter((id) => !OUT.has(ctx.byId.get(id)?.availability?.status ?? ""))
-    .slice(0, 250)
-    .map((id) => ({ id, score: matchupScore(ctx, id, games(id, ctx.byId.get(id)!.team), me, grad) }))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 8)
-    .map((p) => ({ ...p, replaces: worst?.id ?? null, gain: p.score - (worst?.score ?? 0) }));
+  // Pickups: schedule-aware streaming. A free agent's value = extra expected categories from the
+  // games he would actually START on the remaining days (open slots or beating a starter), net of
+  // the dropped player's lost starts.
+  let pickups: WeekPlan["pickups"] = [];
+  if (opts.pickups !== false) {
+    const startValue = (ids: string[], pg: Map<string, number>) => {
+      if (!daily) return ids.reduce((a, id) => a + (pg.get(id) ?? 0) * games(id, ctx.byId.get(id)!.team), 0);
+      const r = dailyPlan(ctx, ids, datesOf, pg, slots, { protect });
+      let v = 0;
+      for (const d of r.days) for (const s of d.starters) v += pg.get(s.id) ?? 0;
+      return v;
+    };
+    const baseValue = startValue(active, perGame);
+    const drops = [...active].sort((a, b) => (ctx.values.get(a)?.total ?? -99) - (ctx.values.get(b)?.total ?? -99)).slice(0, 2);
+    pickups = ctx.available
+      .filter((id) => !OUT.has(ctx.byId.get(id)?.availability?.status ?? "") && !mine.includes(id) && !theirs.includes(id))
+      .slice(0, 120)
+      .map((id) => {
+        const pg = new Map(perGame);
+        pg.set(id, matchupScore(ctx, id, 1, me0, grad));
+        let best = { gain: -Infinity, drop: null as string | null };
+        for (const drop of drops) {
+          const g = startValue([...active.filter((x) => x !== drop), id], pg) - baseValue;
+          if (g > best.gain) best = { gain: g, drop };
+        }
+        const days = datesOf(id);
+        return { id, score: best.gain, replaces: best.drop, gain: best.gain, days };
+      })
+      .filter((p) => Number.isFinite(p.gain))
+      .sort((a, b) => b.gain - a.gain)
+      .slice(0, 8);
+  }
 
   if (!real) notes.push("No NBA schedule loaded — games per player are a uniform estimate; daily start/sit cannot use real game days.");
-  if (theirs.length === 0) notes.push("Opponent roster is empty on the draft board — enter the full draft to analyse this matchup.");
-  const first = weekRange(weeks[0]);
-  const last = weekRange(weeks[weeks.length - 1]);
+  if (theirs.length === 0) notes.push("Opponent roster is empty — enter the full draft or paste the Yahoo matchup to analyse this matchup.");
   return {
     period: periodNo,
     weeks,
@@ -262,6 +369,7 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
     lineup,
     daily: days,
     pickups,
+    remaining: { me: [...starts.values()].reduce((a, b) => a + b, 0), opp: oppStarts, fromDate: effFrom, actualUsed: !!opts.actual },
     notes,
   };
 }
