@@ -8,7 +8,7 @@ import { useStore } from "@/client/store";
 import { Badge, Button, Panel } from "@/components/ui";
 
 /** Paste the Yahoo matchup page → real rosters, injury flags, week-to-date totals (and team/position fixes). */
-export function YahooSyncPanel({ ctx, sync, onSave, week }: { ctx: AnalysisContext; sync: MatchupSync | null; onSave: (s: MatchupSync | null) => void; week: number }) {
+export function YahooSyncPanel({ ctx, sync, onSave, week, opponent }: { ctx: AnalysisContext; sync: MatchupSync | null; onSave: (s: MatchupSync | null) => void; week: number; opponent?: number }) {
   const [open, setOpen] = useState(!sync);
   const [text, setText] = useState("");
   const [parsed, setParsed] = useState<YahooPaste | null>(null);
@@ -18,7 +18,7 @@ export function YahooSyncPanel({ ctx, sync, onSave, week }: { ctx: AnalysisConte
 
   const apply = () => {
     if (!parsed) return;
-    const s = syncFromPaste(parsed, todayET());
+    const s = syncFromPaste(parsed, todayET(), parsed.kind === "matchup" ? opponent : undefined);
     if (!s.week) s.week = week;
     onSave(s);
     // Team and position fixes from Yahoo go into the local metadata layer (affects every page).

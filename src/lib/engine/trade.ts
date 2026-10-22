@@ -104,7 +104,7 @@ export function teamAgg(ctx: AnalysisContext, ids: string[], playoffWeek?: numbe
   return agg;
 }
 
-function field(ctx: AnalysisContext, aggs: Agg[], team: number): FieldEvaluation {
+export function field(ctx: AnalysisContext, aggs: Agg[], team: number): FieldEvaluation {
   return evaluateVsField(
     aggs[team],
     aggs.map((agg, index) => ({ index, agg })).filter((o) => o.index !== team),
@@ -112,7 +112,7 @@ function field(ctx: AnalysisContext, aggs: Agg[], team: number): FieldEvaluation
   );
 }
 
-const objective = (ctx: AnalysisContext, ev: FieldEvaluation) => objectiveValue(ev, ctx.settings.format === "roto" ? "h2h_each" : ctx.settings.format);
+export const objective = (ctx: AnalysisContext, ev: FieldEvaluation) => objectiveValue(ev, ctx.settings.format === "roto" ? "h2h_each" : ctx.settings.format);
 
 export interface PowerRow {
   team: number;

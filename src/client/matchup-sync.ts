@@ -1,24 +1,11 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import type { PlanOptions, WeekActual } from "@/lib/engine/lineup";
+import { useCallback, useMemo } from "react";
+import type { PlanOptions } from "@/lib/engine/lineup";
+import type { LeagueSync, MatchupSync } from "@/lib/import/sync-types";
 import { isOutFlag, type YahooPaste } from "@/lib/import/yahoo-paste";
-import { useActiveSession } from "./store";
+import { useActiveSession, useStore } from "./store";
 
-/** A Yahoo matchup snapshot pasted by the manager (stored per draft session in this browser). */
-export interface MatchupSync {
-  syncedAt: string;
-  /** Eastern date the snapshot was taken (games before this date are in `actual`). */
-  asOf: string;
-  week: number;
-  mine: string[];
-  opp: string[];
-  status: Record<string, string>;
-  slots: Record<string, string>;
-  actual: { me: WeekActual; opp: WeekActual } | null;
-  games?: YahooPaste["games"];
-}
-
-const key = (id: string) => `wr.v1.yahooSync.${id}`;
+export type { LeagueSync, MatchupSync };
 
 /** Today's date in US Eastern time (NBA game dates). */
 export function todayET(now = new Date()): string {
@@ -48,12 +35,13 @@ export function localTip(date: string, time?: string): string | null {
   return t == null ? null : new Intl.DateTimeFormat(undefined, { hour: "2-digit", minute: "2-digit", weekday: "short" }).format(new Date(t));
 }
 
-export function syncFromPaste(r: YahooPaste, today: string): MatchupSync {
+export function syncFromPaste(r: YahooPaste, today: string, oppIndex?: number): MatchupSync {
   const all = [...r.left, ...r.right];
   return {
     syncedAt: new Date().toISOString(),
     asOf: today,
     week: r.week ?? 0,
+    oppIndex,
     mine: r.left.map((x) => x.playerId),
     opp: r.right.map((x) => x.playerId),
     status: Object.fromEntries(all.filter((x) => x.status).map((x) => [x.playerId, x.status!])),
@@ -65,28 +53,17 @@ export function syncFromPaste(r: YahooPaste, today: string): MatchupSync {
 
 export function useMatchupSync() {
   const session = useActiveSession();
-  const [sync, setSync] = useState<MatchupSync | null>(null);
-  useEffect(() => {
-    if (!session) return;
-    try {
-      setSync(JSON.parse(localStorage.getItem(key(session.id)) ?? "null"));
-    } catch {
-      setSync(null);
-    }
-  }, [session]);
-  const save = useCallback(
-    (s: MatchupSync | null) => {
-      setSync(s);
-      if (!session) return;
-      try {
-        if (s) localStorage.setItem(key(session.id), JSON.stringify(s));
-        else localStorage.removeItem(key(session.id));
-      } catch {
-        /* storage unavailable */
-      }
-    },
-    [session],
-  );
+  const sync = useStore((s) => (session ? (s.syncs[session.id]?.matchup ?? null) : null));
+  const setSync = useStore((s) => s.setSync);
+  const save = useCallback((m: MatchupSync | null) => session && setSync(session.id, { matchup: m }), [session, setSync]);
+  return { sync, save };
+}
+
+export function useLeagueSync() {
+  const session = useActiveSession();
+  const sync = useStore((s) => (session ? (s.syncs[session.id]?.league ?? null) : null));
+  const setSync = useStore((s) => s.setSync);
+  const save = useCallback((l: LeagueSync | null) => session && setSync(session.id, { league: l }), [session, setSync]);
   return { sync, save };
 }
 

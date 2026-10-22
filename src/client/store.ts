@@ -23,6 +23,7 @@ import type { FastResult, StrategiesResult } from "@/workers/protocol";
 import type { CandidateTally, ChampionshipVerdict } from "@/lib/engine/championship";
 import type { CategoryWeights } from "@/lib/categories";
 import { applyLive, type LiveFeed, type LiveOptions, type LiveReport } from "@/lib/live/blend";
+import type { SessionSyncs } from "@/lib/import/sync-types";
 
 export interface DatasetPayload {
   dataset: Dataset;
@@ -101,8 +102,11 @@ interface Store {
   live: LiveFeed | null;
   liveStatus: { state: "idle" | "loading" | "ok" | "error"; error?: string; at?: string };
   liveOpts: LiveOptions;
+  /** Yahoo syncs (matchup snapshot, league rosters) per draft session. */
+  syncs: Record<string, SessionSyncs>;
 
   init: () => Promise<void>;
+  setSync: (sessionId: string, patch: SessionSyncs) => void;
   loadLive: () => Promise<void>;
   setLiveOpts: (o: Partial<LiveOptions>) => void;
   reloadDataset: () => Promise<void>;
@@ -130,6 +134,7 @@ const LS = {
   imports: "wr.v1.imports",
   watch: "wr.v1.watch",
   live: "wr.v1.liveOpts",
+  syncs: "wr.v1.syncs",
 };
 
 function lsGet<T>(k: string, fallback: T): T {
@@ -167,6 +172,22 @@ function shape(s: LeagueSettings) {
 
 let toastSeq = 1;
 
+/** Syncs from localStorage, migrating the per-session matchup keys used before the store slice. */
+function loadSyncs(): Record<string, SessionSyncs> {
+  const syncs = lsGet<Record<string, SessionSyncs>>(LS.syncs, {});
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k?.startsWith("wr.v1.yahooSync.")) continue;
+      const id = k.slice("wr.v1.yahooSync.".length);
+      if (!syncs[id]?.matchup) syncs[id] = { ...syncs[id], matchup: JSON.parse(localStorage.getItem(k) ?? "null") };
+    }
+  } catch {
+    /* storage unavailable */
+  }
+  return syncs;
+}
+
 export const useStore = create<Store>((set, get) => ({
   boot: "loading",
   mode: "local",
@@ -189,6 +210,13 @@ export const useStore = create<Store>((set, get) => ({
   live: null,
   liveStatus: { state: "idle" },
   liveOpts: { stats: true, injuries: true },
+  syncs: {},
+
+  setSync(sessionId, patch) {
+    const syncs = { ...get().syncs, [sessionId]: { ...get().syncs[sessionId], ...patch } };
+    set({ syncs });
+    lsSet(LS.syncs, syncs);
+  },
 
   async loadLive() {
     if (get().liveStatus.state === "loading") return;
@@ -208,7 +236,7 @@ export const useStore = create<Store>((set, get) => ({
     try {
       const cached = lsGet<SessionRec[]>(LS.sessions, []);
       const queue = lsGet<Pending[]>(LS.queue, []);
-      set({ watchlist: lsGet(LS.watch, []), localImports: { ...EMPTY_IMPORTS, ...lsGet(LS.imports, EMPTY_IMPORTS) }, queue, liveOpts: { ...get().liveOpts, ...lsGet(LS.live, {}) } });
+      set({ watchlist: lsGet(LS.watch, []), localImports: { ...EMPTY_IMPORTS, ...lsGet(LS.imports, EMPTY_IMPORTS) }, queue, liveOpts: { ...get().liveOpts, ...lsGet(LS.live, {}) }, syncs: loadSyncs() });
       const [health, auth] = await Promise.all([api<Record<string, unknown>>("/api/health"), api<Store["auth"]>("/api/auth/status")]);
       // Server persistence only when the database is up AND this client may write; otherwise
       // fall back to browser-local drafts so the draft board always works.

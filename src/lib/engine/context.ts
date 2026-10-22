@@ -226,3 +226,14 @@ function applyGamesCap(ctx: AnalysisContext, agg: Agg): Agg {
   // their best options, so this slightly understates the capped team — documented).
   return scaleAgg(agg, cap / agg[GAMES]);
 }
+
+/**
+ * Replace draft-board rosters with real (synced) rosters. `owned` adds players known to be
+ * rostered somewhere even if not mapped to a team; the free-agent pool is everyone else.
+ */
+export function withRosters(ctx: AnalysisContext, rosters: string[][], owned: Iterable<string> = []): AnalysisContext {
+  const drafted = new Set<string>(owned);
+  for (const r of rosters) for (const id of r) drafted.add(id);
+  const available = [...ctx.lines.keys()].filter((id) => !drafted.has(id)).sort((a, b) => (ctx.marketRank.get(a) ?? 9999) - (ctx.marketRank.get(b) ?? 9999));
+  return { ...ctx, rosters: rosters.map((r) => r.filter((id) => ctx.byId.has(id))), drafted, available, availableSet: new Set(available) };
+}

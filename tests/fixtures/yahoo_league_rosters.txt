@@ -1,0 +1,337 @@
+League Rosters
+Efe's Extraordinary Team
+Pos	Player	Opp
+Util	Nikola Jokić
+DEN - C	7:30 pm
+Util	Victor Wembanyama
+SAS - PF,C	7:30 pm
+Util	Tyrese Maxey
+PHI - PG,SG	7:30 pm
+Util	Luka Dončić
+LAL - SF,SG	7:30 pm
+Util	Tyrese Haliburton
+IND - PG,SG	7:30 pm
+Util	Jamal Murray
+DEN - PG,SG	7:30 pm
+Util	Donovan Mitchell
+CLE - PG,SG	7:30 pm
+Util	Trey Murphy III
+NOP - SF,PF	7:30 pm
+Util	Jayson Tatum
+BOS - SF,SG	7:30 pm
+Util	Jalen Johnson
+ATL - SF,PF	7:30 pm
+BN	Scottie Barnes
+TOR - SF,SG	7:30 pm
+BN	Cade Cunningham
+DET - PG,SG	7:30 pm
+BN	Karl-Anthony Towns
+NYK - C,PF	7:30 pm
+Ilgarı yedim's Optimal
+Pos	Player	Opp
+Util	Lauri Markkanen
+UTA - PF,C	7:30 pm
+Util	Chet Holmgren
+OKC - C,PF	7:30 pm
+Util	Cooper Flagg
+DAL - SF,PF	7:30 pm
+Util	Joel Embiid
+PHI - C,PF	7:30 pm
+Util	Dyson Daniels
+ATL - PG,SG	7:30 pm
+Util	Kyrie Irving
+DAL - PG,SG	7:30 pm
+Util	Stephen Curry
+GSW - PG,SG	7:30 pm
+Util	Austin Reaves
+LAL - PG,SG	7:30 pm
+Util	Amen Thompson
+HOU - SG,SF	7:30 pm
+Util	Kevin Durant
+HOU - SF,PF	7:30 pm
+BN	OG Anunoby
+NYK - SF,SG	7:30 pm
+BN	Devin Booker
+PHX - PG,SG	7:30 pm
+BN	Derrick White
+BOS - PG,SG	7:30 pm
+İlker & Ahmet
+Pos	Player	Opp
+Util	Shai Gilgeous-Alexander
+OKC - PG	7:30 pm
+Util	Kawhi Leonard
+TOR - SG,SF,PF	7:30 pm
+Util	Desmond Bane
+ORL - SG,SF	7:30 pm
+Util	Kon Knueppel
+CHA - SG,SF	7:30 pm
+Util	Bam Adebayo
+MIA - PF,C	7:30 pm
+Util	Josh Hart
+NYK - SG,SF	7:30 pm
+Util	Myles Turner
+MIL - C	7:30 pm
+Util	VJ Edgecombe
+PHI - PG,SG	7:30 pm
+Util	Miles Bridges
+PHX - PF	7:30 pm
+Util	Nikola Vučević
+ORL - C	7:30 pm
+BN	Devin Vassell
+SAS - SG,SF	7:30 pm
+BN	Julian Champagnie
+SAS - SF,PF	7:30 pm
+BN	DeMar DeRozan
+DEN - SF,PF	7:30 pm
+Kemal's Awesome Team
+Pos	Player	Opp
+Util	Evan Mobley
+CLE - C	7:30 pm
+Util	Jalen Duren
+DET - C	7:30 pm
+Util	Jalen Williams
+OKC - SG,SF	7:30 pm
+Util	Tyler Herro
+MIL - PG,SG	7:30 pm
+Util	Domantas Sabonis
+SAC - PF,C	7:30 pm
+Util	Jalen Brunson
+NYK - PG,SG	7:30 pm
+Util	Jaren Jackson Jr.
+UTA - PF,C	7:30 pm
+Util	Franz Wagner
+ORL - SF,PF	7:30 pm
+Util	Michael Porter Jr.
+BKN - SF,PF	7:30 pm
+Util	LaMelo Ball
+CHA - PG,SG	7:30 pm
+BN	Fred VanVleet
+HOU - PG,SG	7:30 pm
+BN	Onyeka Okongwu
+ATL - PF,C	7:30 pm
+BN	Damian Lillard
+POR - PG,SG	7:30 pm
+Burak's Brilliant Team
+Pos	Player	Opp
+Util	Trae Young
+WAS - PG,SG	7:30 pm
+Util	Jimmy Butler III
+GSW - SF,PF	7:30 pm
+Util	Alperen Sengun
+HOU - C	7:30 pm
+Util	Donovan Clingan
+POR - C	7:30 pm
+Util	Dejounte Murray
+NOP - PG,SG	7:30 pm
+Util	Brandon Miller
+CHA - SF,PF	7:30 pm
+Util	Mikal Bridges
+NYK - SG,SF	7:30 pm
+Util	Walker Kessler
+LAL - C	7:30 pm
+Util	Giannis Antetokounmpo
+MIA - SF,PF	7:30 pm
+Util	Jarrett Allen
+CLE - C	7:30 pm
+BN	Kristaps Porziņģis
+GSW - PF,C	7:30 pm
+BN	Bez Mbeng
+UTA - PG,SG	7:30 pm
+BN	Josh Giddey
+CHI - PG,SG	7:30 pm
+Barış's Best Team
+Pos	Player	Opp
+Util	Jalen Suggs
+ORL - PG,SG	7:30 pm
+Util	Immanuel Quickley
+TOR - PG,SG	7:30 pm
+Util	Alex Sarr
+WAS - C	7:30 pm
+Util	LeBron James
+PHI - SF,PF	7:30 pm
+Util	Kel'el Ware
+MIL - C	7:30 pm
+Util	Mark Williams
+PHX - C	7:30 pm
+Util	Keyonte George
+UTA - PG,SG	7:30 pm
+Util	Darius Garland
+LAC - PG,SG	7:30 pm
+Util	Keegan Murray
+SAC - SF,PF	7:30 pm
+Util	Cason Wallace
+OKC - PG,SG	7:30 pm
+BN	Jaden McDaniels
+MIN - SF,PF	7:30 pm
+BN	Andersson Garcia
+UTA - SF,PF	7:30 pm
+BN	Nickeil Alexander-Walker
+ATL - PG,SG	7:30 pm
+Kadıköy UNO's
+Pos	Player	Opp
+Util	Anthony Edwards
+MIN - PG,SG	7:30 pm
+Util	James Harden
+CLE - PG,SG	7:30 pm
+Util	Jaylen Brown
+PHI - SG,SF,PF	7:30 pm
+Util	Paul George
+BOS - SF,PF	7:30 pm
+Util	Anthony Davis
+WAS - PF,C	7:30 pm
+Util	Cameron Boozer
+MEM - PF	7:30 pm
+Util	Ivica Zubac
+IND - C	7:30 pm
+Util	De'Aaron Fox
+SAS - PG	7:30 pm
+Util	Brandon Ingram
+LAC - SG,SF,PF	7:30 pm
+Util	Coby White
+CHA - PG,SG	7:30 pm
+BN	Quentin Grimes
+LAL - SG,SF	7:30 pm
+BN	Draymond Green
+GSW - PF,C	7:30 pm
+BN	P.J. Washington
+DAL - PF,C	7:30 pm
+Efe's Expert Team
+Pos	Player	Opp
+Util	Payton Pritchard
+BOS - PG,SG	7:30 pm
+Util	Saddiq Bey
+NOP - SG,SF	7:30 pm
+Util	Pascal Siakam
+IND - SF,PF	7:30 pm
+Util	Zach LaVine
+SAC - PG,SG	7:30 pm
+Util	Kevin Porter Jr.
+MIL - SG,SF	7:30 pm
+Util	Deni Avdija
+POR - SF,PF	7:30 pm
+Util	Jabari Smith Jr.
+HOU - SF,PF	7:30 pm
+Util	Andrew Wiggins
+MIA - SF,PF	7:30 pm
+Util	Ryan Rollins
+MIL - PG,SG	7:30 pm
+Util	Norman Powell
+CHI - PG,SG	7:30 pm
+BN	Adama Bal
+MEM - PG,SG	7:30 pm
+BN	Donte DiVincenzo
+MIN - PG,SG	7:30 pm
+BN	Ausar Thompson
+DET - SG,SF	7:30 pm
+Ilgar's Ingenious Team
+Pos	Player	Opp
+Util	Jakob Poeltl
+TOR - C	7:30 pm
+Util	John Collins
+DET - PF,C	7:30 pm
+Util	Naz Reid
+MIN - C,PF	7:30 pm
+Util	Julius Randle
+BKN - PF,C	7:30 pm
+Util	Isaiah Hartenstein
+OKC - C,PF	7:30 pm
+Util	Reed Sheppard
+HOU - PG,SG	7:30 pm
+Util	Deandre Ayton
+LAL - C	7:30 pm
+Util	Kelly Oubre Jr.
+IND - SF,SG	7:30 pm
+Util	Julian Reese
+WAS - SF,PF	7:30 pm
+Util	Cameron Johnson
+DEN - SF,PF	7:30 pm
+BN	Matas Buzelis
+CHI - SF,PF	7:30 pm
+BN	Lucas Williamson
+MEM - PG,SG	7:30 pm
+BN	Christian Braun
+DEN - PG,SG	7:30 pm
+Yağız's Perfect Team
+Pos	Player	Opp
+Util	Ja Morant
+POR - PG,SG	7:30 pm
+Util	Ayo Dosunmu
+MIN - PG,SG	7:30 pm
+Util	Zion Williamson
+NOP - SF,PF	7:30 pm
+Util	Derik Queen
+NOP - C	7:30 pm
+Util	Tari Eason
+HOU - SF,PF	7:30 pm
+Util	Tre Jones
+CHI - PG,SG	7:30 pm
+Util	Trevon Scott
+BKN - SF,PF	7:30 pm
+Util	Toumani Camara
+POR - SF,PF	7:30 pm
+Util	Paolo Banchero
+ORL - SF,PF	7:30 pm
+Util	Grayson Allen
+PHX - PG,SG	7:30 pm
+BN	Kennedy Chandler
+UTA - PG,SG	7:30 pm
+BN	Brandin Podziemski
+GSW - PG,SG	7:30 pm
+BN	Kyshawn George
+WAS - SF,PF	7:30 pm
+Emre's Expert Team
+Pos	Player	Opp
+Util	Dereck Lively II
+DAL - C	7:30 pm
+Util	Santi Aldama
+MEM - PF,C	7:30 pm
+Util	Rudy Gobert
+MIN - C	7:30 pm
+Util	Bilal Coulibaly
+WAS - PG,SG	7:30 pm
+Util	Toby Okani
+MEM - SF,PF	7:30 pm
+Util	Zach Edey
+MEM - C	7:30 pm
+Util	Daniel Gafford
+DAL - PF,C	7:30 pm
+Util	Collin Gillespie
+PHX - PG,SG	7:30 pm
+Util	Ty Jerome
+MEM - SG,SF	7:30 pm
+Util	Herbert Jones
+NOP - SF,PF	7:30 pm
+BN	Tobias Harris
+SAS - SF,PF	7:30 pm
+BN	Bradley Beal
+LAC - PG,SG	7:30 pm
+BN	Ace Bailey
+UTA - SF,PF	7:30 pm
+Egemen's Expert Team
+Pos	Player	Opp
+Util	Shaedon Sharpe
+POR - PG,SG	7:30 pm
+Util	Maxime Raynaud
+SAC - C	7:30 pm
+Util	Aaron Gordon
+DEN - SF,PF	7:30 pm
+Util	Collin Murray-Boyles
+TOR - SF,PF	7:30 pm
+Util	Jerami Grant
+MEM - SF,PF	7:30 pm
+Util	Andrew Nembhard
+IND - SG,SF	7:30 pm
+Util	Cedric Coward
+MEM - PG,SG	7:30 pm
+Util	Neemias Queta
+BOS - C	7:30 pm
+Util	Nic Claxton
+CHI - C	7:30 pm
+Util	Ajay Mitchell
+OKC - PG,SG	7:30 pm
+BN	Wendell Carter Jr.
+ORL - C,PF	7:30 pm
+BN	Jalen Green
+PHX - PG,SG	7:30 pm
+BN	Bobby Portis Jr.
+MIA - SF,PF	7:30 pm

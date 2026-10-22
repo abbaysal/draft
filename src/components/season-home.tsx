@@ -8,7 +8,8 @@ import { recentForm } from "@/lib/live/form";
 import { useEngineContext } from "@/client/analysis";
 import { currentPeriod, useMatchupSchedule } from "@/client/matchups";
 import { useMatchupSync, usePlanOptions } from "@/client/matchup-sync";
-import { useDataset, useStore } from "@/client/store";
+import { useDataset } from "@/client/store";
+import { useRecordMove } from "@/client/roster-moves";
 import { Badge, Button, cn, Panel, ProbBar, Spinner, Stat } from "@/components/ui";
 import { PlayerLink } from "@/components/player";
 
@@ -17,8 +18,7 @@ const sign = (v: number, d = 2) => `${v >= 0 ? "+" : ""}${v.toFixed(d)}`;
 /** Post-draft home: this week's matchup, league power ratings, waiver moves and trade ideas. */
 export function SeasonHome() {
   const ctx = useEngineContext();
-  const dispatch = useStore((s) => s.dispatch);
-  const toast = useStore((s) => s.toast);
+  const recordMove = useRecordMove();
   const { opponents } = useMatchupSchedule(ctx);
   const period = currentPeriod(opponents.length || 21);
   const [trades, setTrades] = useState<TradeIdea[] | null>(null);
@@ -58,12 +58,7 @@ export function SeasonHome() {
   if (!ctx) return <Spinner />;
   const names = ctx.settings.teamNames;
   const me = power.find((r) => r.team === ctx.myIndex);
-  const addDrop = async (add: string, drop: string) => {
-    const pick = ctx.draft.picks.find((p) => p.playerId === drop);
-    if (!pick) return;
-    if (!window.confirm(`Record on the board: add ${ctx.byId.get(add)?.name}, drop ${ctx.byId.get(drop)?.name}?`)) return;
-    if (await dispatch({ type: "edit", overall: pick.overall, playerId: add })) toast("success", "Roster updated.");
-  };
+  const addDrop = (add: string, drop: string) => void recordMove(add, drop);
 
   return (
     <div className="space-y-3">
@@ -184,7 +179,7 @@ export function SeasonHome() {
             </tbody>
           </table>
         </Panel>
-        <Panel title="Waiver wire: best add / drop" bodyClass="p-0">
+        <Panel title="Waiver wire: best add / drop" right={<Link href="/free-agents" className="text-xs text-accent">All free agents →</Link>} bodyClass="p-0">
           <table className="w-full text-xs">
             <thead className="text-[10px] text-dim uppercase">
               <tr><th className="px-2 py-1 text-left">Add</th><th className="text-left">Drop</th><th className="text-right" title="Δ expected categories won per week">Gain</th><th /></tr>

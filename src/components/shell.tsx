@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import {
-  Activity, ArrowLeftRight, BarChart3, ListChecks, BookOpen, Brain, CalendarDays, Database, FlaskConical, GitCompare, History, LayoutDashboard, Settings, Shuffle, Swords, Target, Trophy, Users,
+  Activity, ArrowLeftRight, BarChart3, ListChecks, BookOpen, Brain, CalendarDays, Database, FlaskConical, GitCompare, History, LayoutDashboard, Settings, Shuffle, Swords, Target, Trophy, UserPlus, Users,
 } from "lucide-react";
 import { useStore, useActiveSession } from "@/client/store";
 import { AnalysisRunner, useEngineContext } from "@/client/analysis";
@@ -20,6 +20,7 @@ const DRAFT_NAV: NavItem[] = [
   { href: "/team", label: "My Team", icon: BarChart3 },
   { href: "/lineup", label: "Matchups & Lineup", icon: ListChecks },
   { href: "/trade", label: "Trade Analyzer", icon: ArrowLeftRight },
+  { href: "/free-agents", label: "Free Agents", icon: UserPlus },
   { href: "/opponents", label: "Opponents", icon: Swords },
   { href: "/compare", label: "Compare", icon: GitCompare },
   { href: "/mock", label: "Mock Simulator", icon: Shuffle },
@@ -34,6 +35,7 @@ const DRAFT_NAV: NavItem[] = [
 const SEASON_NAV: NavItem[] = [
   { href: "/", label: "Season HQ", icon: Trophy },
   { href: "/lineup", label: "Matchups & Lineup", icon: ListChecks },
+  { href: "/free-agents", label: "Free Agents", icon: UserPlus },
   { href: "/trade", label: "Trade Analyzer", icon: ArrowLeftRight },
   { href: "/team", label: "My Team", icon: BarChart3 },
   { href: "/players", label: "Players & Waivers", icon: Users },

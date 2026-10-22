@@ -79,6 +79,9 @@ export interface PlanOptions {
   unavailable?: Record<string, string[] | "all">;
   /** Bench players whose game is expected to cost categories (default true). */
   protect?: boolean;
+  /** Free agents to evaluate for streaming (default: ctx.available) and how many to return (default 8). */
+  pickupPool?: string[];
+  pickupCount?: number;
 }
 
 /** Manual start/sit decisions: date → player id → decision (the lineup analyzer). */
@@ -337,9 +340,9 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
     };
     const baseValue = startValue(active, perGame);
     const drops = [...active].sort((a, b) => (ctx.values.get(a)?.total ?? -99) - (ctx.values.get(b)?.total ?? -99)).slice(0, 2);
-    pickups = ctx.available
-      .filter((id) => !OUT.has(ctx.byId.get(id)?.availability?.status ?? "") && !mine.includes(id) && !theirs.includes(id))
-      .slice(0, 120)
+    pickups = (opts.pickupPool ?? ctx.available)
+      .filter((id) => ctx.lines.has(id) && !OUT.has(ctx.byId.get(id)?.availability?.status ?? "") && !mine.includes(id) && !theirs.includes(id))
+      .slice(0, Math.max(120, opts.pickupCount ?? 0))
       .map((id) => {
         const pg = new Map(perGame);
         pg.set(id, matchupScore(ctx, id, 1, me0, grad));
@@ -353,7 +356,7 @@ export function planWeek(ctx: AnalysisContext, period: number | number[], oppone
       })
       .filter((p) => Number.isFinite(p.gain))
       .sort((a, b) => b.gain - a.gain)
-      .slice(0, 8);
+      .slice(0, opts.pickupCount ?? 8);
   }
 
   if (!real) notes.push("No NBA schedule loaded — games per player are a uniform estimate; daily start/sit cannot use real game days.");

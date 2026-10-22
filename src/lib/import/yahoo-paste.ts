@@ -9,6 +9,7 @@
 import { nameKey } from "../names";
 import type { Player, SlotPos } from "../types";
 import type { WeekActual } from "../engine/lineup";
+import { resolveTeam } from "../engine/lineup";
 
 export interface YahooRosterEntry {
   playerId: string;
@@ -147,4 +148,84 @@ export function parseYahooPaste(text: string, players: Player[]): YahooPaste {
 /** Yahoo flags that mean the player will not play (today). */
 export function isOutFlag(status?: string): boolean {
   return status === "O" || status === "OUT" || status === "INJ" || status === "SUSP" || status === "IL";
+}
+
+export interface LeagueRosterGroup {
+  /** League team index the group was matched to (-1 = unknown; the user maps it). */
+  teamIndex: number;
+  /** Text seen just before the roster (usually the Yahoo team name). */
+  label: string;
+  players: string[];
+}
+
+const HEADER = new Set(["PLAYER", "PLAYERS", "POS", "POSITION"]);
+const LABEL_STOP = new Set(["STATUS", "OPP", "OPPONENT", "ROSTERS", "LEAGUE ROSTERS", "STARTERS", "BENCH", "EDIT", "ACTION", "GAME", "MATCHUP", "FANTASY BASKETBALL"]);
+
+/**
+ * Yahoo League → Rosters page (or several team pages pasted together): every rostered player,
+ * grouped by roster table. A group starts at a table header ("Pos"/"Player") or a team name;
+ * its team is the league team whose name matches the text before it.
+ */
+export function parseLeagueRosters(text: string, players: Player[], teamNames: string[]): { groups: LeagueRosterGroup[]; rostered: string[]; unmatched: string[] } {
+  const byName = new Map<string, Player>();
+  for (const p of players) byName.set(nameKey(p.name), p);
+  const cells = text
+    .split(/\r?\n/)
+    .flatMap((l) => l.split("\t"))
+    .map((c) => c.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  const groups: LeagueRosterGroup[] = [];
+  const seen = new Set<string>();
+  let current: LeagueRosterGroup | null = null;
+  let boundary = true;
+  let pendingTeam = -1;
+  let pendingLabel = "";
+  let labelLocked = false;
+  const playerOf = (cell: string): Player | null => {
+    if (cell.length < 4 || cell.length > 60 || /\d{2}/.test(cell)) return null;
+    const direct = byName.get(nameKey(cell));
+    if (direct) return direct;
+    const m = cell.match(/^(.*\S)\s+([A-Z]{1,4})$/);
+    return m && STATUS.has(m[2]) ? (byName.get(nameKey(m[1])) ?? null) : null;
+  };
+  for (const cell of cells) {
+    if (HEADER.has(cell.toUpperCase())) {
+      boundary = true;
+      continue;
+    }
+    const p = playerOf(cell);
+    if (p) {
+      if (boundary || !current) {
+        current = { teamIndex: pendingTeam, label: pendingLabel, players: [] };
+        groups.push(current);
+        boundary = false;
+        pendingTeam = -1;
+        pendingLabel = "";
+        labelLocked = false;
+      }
+      if (!seen.has(p.id)) {
+        seen.add(p.id);
+        current.players.push(p.id);
+      }
+      continue;
+    }
+    if (TEAM_POS.test(cell) || STATUS.has(cell) || SLOTS.has(cell.toUpperCase()) || /\d/.test(cell) || cell.length < 3 || cell.length > 45) continue;
+    // A league team name starts a new roster; other text becomes the label of the next group.
+    const t = cell.length >= 5 ? resolveTeam(cell, teamNames) : -1;
+    if (t >= 0) {
+      pendingTeam = t;
+      pendingLabel = cell;
+      labelLocked = true;
+      boundary = true;
+    } else if (!labelLocked && !LABEL_STOP.has(cell.toUpperCase())) {
+      // First text after a roster ends is usually the next team's name.
+      pendingLabel = cell;
+      labelLocked = true;
+    }
+  }
+  const unmatched: string[] = [];
+  for (let i = 0; i + 1 < cells.length; i++) {
+    if (TEAM_POS.test(cells[i + 1]) && !playerOf(cells[i]) && /^[A-Z][\p{L}.'’ -]+$/u.test(cells[i]) && cells[i].includes(" ")) unmatched.push(cells[i]);
+  }
+  return { groups: groups.filter((g) => g.players.length > 0), rostered: [...seen], unmatched };
 }

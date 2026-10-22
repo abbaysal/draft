@@ -6,7 +6,8 @@
  * moment the draft moves on. The UI always shows the latest verified values.
  */
 import { useEffect, useMemo, useRef } from "react";
-import { buildContext, type AnalysisContext } from "@/lib/engine/context";
+import { buildContext, withRosters, type AnalysisContext } from "@/lib/engine/context";
+import type { SessionSyncs } from "@/lib/import/sync-types";
 import { buildScheduleModel } from "@/lib/engine/schedule";
 import { POLICY, mergeChunks, summarise, type ChampionshipChunk } from "@/lib/engine/championship";
 import type { FastResult, StrategiesResult } from "@/workers/protocol";
@@ -18,12 +19,28 @@ export function stateKey(dsKey: string, sessionId: string, version: number, sett
   return `${dsKey}|${sessionId}|${version}|${hashSeed(JSON.stringify(settings))}`;
 }
 
+/**
+ * Real Yahoo rosters override the draft board: league rosters for every team, and the latest
+ * matchup snapshot for my team and that week's opponent when it is newer.
+ */
+function applySyncs(ctx: AnalysisContext, syncs: SessionSyncs | undefined): AnalysisContext {
+  const league = syncs?.league;
+  const m = syncs?.matchup;
+  if (!league && !m) return ctx;
+  const rosters = ctx.rosters.map((r, i) => league?.teams[i] ?? r);
+  const newer = m && (!league || m.syncedAt > league.syncedAt);
+  if (m && (newer || !league?.teams[ctx.myIndex])) rosters[ctx.myIndex] = m.mine;
+  if (m && m.oppIndex != null && m.oppIndex >= 0 && m.opp.length && (newer || !league?.teams[m.oppIndex])) rosters[m.oppIndex] = m.opp;
+  return withRosters(ctx, rosters, league?.rostered ?? []);
+}
+
 const scheduleCache = new WeakMap<object, ReturnType<typeof buildScheduleModel>>();
 
 /** Main-thread analysis context (cheap: baselines are cached per dataset). */
 export function useEngineContext(): AnalysisContext | null {
   const ds = useDataset();
   const session = useActiveSession();
+  const syncs = useStore((s) => (session ? s.syncs[session.id] : undefined));
   return useMemo(() => {
     if (!ds || !session) return null;
     let sched = scheduleCache.get(ds.schedule);
@@ -31,8 +48,9 @@ export function useEngineContext(): AnalysisContext | null {
       sched = buildScheduleModel(ds.schedule);
       scheduleCache.set(ds.schedule, sched);
     }
-    return buildContext({ players: ds.players, settings: session.settings, draft: session.state, schedule: sched });
-  }, [ds, session]);
+    const ctx = buildContext({ players: ds.players, settings: session.settings, draft: session.state, schedule: sched });
+    return applySyncs(ctx, syncs);
+  }, [ds, session, syncs]);
 }
 
 export function useCurrentKey() {

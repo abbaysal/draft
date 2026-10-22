@@ -105,7 +105,7 @@ export default function LineupPage() {
         </Panel>
       )}
       <div className="grid gap-3 xl:grid-cols-2">
-        <YahooSyncPanel ctx={ctx} sync={sync} onSave={saveSync} week={week} />
+        <YahooSyncPanel ctx={ctx} sync={sync} onSave={saveSync} week={week} opponent={opponents[week - 1]} />
         {plan && plan.daily.length > 0 && today >= plan.dates.start && today <= plan.dates.end && <TodayCard ctx={ctx} plan={plan} today={today} />}
       </div>
       {myCount < ctx.starters && <Panel><div className="text-sm text-yellow-300">Your roster has {myCount} players — sync from Yahoo (above) or enter the full draft so lineups and matchups are accurate.</div></Panel>}

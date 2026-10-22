@@ -125,3 +125,12 @@ Both adjustments can be switched off on the Data page. Projections stay labelled
 - **Unavailable:** Yahoo "O" flags bench the player on the snapshot day; INJ/IL/SUSP and live injury reports remove him for the week.
 - **Streaming:** for each free agent and each of the two lowest-value drops, re-run the daily plan and sum the impact of the games actually started, minus the baseline.
 - **AI coach:** Claude (`claude-opus-5-5`, structured output, server-side refusal fallback) receives the engine's fact sheet only. Its suggested start/sit changes are applied as overrides and re-scored by the engine, never trusted blindly.
+
+## Free agents
+
+- **Pool:** projected players on no roster. Rosters come from the Yahoo league-rosters paste when synced, else the draft board plus the Yahoo matchup sync.
+- **Season Δ:** for each free agent and each of the three most droppable healthy players, rebuild your average-week aggregate and take the change in expected categories won per week against every other team. The best drop is reported, with the per-category change in P(win).
+- **Week Δ:** the daily planner re-run with the free agent in place of each of your two lowest-value players. It sums the impact of the games he would actually start on the remaining days, minus the dropped player's lost starts.
+- **Drop candidates:** the change when each player is swapped for the best of the top eight free agents (positive = an upgrade is waiting).
+- **Needs:** P(win) per category vs the league. The fit weight `4p(1−p)` emphasises swing categories and ignores punted or locked ones.
+- **Hot:** last-14-days per-game line valued with the projection baseline (live NBA box scores).

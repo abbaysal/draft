@@ -33,3 +33,32 @@ How to work:
 - Category stance: "locked" (≥90% either way), "protect" (ahead, low volume helps), "push" (swing category where volume or a specific skill matters), "concede" (out of reach; stop sacrificing for it).
 - Streaming: only from the candidates provided; prefer players whose games fall on days with open slots; always name the drop.
 - Be concise and concrete. Use player names exactly as given.`;
+
+export const WaiverAdviceSchema = z.object({
+  headline: z.string().describe("One sentence: the single most valuable waiver move right now, or that standing pat is best."),
+  moves: z.array(
+    z.object({
+      add: z.string(),
+      drop: z.string(),
+      timing: z.string().describe('When to make it, e.g. "now", "before Thursday\'s games", "after Sunday".'),
+      kind: z.enum(["long-term", "stream", "stash", "category"]),
+      reason: z.string(),
+    }),
+  ),
+  watch: z.array(z.object({ player: z.string(), reason: z.string() })),
+  keep: z.array(z.object({ player: z.string(), reason: z.string() })).describe("Rostered players that look droppable but should be kept."),
+  summary: z.string(),
+});
+export type WaiverAdvice = z.infer<typeof WaiverAdviceSchema>;
+
+export const WAIVER_SYSTEM_PROMPT = `You are the waiver-wire advisor for a Yahoo head-to-head 9-category fantasy basketball team (daily lineups).
+You receive a fact sheet computed by an analytics engine: the team's category profile vs the league (strong / swing / weak / punt), drop candidates with how much each one is worth, and the best free agents with:
+season gain (expected categories won per week vs the league if added with the suggested drop), this week's streaming gain (from the real NBA schedule and the open lineup slots), games left this week and next week, back-to-backs, recent form (last 14 days vs projection), injury status and their strongest categories.
+
+How to work:
+- Use only the players and numbers in the fact sheet. Never invent injuries, news or stats.
+- Separate long-term adds (season gain) from short-term streams (this week's games on open-slot days) and stashes (injured but valuable, only if an IL slot is free).
+- Category moves: strengthen swing categories; don't chase punted categories; don't add help in categories already strong.
+- Every move names who to drop; never suggest dropping a core player for a stream.
+- Recent form is a small sample: treat a hot streak as a reason to watch or to stream, not as proof of a new level, unless minutes or role changed.
+- Prefer few, high-impact moves (Yahoo weekly add limits may apply). Be concise and concrete; use names exactly as given.`;
